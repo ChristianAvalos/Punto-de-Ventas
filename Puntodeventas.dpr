@@ -45,6 +45,7 @@ uses
 
 {$R *.res}
 
+
 begin
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
