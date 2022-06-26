@@ -1,0 +1,122 @@
+unit UnitVerificarModulo;
+
+interface
+
+uses
+  System.SysUtils, System.IniFiles;
+function FullPathConfiguracionINI(): string;
+function LeerParametrosConfiguracionINI(Segmento: string; NombreParametro: string; MostrarAlerta: Boolean = True): string;
+function ObtenerPuertoAplicacion: Integer;
+implementation
+function FullPathConfiguracionINI(): string;
+begin
+
+  // SolO el isapi se comporta de otra manera al leer el INI (ya que depende del servidor web
+  {$IFDEF UNIGUI_ISAPI}
+  Result := UniServerModule.StartPath + 'configuracion.ini';
+  {$ELSE}
+  Result := TPath.GetDirectoryName(ParamStr(0)) + TPath.DirectorySeparatorChar + 'configuracion.ini';
+  {$ENDIF}
+
+end;
+
+function LeerParametrosConfiguracionINI(Segmento: string;
+  NombreParametro: string; MostrarAlerta: Boolean = True): string;
+var
+  vArchivoIni: tIniFile;
+  sMsg: string;
+begin
+  // Esta funcion lee los parametros de conexion de la base de datos de un fichero INI
+  // Asigno el nombre del fichero INI
+
+  vArchivoIni := tIniFile.Create(FullPathConfiguracionINI);
+
+  // Intento recuperar los valores como resultado
+  try
+
+    try
+      Result := vArchivoIni.ReadString(Segmento, NombreParametro, Result);
+
+      // En caso que el valor de MostrarMensaje sea verdadero
+
+      if Result = '' then
+      begin
+        // RhMini y AutoservicioDesktop no carga el valor por defecto
+        {$IF NOT (DEFINED(RHMINI) OR
+                  DEFINED(AUTOSERVICIODESKTOP))}
+        CargarParametrosConfiguracionINIPorDefecto(Segmento, NombreParametro);
+        {$ENDIF}
+        Result := vArchivoIni.ReadString(Segmento, NombreParametro, Result);
+      end;
+
+      if MostrarAlerta = True then
+      begin
+        // En caso de los puertos vacios, emite alerta
+        if Result = '' then
+        begin
+
+          sMsg := 'Error: [' + Segmento + '] ' + NombreParametro + ': Parámetro no definido en fichero de configuración INI';
+
+          {$IFDEF FMX}
+          MessageDlg(sMsg, TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+          {$ENDIF}
+
+          {$IFDEF DESTKOP}
+          MessageDlg(sMsg, mtError, [mbOK], 0);
+          {$ENDIF}
+
+          {$IFDEF SERVICE}
+          Log(sMsg);
+          {$ENDIF}
+
+          {$IFDEF WEB}
+          MessageDlg(sMsg, mtError, [mbOK]);
+          {$ENDIF}
+        end;
+      end;
+
+    except
+      On E: Exception do
+      begin
+        Log(EExcepcion + ' - LeerParametrosConfiguracionINI - ' + E.Message);
+
+        {$IFDEF VCL}
+          {$IFDEF DESKTOP}
+          MessageDlg(EExcepcion + ' - LeerParametrosConfiguracionINI - ' + E.Message, mtError, [mbOK], 0);
+          {$ENDIF}
+        {$ENDIF}
+
+        {$IFDEF FMX}
+        MessageDlg(EExcepcion + ' - LeerParametrosConfiguracionINI - ' + E.Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+        {$ENDIF}
+      end;
+
+    end;
+
+  finally
+    // Libero el fichero INI
+    vArchivoIni.Free;
+  end;
+
+end;
+function ObtenerPuertoAplicacion: Integer;
+var
+  PuertoFicheroINI: string;
+begin
+
+  // Leo la ruta del fichero ini
+  PuertoFicheroINI := LeerParametrosConfiguracionINI('APLICACION', 'puerto');
+
+  // Dependiendo si existe el valor del puerto
+  if PuertoFicheroINI = '' then
+  begin
+    Result := 8077;
+  end
+  else
+    begin
+      Result := StrToInt(PuertoFicheroINI);
+    end;
+
+end;
+
+end.

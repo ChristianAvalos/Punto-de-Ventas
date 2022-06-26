@@ -1,0 +1,119 @@
+unit UnitValidaciones;
+{$INCLUDE 'compilador.inc'}
+interface
+uses
+   {$IFDEF WEB}
+  ServerModule, UniGuiApplication, UniGuiForm, UniDBGrid, uniGUITypes, uniGUIAbstractClasses,
+  UniDBMemo, uniDBCheckBox,  UniDBEdit, UniDBLookupComboBox, UniDBDateTimePicker, uniDBComboBox,
+  uniImage, uniStatusBar, uniEdit, uniCombobox, uniMemo,  uniCheckBox, uniPageControl,
+  uniDateTimePicker, UniRadioButton, uniGroupBox,uniGUIDialogs, uniPanel, uniGUIClasses,
+  uniGUICoreInterfaces, uniListBox,
+  {$ENDIF}
+
+type
+  TTipoValidacion = (Nulo, StringVacio, EnteroCero);
+  TTipoValidacionFecha = (Menor, Menor_o_Igual, Mayor, Mayor_o_Igual);
+  end;
+ procedure ValidarVacios(Control: TControl; MensajeValidacion: String; MsgDlgType: TMsgDlgType = mtError); overload;
+
+implementation
+
+procedure ValidarVacios(Control: TControl; MensajeValidacion: String; MsgDlgType: TMsgDlgType = mtError);
+//ValidarVacios(txtRotulado, EEscribaRotulado);
+var
+  MostrarAlerta: Boolean;
+begin
+
+    MostrarAlerta:= False;
+   {$IFDEF WEB}
+   TUniFormControl(Control).Color := clWhite;
+
+   case AnsiIndexStr(Control.ClassName, [TUniEdit.ClassName, TUniDBEdit.ClassName,
+                                         TUniMemo.ClassName, TUniDBMemo.ClassName,
+                                         TUniNumberEdit.ClassName, TUniDBNumberEdit.ClassName,
+                                         TUniFormattedNumberEdit.ClassName, TUniDBFormattedNumberEdit.ClassName,
+                                         TUniDateTimePicker.ClassName, TUniDBDateTimePicker.ClassName,
+                                         TUniComboBox.ClassName, TuniDBLookupComboBox.ClassName,
+                                         TUniTagField.ClassName]) of
+
+      0, 1, 2, 3, 10, 12: // Textos
+      begin
+
+        if TUniFormControl(Control).Text = '' then
+        begin
+          MostrarAlerta := True;
+
+          TUniFormControl(Control).SetFocus;
+          TUniFormControl(Control).Color := ColorRequerido;
+        end
+
+      end;
+
+      4, 5, 6, 7: //  Numeros
+      begin
+        if (TUniCustomNumberEdit(Control).Value = 0) or (TUniCustomNumberEdit(Control).IsBlank) then
+        begin
+          MostrarAlerta := True;
+
+          // Hacer foco al Control seleccionado
+          TUniCustomNumberEdit(Control).SetFocus;
+          TUniCustomNumberEdit(Control).Color := ColorRequerido;
+        end;
+      end;
+
+      8: // TUniDateTimePicker
+      begin
+        if VarToStr(TUniDateTimePicker(Control).DateTime) = '' then
+        begin
+          MostrarAlerta := True;
+          // Hacer foco al Control seleccionado
+          TUniDateTimePicker(Control).SetFocus;
+          TUniDateTimePicker(Control).Color := ColorRequerido;
+        end;
+      end;
+
+      9: // TUniDBDateTimePicker
+      begin
+        //31/12/1899 -- Es porque sql resuelve esto por defecto en SDAC
+        if TUniDBDateTimePicker(Control).Text = '30/12/1899' then
+        begin
+          MostrarAlerta := True;
+          // Hacer foco al Control seleccionado
+          TUniDBDateTimePicker(Control).SetFocus;
+          TUniDBDateTimePicker(Control).Color := ColorRequerido;
+        end;
+      end;
+
+      11: // TuniDBLookupComboBox
+      begin
+        if ((TUniDBLookupComboBox(Control).KeyValue = -1) or
+           (TUniDBLookupComboBox(Control).KeyValue = null) or
+           (TUniDBLookupComboBox(Control).Text = '')) then
+        begin
+          MostrarAlerta := True;
+          // Hacer foco al Control seleccionado
+          TUniDBLookupComboBox(Control).SetFocus;
+          TUniDBLookupComboBox(Control).Color := ColorRequerido;
+        end;
+      end;
+
+   end;
+   {$ENDIF}
+
+ if MostrarAlerta = True then
+   begin
+      // Muestro el mensaje de validacion
+      {$IFDEF WEB}
+      MessageDlg(MensajeValidacion, MsgDlgType, [mbOK],
+        procedure(Sender: TComponent; Res: Integer)
+        begin
+          TUniControl(Control).SetFocus;
+        end);
+      {$ENDIF}
+      // Aborto y espero nueva interaccion del usuario
+      Abort;
+   end;
+
+end;
+
+end.

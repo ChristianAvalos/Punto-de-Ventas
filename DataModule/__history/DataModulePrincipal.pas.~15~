@@ -1,0 +1,128 @@
+unit DataModulePrincipal;
+
+interface
+
+uses
+  SysUtils, Classes, Data.DB, DBAccess, MSAccess, System.StrUtils, Winapi.Windows,
+  MemDS, frxClass, frxDBSet;
+
+type
+   TUsuarioReccord = record
+   Usuario: string;
+   Password: string
+   end;
+
+  TDMPrincipal = class(TDataModule)
+    MSConnection: TMSConnection;
+    MSQuerySQL: TMSQuery;
+    DSQuery: TDataSource;
+    MSVerificarUsuario: TMSQuery;
+    DSVerificarUsuario: TDataSource;
+    frxUsuario: TfrxDBDataset;
+    MSVerificarUsuarioIdUsuario: TIntegerField;
+    MSVerificarUsuarioIdOrganizacion: TIntegerField;
+    MSVerificarUsuarioNombreUsuario: TStringField;
+    MSVerificarUsuarioContrasena: TStringField;
+    MSVerificarUsuarioEmail: TStringField;
+    MSVerificarUsuarioActivo: TBooleanField;
+    MSVerificarUsuarioNombresApellidos: TStringField;
+    MSVerificarUsuarioFoto: TBlobField;
+    MSVerificarUsuarioDocumentoNro: TStringField;
+    MSVerificarUsuarioObservacion: TStringField;
+    MSVerificarUsuarioUrevUsuario: TStringField;
+    MSVerificarUsuarioUrevFechaHora: TDateTimeField;
+    MSVerificarUsuarioUrevCalc: TWideStringField;
+    MSVerificarUsuarioOcultarMenuSinAcceso: TIntegerField;
+    procedure MSConnectionBeforeConnect(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  function CargarUsuarioContrasena: TUsuarioReccord;
+  end;
+
+function DMPrincipal: TDMPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, uniGUIMainModule, MainModule, UnitVerificarModulo, UnitEncriptacion;
+
+function DMPrincipal: TDMPrincipal;
+begin
+  Result := TDMPrincipal(UniMainModule.GetModuleInstance(TDMPrincipal));
+end;
+
+function TDMPrincipal.CargarUsuarioContrasena: TUsuarioReccord;
+var
+  Buffer: array [0 .. MAX_COMPUTERNAME_LENGTH] of Char;
+  Size: Cardinal;
+  UsuarioAutorizado: Boolean;
+  PCName : string;
+begin
+  //autorizado
+  UsuarioAutorizado := False;
+
+  //obtengo el nombre de la PC
+  FillChar(Buffer, Sizeof(Buffer), 0);
+  Size := Sizeof(Buffer);
+  if GetComputerName(Buffer, Size) then
+    PCName := String(PChar(@Buffer))
+  else
+    PCName := '';
+
+  // Defino las maquinas que son Administradores
+  case AnsiIndexStr(PCName, ['DESKTOP-332IBFV']) of
+
+    0: // Christian Avalos
+    begin
+      UsuarioAutorizado := true;
+    end;
+
+  end;
+    // Si es UsuarioAutorizado cargo usuario y contraseña
+  if UsuarioAutorizado = True then
+  begin
+
+      Result.Usuario := 'Admin';
+      Result.Password := '#password#'
+
+  end;
+
+  end;
+
+procedure TDMPrincipal.MSConnectionBeforeConnect(Sender: TObject);
+begin
+{$IF NOT (DEFINED(RHMINI) OR
+            DEFINED(AUTOSERVICIODESKTOP))}
+  //CARGO LOS VALORES QUE ESTAN EN EL ARCHIVO .ini
+  MSConnection.Server := LeerParametrosConfiguracionINI('MSSQLSERVER', 'server');
+  MSConnection.Database := LeerParametrosConfiguracionINI('MSSQLSERVER', 'database');
+  MSConnection.Port := StrToInt(LeerParametrosConfiguracionINI('MSSQLSERVER', 'puerto'));
+
+  if LeerParametrosConfiguracionINI('MSSQLSERVER', 'authentication') = 'auWindows' then
+  begin
+    // Autenticacion de windows se usa finalmente para LocalDB
+   // MSConnection.Authentication := auWindows;
+  end
+  else
+    begin // Autenticacion de servidor
+     // MSConnection.Authentication := auServer;
+      MSConnection.Username := LeerParametrosConfiguracionINI('MSSQLSERVER', 'username');
+
+      // Esto es para permitir usar conexion a Microsoft Dynamics
+      {$IFDEF DYNAMICSLINK}
+      MSConnection.Password := LeerParametrosConfiguracionINI('MSSQLSERVER', 'password');
+      {$ELSE}
+      MSConnection.Password := Desencriptar(LeerParametrosConfiguracionINI('MSSQLSERVER', 'password'));
+      {$ENDIF}
+    end;
+  {$ENDIF}
+end;
+
+initialization
+  RegisterModuleClass(TDMPrincipal);
+
+end.

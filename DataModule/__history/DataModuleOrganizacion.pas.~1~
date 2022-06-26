@@ -1,0 +1,33 @@
+unit DataModuleOrganizacion;
+
+interface
+
+uses
+  SysUtils, Classes;
+
+type
+  TDMOrganizacion = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function DMOrganizacion: TDMOrganizacion;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, uniGUIMainModule, MainModule;
+
+function DMOrganizacion: TDMOrganizacion;
+begin
+  Result := TDMOrganizacion(UniMainModule.GetModuleInstance(TDMOrganizacion));
+end;
+
+initialization
+  RegisterModuleClass(TDMOrganizacion);
+
+end.

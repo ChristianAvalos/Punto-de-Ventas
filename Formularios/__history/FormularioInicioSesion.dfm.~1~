@@ -1,0 +1,13 @@
+object FrmLogin: TFrmLogin
+  Left = 0
+  Top = 0
+  ClientHeight = 251
+  ClientWidth = 254
+  Caption = 'Inicio Sesi'#243'n'
+  BorderStyle = bsDialog
+  OldCreateOrder = False
+  BorderIcons = [biMinimize, biMaximize]
+  MonitoredKeys.Keys = <>
+  PixelsPerInch = 96
+  TextHeight = 13
+end

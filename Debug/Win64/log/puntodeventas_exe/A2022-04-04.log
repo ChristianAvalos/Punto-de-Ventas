@@ -1,0 +1,32 @@
+Puntodeventas.exe: 00002C84: 21:13:57 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002C84: 21:13:57 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002C84: 21:13:57 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002C84: 21:13:57 [TUniServerModule]:Starting HTTP Server on Port: 8079...
+Puntodeventas.exe: 00002C84: 21:13:57 [TUniServerModule]:HTTP Server Started on Port: 8079
+Puntodeventas.exe: 00002C84: 21:14:47 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00002C84: 21:14:47 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00002C84: 21:14:48 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00002C84: 21:14:48 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00002C84: 21:14:48 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00002B78: 21:15:24 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002B78: 21:15:24 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002B78: 21:15:24 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002B78: 21:15:24 [TUniServerModule]:Starting HTTP Server on Port: 8079...
+Puntodeventas.exe: 00002B78: 21:15:24 [TUniServerModule]:HTTP Server Started on Port: 8079
+Puntodeventas.exe: 00002B78: 21:41:57 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00002B78: 21:41:57 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00002B78: 21:41:58 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00002B78: 21:41:58 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00002B78: 21:41:58 [Terminated]:Exit Code: 0

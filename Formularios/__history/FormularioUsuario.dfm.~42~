@@ -1,0 +1,364 @@
+inherited FrmUsuario: TFrmUsuario
+  ClientHeight = 391
+  ClientWidth = 555
+  Caption = 'Administraci'#243'n de Usuarios'
+  OnActivate = UniFormActivate
+  ExplicitWidth = 571
+  ExplicitHeight = 430
+  TextHeight = 15
+  inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario
+    Width = 555
+    ExplicitWidth = 555
+    inherited lblOrganizacion: TUniDBText
+      DataSource = DMOrganizacion.DSOrganizacion
+    end
+    inherited lblUsuario: TUniDBText
+      Width = 53
+      ExplicitWidth = 53
+    end
+  end
+  inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
+    Width = 555
+    ExplicitWidth = 555
+    inherited UniDBNavigator: TUniDBNavigator
+      Left = 0
+      DataSource = DMUsuario.DSUsuario
+      ScreenMask.Target = Owner
+      ExplicitLeft = 0
+    end
+    inherited tbtnBuscar: TUniButton
+      ScreenMask.Target = Owner
+    end
+  end
+  inherited UniStatusBar: TUniStatusBar
+    Top = 366
+    Width = 555
+    ExplicitTop = 366
+    ExplicitWidth = 555
+  end
+  object lblCodigo: TUniLabel [3]
+    Left = 15
+    Top = 86
+    Width = 38
+    Height = 13
+    Hint = ''
+    Caption = 'C'#243'digo'
+    TabOrder = 5
+  end
+  object txtCodigo: TUniDBEdit [4]
+    Tag = 1
+    Left = 58
+    Top = 81
+    Width = 41
+    Height = 22
+    Hint = ''
+    DataField = 'IdUsuario'
+    DataSource = DMUsuario.DSUsuario
+    TabOrder = 3
+    Color = clMenu
+    ReadOnly = True
+  end
+  object txtUsuario: TUniDBEdit [5]
+    Left = 170
+    Top = 82
+    Width = 128
+    Height = 22
+    Hint = ''
+    DataField = 'NombreUsuario'
+    DataSource = DMUsuario.DSUsuario
+    CharCase = ecLowerCase
+    TabOrder = 4
+  end
+  object lblNombresyApellidos: TUniLabel [6]
+    Left = 15
+    Top = 115
+    Width = 46
+    Height = 13
+    Hint = ''
+    Caption = 'Nombres'
+    TabOrder = 8
+  end
+  object txtNombresApellidos: TUniDBEdit [7]
+    Left = 68
+    Top = 110
+    Width = 316
+    Height = 22
+    Hint = ''
+    DataField = 'NombresApellidos'
+    DataSource = DMUsuario.DSUsuario
+    TabOrder = 7
+  end
+  object txtEmail: TUniDBEdit [8]
+    Left = 48
+    Top = 141
+    Width = 334
+    Height = 22
+    Hint = 'completar este campo para el reseteo de contase'#241'a'
+    ShowHint = True
+    ParentShowHint = False
+    DataField = 'Email'
+    DataSource = DMUsuario.DSUsuario
+    CharCase = ecLowerCase
+    TabOrder = 9
+  end
+  object lblElmail: TUniLabel [9]
+    Left = 15
+    Top = 144
+    Width = 27
+    Height = 13
+    Hint = ''
+    Caption = 'Email'
+    TabOrder = 10
+  end
+  object lblDocumentoNro: TUniLabel [10]
+    Left = 15
+    Top = 174
+    Width = 76
+    Height = 13
+    Hint = ''
+    Caption = 'Documento N'#186
+    TabOrder = 12
+  end
+  object txtDocumentoNro: TUniDBEdit [11]
+    Left = 97
+    Top = 169
+    Width = 128
+    Height = 22
+    Hint = ''
+    DataField = 'DocumentoNro'
+    DataSource = DMUsuario.DSUsuario
+    TabOrder = 11
+    ClearButton = True
+  end
+  object chkActivo: TUniDBCheckBox [12]
+    Left = 15
+    Top = 203
+    Width = 86
+    Height = 13
+    Hint = ''
+    DataField = 'Activo'
+    DataSource = DMUsuario.DSUsuario
+    ValueChecked = 'True'
+    ValueUnchecked = 'False'
+    Caption = 'Activo'
+    Align = alCustom
+    TabOrder = 13
+    ParentColor = False
+    Color = clBtnFace
+  end
+  object lblObservacion: TUniLabel [13]
+    Left = 15
+    Top = 222
+    Width = 64
+    Height = 13
+    Hint = ''
+    Caption = 'Observaci'#243'n'
+    TabOrder = 14
+  end
+  object txtObservacion: TUniDBMemo [14]
+    Left = 8
+    Top = 241
+    Width = 368
+    Height = 46
+    Hint = ''
+    BodyRTL = False
+    InputRTL = False
+    DataField = 'Observacion'
+    DataSource = DMUsuario.DSUsuario
+    ParentFont = False
+    Font.Height = -12
+    Font.Style = [fsBold]
+    TabOrder = 15
+  end
+  object lblContrasena: TUniLabel [15]
+    Left = 8
+    Top = 293
+    Width = 59
+    Height = 13
+    Hint = ''
+    Caption = 'Contrase'#241'a'
+    TabOrder = 19
+  end
+  object lblContrasenaEstablecida: TUniDBText [16]
+    Left = 84
+    Top = 293
+    Width = 134
+    Height = 13
+    Hint = ''
+    DataField = 'PasswordStatus'
+    DataSource = DMUsuario.DSUsuario
+    AutoSize = False
+    ParentFont = False
+    Font.Color = clRed
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    Color = clBtnFace
+  end
+  object btnSubirFoto: TUniBitBtn [17]
+    Left = 386
+    Top = 262
+    Width = 80
+    Height = 25
+    Hint = 'JPG'
+    ShowHint = True
+    ParentShowHint = False
+    Caption = 'Subir foto'
+    TabOrder = 16
+    IconAlign = iaCenter
+    ScreenMask.Enabled = True
+    ScreenMask.Message = 'Aguarde un momento...'
+    ScreenMask.Target = Owner
+  end
+  object btnEliminarFoto: TUniBitBtn [18]
+    Left = 472
+    Top = 262
+    Width = 80
+    Height = 25
+    Hint = ''
+    Caption = 'Eliminar foto'
+    TabOrder = 17
+    IconAlign = iaCenter
+    ScreenMask.Enabled = True
+    ScreenMask.Message = 'Aguarde un momento...'
+  end
+  object lblUsuario: TUniLabel [19]
+    Left = 124
+    Top = 86
+    Width = 40
+    Height = 13
+    Hint = ''
+    Caption = 'Usuario'
+    TabOrder = 6
+  end
+  object btnCambiarContrasena: TUniMenuButton [20]
+    Left = 15
+    Top = 312
+    Width = 160
+    Height = 36
+    Hint = ''
+    DropdownMenu = mnuCambiarContrasena
+    Caption = 'Cambiar contrase'#241'a'
+    Glyph.Data = {
+      F6060000424DF606000000000000360000002800000018000000180000000100
+      180000000000C0060000C30E0000C30E00000000000000000000FF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC5A483BC8F62B6834FB37C
+      46B37C45B37B43B1783FB1783FB37B43B37C45B37C46B6834FBC8F62C5A584FF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFAE6F2FAC6D2F
+      AD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E
+      2FAD6E2FAD6E2FAF7337FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FFAF6F2FAC6D2FAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FAC6D2EAC6D2EAD6E2F
+      AD6E2FAD6E2FAD6E2FAD6E2FAD6E2FB27A41FF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFB67E46AC6D2FAD6E2FAD6E2FAD6E2FAD6E2FAC6D2DA1
+      5A14A25B14AC6B2DAD6E2FAD6E2FAD6E2FAD6E2FAD6E2FBB8E60FF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFC29465AC6D2EAD6E2FAD6E2FAD6E
+      2FAC6E2F9B5004FFFFFFFFFFFF9F550EAC6D2DAD6E2FAD6E2FAD6E2FAD6E2FC3
+      9E7AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFD5C0ACAC6D2E
+      AD6E2FAD6E2FAD6F309F560DE5D2C1FFFFFFFFFFFFF6F0E99C5004AD6F30AD6E
+      2FAD6E2FAD6E2FFF00FF74BBE95DB3EA68B7EAA0CBE6FF00FFFF00FFFF00FFFF
+      00FFFF00FFC7AA8EAC6D2EAC6E2FAA6828AE7236FFFFFFFFFFFFFFFFFFFFFFFF
+      BD8A59A76522AD6E2FAC6D2EC9AF94FF00FF6EB9E65AB2E85AB2E85AB2E858B0
+      E858B0E8FF00FFFF00FFFF00FFFF00FFFF00FFD1BBA5A25F1DFEFFFFF4ECE4A2
+      5B16A15914F1E9DFFFFFFFA05B19D0B9A2FF00FFFF00FFFF00FF77BCE65AB2E8
+      5AB2E85AB2E85AB2E85AB2E8FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FF8F3900E4D1BDE7D4C4913B00FF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FFFF00FF66B6E75AB2E85AB2E85AB2E85AB2E8FF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FF964700F4EDE5FFFFFFFFFFFFF9F2EE964500FF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FF66B6E75AB2E85AB2E85AB2E858B0E858
+      B0E858B0E8FF00FFFF00FFFF00FFD6C3B0B37A42FFFFFFFFFFFFFFFFFFFFFFFF
+      B7814BD2BDA8FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF66B6E75AB2
+      E85AB2E85AB2E85AB2E858B0E8FF00FFFF00FFFF00FFBB8754DAC0A6FFFFFFFF
+      FFFFFFFFFFFFFFFFDEC5ADB37F4BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FF67B6E75AB2E85AB2E85AB2E85EB3E7B2D0E37FC0E8FF00FFA65E
+      18EEE1D6FFFFFFFFFFFFFFFFFFFFFFFFF2E8DE9F5711FF00FFFF00FFFF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FF67B6E75AB2E85AB2E85AB2E85AB2E8
+      6BB8E7FF00FFA55B13F3ECE3FFFFFFFFFFFFFFFFFFFFFFFFF6F0EC9F5711FF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF6AB7E75A
+      B2E85AB2E85AB2E860B4E7FF00FFB07233B8824CAF73389D52089D5209AC6F31
+      B8824FA86828FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFBDD5E35AB2E85AB2E85AB2E85AB2E8FF00FFCAA988A96828AB6929AC
+      6D2FAC6D2FAB692AA96828C5A482FF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FF80C0E95AB2E85AB2E85AB2E85AB2E887C1E5FF00
+      FFC09A74AC6D2EAC6D2EAC6D2EAC6D2EBF9973FF00FFFF00FFFF00FFFF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF64B6EA5AB2E85AB2E85AB2E8
+      5AB2E85AB2E893C6E5FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF64B6EA5A
+      B2E85AB2E85AB2E85AB2E861B4E7FF00FFFF00FFFF00FFAFCFE383C0E571BAE6
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FF7FC1E95AB2E85AB2E85AB2E85AB2E890C4E5FF00FFFF00FFFF00FFFF
+      00FF5AB2E863B5E7FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFBCD5E55AB2E85AB2E85AB2E85AB2E869B7E7FF00
+      FFFF00FFFF00FFA7CCE35AB2E89DCAE4FF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF77BCE65AB2E85AB2E8
+      5AB2E85AB2E876BBE6B8D3E59BC8E45AB2E860B4E7FF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF76BBE65AB2E85AB2E85AB2E85AB2E85AB2E85AB2E863B5E7FF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFBAD3E381BFE566B6E764B5E77ABDE6AECFE3FF
+      00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+    ParentFont = False
+    Font.Height = -12
+    TabOrder = 21
+    ScreenMask.Enabled = True
+    ScreenMask.Message = 'Aguarde un momento...'
+    ScreenMask.Target = Owner
+    OnClick = btnCambiarContrasenaClick
+  end
+  object BlobFoto: TUniDBImage [21]
+    Left = 386
+    Top = 83
+    Width = 161
+    Height = 173
+    Hint = ''
+    DataField = 'Foto'
+    DataSource = DMUsuario.DSUsuario
+    Center = False
+    Proportional = True
+    Align = alCustom
+  end
+  inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision [22]
+    Left = 0
+    Top = 63
+    Width = 664
+    Height = 20
+    TabOrder = 22
+    ParentRTL = False
+    Background.Picture.Data = {00}
+    ExplicitTop = 63
+    inherited lblUltimaRevision: TUniLabel
+      TabOrder = 1
+    end
+  end
+  inherited uNativeImg: TUniNativeImageList
+    Left = 720
+    Top = 80
+  end
+  object mnuCambiarContrasena: TUniPopupMenu
+    ScreenMask.Enabled = True
+    ScreenMask.Message = 'Aguarde un momento...'
+    ScreenMask.Target = Owner
+    Left = 185
+    Top = 315
+    object mnuContraseapordefecto: TUniMenuItem
+      Caption = 'Contrase'#241'a por defecto'
+      OnClick = mnuContraseapordefectoClick
+    end
+  end
+  object UniFileUpload: TUniFileUpload
+    Filter = '*.jpg'
+    Title = 'Cargar'
+    Messages.Uploading = 'Cargando...'
+    Messages.PleaseWait = 'Por favor aguarde'
+    Messages.Cancel = 'Cancelar'
+    Messages.Processing = 'Procesando...'
+    Messages.UploadError = 'Error al cargar'
+    Messages.Upload = 'Cargar'
+    Messages.NoFileError = 'Seleccione un archivo'
+    Messages.BrowseText = 'Browse...'
+    Messages.UploadTimeout = 'Timeout occurred...'
+    Messages.MaxSizeError = 'File is bigger than maximum allowed size'
+    Messages.MaxFilesError = 'You can upload maximum %d files.'
+    Left = 480
+    Top = 140
+  end
+end

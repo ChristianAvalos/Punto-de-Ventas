@@ -1,0 +1,1191 @@
+
+
+unit UnitValidarUsuario;
+
+{$INCLUDE 'compilador.inc'}
+
+interface
+
+uses
+  System.Classes, Windows, Data.DB, Messages, System.SysUtils,
+  System.Variants, Vcl.Dialogs, System.StrUtils, DBAccess, MSAccess,
+  System.RegularExpressions, Winapi.ActiveX, adshlp,
+
+  {$IFDEF WEB}
+  uniGUIFrame, UniGUIVars, uniGUIAbstractClasses, uniGUIDialogs,
+  uniGUIForm, uniGUITypes, uniGUIBaseClasses,
+  uniGUIMainModule, uniGUIApplication, ServerModule,
+  {$ENDIF}
+
+  {$IF DEFINED(DESKTOP) OR DEFINED(SERVICE)}
+  Vcl.Forms, Vcl.Controls,
+  {$ENDIF}
+
+  DataModulePrincipal, UnitRecursoString;
+
+
+{$REGION 'Documentation'}
+/// <summary>
+///   Valida el usuario que intenta acceder al sistema, devuelve positivo en
+///   caso que exista.
+/// </summary>
+/// <param name="LoginName">
+///   Nombre de usuario
+/// </param>
+/// <param name="Password">
+///   Contrasena ingresada por el usuario
+/// </param>
+/// <example>
+///   ValidarUsuario('Admin', 'Contrasena')
+/// </example>
+{$ENDREGION}
+function ValidarUsuario(LoginName: string; Password: AnsiString; Silencioso: Boolean = False): Boolean;
+function ValidarPIN(DocumentoNroConLetra: string; PIN: AnsiString; Silencioso: Boolean = False): Boolean;
+
+procedure SeleccionarOrganizacion;
+{$REGION 'Documentation'}
+/// <summary>
+///   Permite cambiar la contrasena del usuario que actualmente se encuentra
+///   logeado
+/// </summary>
+/// <param name="ContrasenaActual">
+///   Contrasena actual
+/// </param>
+/// <param name="Respuesta">
+///   Devuelve la respuesta del intento de cambio.
+/// </param>
+{$ENDREGION}
+function CambiarContrasena(ContrasenaActual: string; ContrasenaNueva: string; ContrasenaRepetir: string; out Respuesta: string): Boolean;
+function CambiarPIN(PINActual: string; PINNuevo: string; PINRepetir: string; out Respuesta: string): Boolean;
+
+{$REGION 'Documentation'}
+/// <summary>
+///   Cambiar la contrasena del usuario actual sin necesidad de repetir la
+///   contraseña de validación.
+/// </summary>
+{$ENDREGION}
+function CambiarContrasenaUsuarioActual(ContrasenaNueva: string; ContrasenaRepetir: string): Boolean;
+function VerificarFortalezaContrasena(Password: string; var ErrorMessage, Strong: String): Boolean;
+
+procedure CapturarSesion(ObjetoComponente: string = '');
+function CrearUsuarioSQLServer(Usuario: string; Contrasena: string; Activo: Boolean = True): Boolean;
+function BorrarUsuarioSQLServer(Usuario: string): Boolean;
+
+
+implementation
+
+uses
+  {$IFNDEF SERVICE}
+         {$IF NOT (DEFINED(RUCAUTOMATE)
+             OR DEFINED(MIDDLEWARESERVER)
+             OR DEFINED(RHRELOJ)
+             OR DEFINED(PRODUCTCRAWLER)
+             OR DEFINED(PRODUCTSERVER)
+             OR DEFINED(DYNAMICSLINK)
+             OR DEFINED(SYNCRELOJ)) }
+            // FormularioSeleccionarOrganizacion,
+         {$ENDIF}
+  {$ENDIF}
+
+  {$IFDEF DESKTOP}
+    {$IFDEF SERVICE}
+    // Aqui solo servicio
+    {$ELSE}
+      {$IF NOT (DEFINED(RHRELOJ) OR
+               DEFINED(PRODUCTSERVER) )}
+        FormularioPrincipal,
+      {$ENDIF}
+    {$ENDIF}
+  {$ENDIF}
+
+  {$IFDEF ALMACEN}
+  //DataModuleComunComercial,
+  {$ENDIF}
+
+  {$IFNDEF SERVICE}
+
+     // Cuando se trate el servicio de recoleccion de datos
+         {$IF NOT (DEFINED(RUCAUTOMATE)
+             OR DEFINED(MIDDLEWARESERVER)
+             OR DEFINED(AUTOSERVICIODESKTOP)
+             OR DEFINED(RHRELOJ)
+             OR DEFINED(PRODUCTCRAWLER)
+             OR DEFINED(PRODUCTSERVER)
+             OR DEFINED(SYNCRELOJ) )}
+             FormularioInicioSesion,
+
+             //FormularioMiUsuarioCambiarContrasena,
+             //FormularioUsuarioCambiarContrasena,
+
+
+        {$ENDIF}
+  {$ENDIF}
+   DataModuleUsuario , UnitCodigosComunesDataModule, SCrypt, UnitEncriptacion, UnitCodigosComunesString, UnitVerificarModulo, ActiveDs_TLB, FormularioUsuarioCambiarContrasena;
+  //UnitLog,
+  //UnitCodigosComunes,
+
+
+
+
+function ValidarUsuario(LoginName: string; Password: AnsiString; Silencioso: Boolean = False): Boolean;
+var
+  DatasetExisteUsuario: TMSQuery;
+  DatasetUsuario: TMSQuery;
+  DatasetVerificarPermiso: TMSQuery;
+  DatasetVerificarUsuario: TMSQuery;
+  ServidorLDAP, Seguridad: string;
+  adObject: IADs;
+  isPasswordValid, passwordRehashNeeded: Boolean;
+begin
+
+  {$IFDEF DEBUG}
+  //Log('Hash Usuario: ' + LoginName + ' ' + Password);
+  {$ENDIF}
+
+  // Establezco los dataset segun el proyecto que este usando
+  DatasetExisteUsuario := DMUsuario.MSExisteUsuarios;
+  DatasetUsuario := DMUsuario.MSUsuario;
+  DatasetVerificarPermiso := DMUsuario.MSVerificarPermiso;
+  DatasetVerificarUsuario := DMPrincipal.MSVerificarUsuario;
+
+  // Consulto si existen usuarios
+  DatasetExisteUsuario.Close;
+  DatasetExisteUsuario.Open;
+
+  // Creo el usuario Admin por defecto, en caso que no existan usuario creados
+  if DatasetExisteUsuario.FieldByName('CantidadUsuarios').AsInteger = 0 then
+  begin
+
+    if Silencioso = False then
+    begin
+      {$IFDEF WEB}
+      FrmLogin.MessageDlg(ENoExistenUsuariosDefinidos, mtWarning, [mbOK]);
+      {$ENDIF}
+
+      {$IFDEF DESKTOP}
+      MessageDlg(ENoExistenUsuariosDefinidos, mtWarning, [mbOK], 0);
+      {$ENDIF}
+    end;
+
+    OmitirEventos_y_Ejecutar(DatasetUsuario,
+    procedure
+    begin
+
+      // Inserto el valor por defecto de administrador
+      try
+        // En caso que el dataset se encuentre cerrado
+        if DatasetUsuario.Active = False then
+        begin
+          DatasetUsuario.Open;
+        end;
+
+        DatasetUsuario.Append;
+        DatasetUsuario.FieldByName('NombreUsuario').Value := 'Admin';
+
+        // Capturo la palabra codificada en el campo de contrasena
+        DatasetUsuario.FieldByName('Contrasena').AsString := TScrypt.HashPassword(Contrasena);
+        DatasetUsuario.FieldByName('NombresApellidos').AsString := 'Administrador';
+        DatasetUsuario.FieldByName('IdOrganizacion').AsInteger := 1;
+        DatasetUsuario.FieldByName('Activo').AsBoolean := True;
+
+        // Hago pos en el usuario
+        DatasetUsuario.Post;
+
+        // Inserto el permiso inicial
+        try
+          // En caso que el dataset de permiso no se encuentre abierto
+          if DatasetVerificarPermiso.Active = False then
+          begin
+            DatasetVerificarPermiso.Open;
+          end;
+
+          // Ahora inserto el permiso inicial del usuario
+          begin
+            DatasetVerificarPermiso.Append;
+            DatasetVerificarPermiso.FieldByName('ObjetoComponente').AsString := 'mnuHerramientasUsuarios';
+            DatasetVerificarPermiso.FieldByName('TipoComponente').AsString := 'Menu';
+            DatasetVerificarPermiso.Post;
+          end;
+
+        except // En caso que ocurra una exepcion
+          on E: Exception do
+          begin
+            //Log('ValidarUsuario - Creo Admin ' + EExcepcion + E.Message);
+
+            {$IFDEF WEB}
+            FrmLogin.MessageDlg(E.Message, mtError, [mbOK]);
+            {$ENDIF}
+
+            {$IFDEF DESKTOP}
+            MessageDlg(E.Message, mtError, [mbOK], 0);
+            {$ENDIF}
+          end;
+        end;
+
+
+      except // En caso que ocurra una exepcion
+        on E: Exception do
+        begin
+          //Log('ValidarUsuario ' + EExcepcion + E.Message);
+
+          {$IFDEF WEB}
+          FrmLogin.MessageDlg(E.Message, mtError, [mbOK]);
+          {$ENDIF}
+
+          {$IFDEF DESKTOP}
+          MessageDlg(E.Message, mtError, [mbOK], 0);
+          {$ENDIF}
+
+        end;
+      end;
+
+      Exit;
+
+    end);
+
+  end;
+
+
+  // Capturo datos del servidor LDAP
+ // ServidorLDAP := LeerParametrosConfiguracionINI('APLICACION', 'LDAP', False);
+
+  // Abro el Dataset para verificar si existe el usuario
+  DatasetVerificarUsuario.Close;
+  DatasetVerificarUsuario.Params.ParamByName('NombreUsuario').Value := LoginName;
+  DatasetVerificarUsuario.Open;
+
+  // Verifico se conectara a lDAD para verificar los parametros
+  if ServidorLDAP = '' then
+  begin
+
+    if DatasetVerificarUsuario.RecordCount < 1 then
+    begin
+
+      if Silencioso = False then
+      begin
+        {$IFDEF WEB}
+        FrmLogin.MessageDlg(EContrasenaoUsuarioIncorrecta, mtError, [mbOK]);
+        {$ENDIF}
+
+        {$IFDEF DESKTOP}
+        MessageDlg(EContrasenaoUsuarioIncorrecta, mtError, [mbOK], 0);
+        {$ENDIF}
+      end;
+
+      // Devuelvo negativo
+      Result := False;
+    end
+    else
+      begin
+
+         // Valido el hash de la contrasena
+         isPasswordValid := TScrypt.CheckPassword(Password, DatasetVerificarUsuario.FieldByName('Contrasena').AsString, passwordRehashNeeded);
+
+
+         // Verifico con el valor decodificado
+         if isPasswordValid = False then
+         begin
+
+            // Si esta definido para operaciones de escritorio y Debug
+            // Por ejemplo para depurar Capture
+            {$IF DEFINED(DEBUG) AND DEFINED(DESKTOP)}
+              Result := True
+            {$ELSE}
+
+            if Silencioso = False then
+            begin
+              // En caso que sea Web
+              {$IFDEF WEB}
+                FrmLogin.MessageDlg(EContrasenaoUsuarioIncorrecta, mtError, [mbOK]);
+              {$ENDIF}
+
+              // En caso de escritorio
+              {$IFDEF DESKTOP}
+                MessageDlg(EContrasenaoUsuarioIncorrecta, mtError, [mbOK], 0);
+              {$ENDIF}
+            end;
+
+            Result := False;
+            {$ENDIF}
+
+         end
+          else
+            begin
+              Result := True;
+            end;
+
+      end;
+
+  end
+  else
+    begin
+
+      // En caso que el nombre de Admin provoca autenticacion mixta
+      if DatasetVerificarUsuario.FieldByName('NombreUsuario').AsString = 'Admin' then
+      begin
+
+        // Valido el hash de la contrasena
+        isPasswordValid := TScrypt.CheckPassword(Password, DatasetVerificarUsuario.FieldByName('Contrasena').AsString, passwordRehashNeeded);
+        Result := isPasswordValid;
+
+      end
+      else
+        begin
+
+          // No hara caso del LDAP en modo debug
+          {$IFDEF DEBUG}
+          if ((LoginName <> '') and (Password <> '')) then
+          begin
+            Result := True;
+          end;
+          {$ENDIF}
+
+          // Inicializo COM
+          CoInitialize(nil);
+
+          try
+
+            {$IFDEF RELEASE}
+            // En caso que nombre de usuario tenga @dominio.com, se obtiene solo el texto de nombre usuario
+            if AnsiPos('@', LoginName) > 0 then
+            begin
+              LoginName := AnsiLeftStr(LoginName, AnsiPos('@', LoginName) - 1);
+            end;
+
+            // Ahora valido contra el servidor LDAP
+           // ADsOpenObject(ServidorLDAP, LoginName, Password, ADS_SECURE_AUTHENTICATION, IADs, adObject);
+            Result := True;
+
+            // Si es valido los datos del usuario en el servidor LDAP, igual guardo la copia de los datos en la DB
+            if DatasetVerificarUsuario.RecordCount = 0 then
+            begin
+
+              // Agrego el usuario al dataset
+              OmitirEventos_y_Ejecutar(DatasetUsuario,
+              procedure
+              begin
+                DatasetUsuario.Append;
+                DatasetUsuario.FieldByName('NombreUsuario').AsString := LoginName;
+                DatasetUsuario.FieldByName('NombresApellidos').AsString := LoginName;
+                DatasetUsuario.FieldByName('Contrasena').AsString := TScrypt.HashPassword(Password);
+                DatasetUsuario.FieldByName('LDAP').AsBoolean := True;
+                DatasetUsuario.Post;
+              end);
+            end;
+
+            {$ENDIF}
+
+          except
+          on E: Exception do
+            begin
+              Result := False;
+
+              //Log('ValidarUsuario LoginName ' + LoginName + '  ' + EExcepcion + E.Message);
+
+              {$IFDEF WEB}
+              FrmLogin.MessageDlg(E.Message, mtError, [mbOK]);
+              {$ENDIF}
+
+              {$IFDEF DESKTOP}
+              MessageDlg(E.Message, mtError, [mbOK], 0);
+              {$ENDIF}
+
+            end;
+          end;
+
+          CoUninitialize;
+        end;
+    end;
+
+
+  // Cargo los datos de los usuarios guardados en la base de datos
+  if DatasetVerificarUsuario.RecordCount > 0 then
+  begin
+
+    // En caso que el LDAP esta creado, se actualiza la contrasena
+    if ServidorLDAP <> '' then
+    begin
+      // Agrego el usuario al dataset
+      OmitirEventos_y_Ejecutar(DatasetVerificarUsuario,
+      procedure
+      begin
+        DatasetVerificarUsuario.Edit;
+        DatasetVerificarUsuario.FieldByName('Contrasena').AsString := TScrypt.HashPassword(Password);
+        DatasetVerificarUsuario.Post;
+      end);
+    end;
+
+    DMUsuario.UsuarioRecord.IdUsuario := DatasetVerificarUsuario.FieldByName('IdUsuario').AsInteger;
+    DMUsuario.UsuarioRecord.LoginUsuario := DatasetVerificarUsuario.FieldByName('NombreUsuario').AsString;
+
+    // El password tipeado por el usuario
+    DMUsuario.UsuarioRecord.Contrasena := Password;
+    DMUsuario.UsuarioRecord.Email := DatasetVerificarUsuario.FieldByName('Email').AsString;
+    DMUsuario.UsuarioRecord.NombresApellidos := IfNull(DatasetVerificarUsuario.FieldByName('NombresApellidos').Value, '');
+
+    // Opciones del menu
+    //DMUsuario.UsuarioRecord.OcultarMenuSinAcceso := DatasetVerificarUsuario.FieldByName('OcultarMenuSinAcceso').AsBoolean;
+
+    {$IFDEF RAPY}
+    //evaluador
+    DMUsuario.UsuarioRecord.Evaluador := DatasetVerificarUsuario.FieldByName('Evaluador').AsBoolean;
+    {$ENDIF}
+
+    {$IFDEF AUDITORIA}
+    DMUsuario.UsuarioRecord.IdConcesionario := DatasetVerificarUsuario.FieldByName('IdConcesionario').AsInteger;
+    {$ENDIF}
+
+    // Por ahora solo funciona en cosas con Web, para optimizar el ancho de banda
+    {$IFDEF WEB}
+//    if DMPrincipal.MSVerificarUsuarioFoto.IsNull = False then
+//    begin
+//      DMUsuario.UsuarioRecord.Foto := DMPrincipal.MSVerificarUsuarioFoto;
+//    end;
+    {$ENDIF}
+
+    {$IFDEF RAPY}
+    DMUsuario.UsuarioRecord.IdMedico := DMPrincipal.MSVerificarUsuarioIdMedico.Value;
+    DMUsuario.UsuarioRecord.IdPersona := DMPrincipal.MSVerificarUsuarioIdPersona.Value;
+    {$ENDIF}
+
+    // En caso de estos proyectos tambien se utilizan parametros adicionales de usuario
+    {$IF DEFINED(NOMINA) OR
+         DEFINED(TRAMITEWEB) OR
+         DEFINED(AUTOSERVICIOWEB) OR
+         DEFINED(RHMINI)}
+    DMUsuario.UsuarioRecord.IdPersonal := DMPrincipal.MSVerificarUsuarioIdPersonal.Value;
+    DMUsuario.UsuarioRecord.DocumentoNro := IfNull(DMPrincipal.MSVerificarUsuarioDocumentoNroConLetra.Value, '');
+    DMUsuario.UsuarioRecord.IdOrganigrama := DMPrincipal.MSVerificarUsuarioIdOrganigrama.Value;
+    {$ENDIF}
+
+    // Parametros de Administradores
+//    DMUsuario.UsuarioRecord.AdministradorPortal := DMPrincipal.MSVerificarUsuarioAdministradorPortal.Value;
+//    DMUsuario.UsuarioRecord.AdministradorRHMini := DMPrincipal.MSVerificarUsuarioAdministradorRHMini.Value;
+//    DMUsuario.UsuarioRecord.AdministradorMiddleware := DMPrincipal.MSVerificarUsuarioAdministradorMiddleware.Value;
+
+    // Cargo los datos de LDAP
+   // DMUsuario.UsuarioRecord.LDAP := DMPrincipal.MSVerificarUsuarioLDAP.Value;
+  end;
+
+
+  // Si finalmente el resultado es true de la validacion
+  if Result = True then
+  begin
+
+    Seguridad := LeerParametrosConfiguracionINI('APLICACION', 'Seguridad', False);
+
+    {$IF (DEFINED(RHMINI) OR
+         DEFINED(AUTOSERVICIODESKTOP))}
+    // Cargo el parametro por defecto, en caso que no exista
+    // Aqui se fuerza, al ser desktop
+    if Seguridad = '' then
+    begin
+      CargarParametrosConfiguracionINIPorDefecto('APLICACION', 'Seguridad');
+    end;
+    {$ENDIF}
+
+    // Si la seguridad es del motor
+    if Seguridad = 'Motor' then
+    begin
+
+      // Si el usuario es distinto a admin se utiliza la autenticacion por SQL Server
+      if DatasetVerificarUsuario.FieldByName('NombreUsuario').AsString <> 'Admin' then
+      begin
+
+        try
+
+          // Si utiliza un servidor LDAP, primero se debe actualizar la contrasena
+          if ServidorLDAP <> '' then
+          begin
+            // Actualizo el password local con los datos de la base de datos
+            // o se crea el usuario en la BD local
+            CrearUsuarioSQLServer(LoginName, Password, True);
+          end;
+
+          {$IF DEFINED(DEBUG) AND DEFINED(DESKTOP)}
+          // En caso que se trate de conexion de desarrollo Debug y app local
+          {$ELSE}
+          // Quito os parametros de conexion               _
+          DMPrincipal.MSConnection.BeforeConnect := nil;
+
+          // Desconecto y reconecto los parametros de usuarios
+          DMPrincipal.MSConnection.Disconnect;
+
+          // Cambio los parametros de usuario
+          DMPrincipal.MSConnection.Username := LoginName;
+          DMPrincipal.MSConnection.Password := Password;
+
+          // Reconecto
+          DMPrincipal.MSConnection.Connect;
+
+          // Restablezco los eventos de la conexion a la base de datos
+          DMPrincipal.MSConnection.BeforeConnect := DMPrincipal.MSConnectionBeforeConnect;
+
+          // Reabro los dataset
+//          if DMPrincipal.MSOrganizacionDisponible.Active = False then
+//            DMPrincipal.MSOrganizacionDisponible.Active := True;
+//
+//          if DMPrincipal.MSOrganizacionSeleccionada.Active = False then
+//            DMPrincipal.MSOrganizacionSeleccionada.Open;
+//
+          if DMPrincipal.MSVerificarUsuario.Active = False then
+            DMPrincipal.MSVerificarUsuario.Open;
+          {$ENDIF}
+
+        except
+          on E: Exception do
+          begin
+            Result := False;
+
+           // Log('ValidarUsuario Motor '+ LoginName+'  ' + EExcepcion + E.Message);
+
+            {$IFDEF WEB}
+            FrmLogin.MessageDlg(E.Message, mtError, [mbOK]);
+            {$ENDIF}
+
+            {$IFDEF DESKTOP}
+            MessageDlg(E.Message, mtError, [mbOK], 0);
+            {$ENDIF}
+
+          end;
+        end;
+
+      end;
+
+    end;
+  end;
+
+end;
+
+
+function ValidarPIN(DocumentoNroConLetra: string; PIN: AnsiString; Silencioso: Boolean = False): Boolean;
+begin
+
+  {$IFDEF SDAC}
+
+    {$IF DEFINED(DESKTOP) OR DEFINED(SERVICE)}
+    if DMUsuario = nil then
+    begin
+      Application.CreateForm(TDMUsuario, DMUsuario);
+    end;
+    {$ENDIF}
+
+    // Abro el Dataset para verificar si existe Personal con PIN
+//    DMPrincipal.MSVerificarPIN.Close;
+//    DMPrincipal.MSVerificarPIN.ParamByName('DocumentoNroConLetra').Value := DocumentoNroConLetra;
+//    DMPrincipal.MSVerificarPIN.Open;
+
+//    begin
+//
+//      if DMPrincipal.MSVerificarPIN.RecordCount < 1 then
+//      begin
+////        if Silencioso = False then
+////        begin
+////          {$IFDEF WEB}
+////          FrmInicioSesion.MessageDlg(EPINDocumentoIncorrecto, mtError, [mbOK]);
+////          {$ENDIF}
+////
+////          {$IFDEF DESKTOP}
+////            {$IFDEF AUTOSERVICIODESKTOP}
+////            // No hago nada
+////            {$ELSE}
+////              MessageDlg(EPINDocumentoIncorrecto, mtError, [mbOK], 0);
+////            {$ENDIF}
+////          {$ENDIF}
+////        end;
+//
+//        Result := False;
+//      end
+//      else
+//       begin
+//          // Verifico si el PIN esta activo
+//          if DMPrincipal.MSVerificarPINAutoservicioAcceso.Value = True then
+//          begin
+//
+//            // Verifico con el valor decodificado
+//            if PIN <> Desencriptar(DMPrincipal.MSVerificarPINAutoservicioPIN.Value) then
+//            begin
+//
+//              if Silencioso = False then
+//              begin
+//                // En caso que sea Web
+//                {$IFDEF WEB}
+//                FrmLogin.MessageDlg(EPINDocumentoIncorrecto, mtError, [mbOK]);
+//                {$ENDIF}
+//
+//                // En caso de escritorio
+//                {$IFDEF DESKTOP}
+//                  {$IFDEF AUTOSERVICIODESKTOP}
+//                   // No hago nada
+//                  {$ELSE}
+//                    MessageDlg(EPINDocumentoIncorrecto, mtError, [mbOK], 0);
+//                  {$ENDIF}
+//                {$ENDIF}
+//              end;
+//
+//              Result := False;
+//
+//            end
+//            else
+//              begin
+//                Result := True;
+//              end;
+//
+//          end
+//          else
+//            begin
+//              // En caso que sea Web
+//              {$IFDEF WEB}
+//              FrmLogin.MessageDlg(EPINAutoservicioAccesoInactivo, mtError, [mbOK]);
+//              {$ENDIF}
+//
+//              // En caso de escritorio
+//              {$IFDEF DESKTOP}
+//                {$IFDEF AUTOSERVICIODESKTOP}
+//
+//                {$ELSE}
+//                  MessageDlg(EPINAutoservicioAccesoInactivo, mtError, [mbOK], 0);
+//                {$ENDIF}
+//              {$ENDIF}
+//
+//              Result := False;
+//            end;
+//
+//       end;
+//    end;
+//
+//    DMUsuario.UsuarioRecord.IdUsuario := -1;
+//    DMUsuario.UsuarioRecord.LoginUsuario := DMPrincipal.MSVerificarPINDocumentoNroConLetra.Value;
+//    DMUsuario.UsuarioRecord.Contrasena := DMPrincipal.MSVerificarPINAutoservicioPIN.Value;
+//    DMUsuario.UsuarioRecord.NombresApellidos := DMPrincipal.MSVerificarPINNombresApellidos.Value;
+//    DMUsuario.UsuarioRecord.IdPersonal := DMPrincipal.MSVerificarPINIdPersonal.Value;
+//    DMUsuario.UsuarioRecord.DocumentoNro := DMPrincipal.MSVerificarPINDocumentoNroConLetra.Value;
+//    DMUsuario.UsuarioRecord.AdministradorAutoservicio := DMPrincipal.MSVerificarPINAutoservicioAdministrador.Value;
+  {$ENDIF}
+end;
+
+
+function CambiarContrasena(ContrasenaActual: string; ContrasenaNueva: string; ContrasenaRepetir: string; out Respuesta: string): Boolean;
+var
+  DatasetVerificarUsuario, DatasetCambiarMiContrasena: TMSQuery;
+begin
+
+  // Establezco los dataset segun el proyecto que este usando
+  DatasetVerificarUsuario := DMPrincipal.MSVerificarUsuario;
+  DatasetCambiarMiContrasena := DMUsuario.MSCambiarMiContrasena;
+
+
+  // Esta funcion cambia la contrasena actual del sistema en curso
+  // Verificar que la contrasena actual es correcta
+  // Abro el Dataset para verificar si existe el usuario
+  DatasetVerificarUsuario.Close;
+  DatasetVerificarUsuario.Params.ParamByName('NombreUsuario').Value := DMUsuario.UsuarioRecord.LoginUsuario;
+  DatasetVerificarUsuario.Open;
+
+  if DMUsuario.UsuarioRecord.Contrasena = ContrasenaActual then
+  begin
+
+    // Verifico que las contrasenas coincides
+    if ContrasenaNueva <> ContrasenaRepetir then
+    begin
+      // Envio el mensaje dependiendo si es web o de escritorio
+      {$IFDEF WEB}
+      MessageDlg(EPasswordNoCoincide, mtError, [mbOK]);
+      {$ENDIF}
+
+      {$IFDEF DESKTOP}
+      MessageDlg(EPasswordNoCoincide, mtError, [mbOK], 0);
+      {$ENDIF}
+
+      // Aborto el codigo
+      // Abort;
+      Respuesta := EPasswordNoCoincide;
+      Result := False;
+    end
+    else // En caso que sean iguales procedo a actualizar, informo al usuario y cierro la pantalla
+      begin
+        DatasetCambiarMiContrasena.Close;
+        DatasetCambiarMiContrasena.Params.ParamByName('IdUsuario').Value := DMUsuario.UsuarioRecord.IdUsuario;
+        DatasetCambiarMiContrasena.Params.ParamByName('Contrasena').Value := TScrypt.HashPassword(ContrasenaNueva);
+        DatasetCambiarMiContrasena.Execute;
+
+        {$IFDEF WEB}
+        MessageDlg(EPasswordCambiadoExito, mtInformation, [mbOK]);
+        {$ENDIF}
+
+        {$IFDEF DESKTOP}
+//          {$IFNDEF SERVICE}
+//           {$IF NOT (DEFINED(RUCAUTOMATE)
+//               OR DEFINED(SYNCRELOJ)
+//               OR DEFINED(MIDDLEWARESERVER)
+//               OR DEFINED(RHRELOJ)
+//               OR DEFINED(PRODUCTCRAWLER)
+//               OR DEFINED(PRODUCTSERVER)
+//               OR DEFINED(AUTOSERVICIODESKTOP) )}
+//
+//                 MessageDlg(EPasswordCambiadoExito, mtInformation, [mbOK], 0);
+//
+//                // Cierro la ventana
+//                FrmMiUsuarioCambiarContrasena.Close;
+//            {$ENDIF}
+//          {$ENDIF}
+//        {$ENDIF}
+
+        // Resultado verdadero
+        Respuesta := EPasswordCambiadoExito;
+        Result := True;
+
+        // Cambio datos de Usuario SQL Server
+        if LeerParametrosConfiguracionINI('APLICACION', 'Seguridad', False) = 'Motor' then
+        begin
+          // Actualizo la contrasena
+          CrearUsuarioSQLServer(DMUsuario.UsuarioRecord.LoginUsuario, ContrasenaNueva, True);
+        end;
+
+      end;
+
+  end
+  else
+    begin
+      // Dependiendo del ejecutable envio los mensajes en pantalla
+      {$IFDEF WEB}
+      MessageDlg(EPasswordActualNoCoincide, mtError, [mbOK]);
+      {$ENDIF}
+
+      {$IFDEF DESKTOP}
+      MessageDlg(EPasswordActualNoCoincide, mtError, [mbOK], 0);
+      {$ENDIF}
+
+      // Aborto el codigo
+      //Abort;
+      Respuesta := EPasswordActualNoCoincide;
+      Result := False;
+    end;
+
+end;
+
+
+function CambiarPIN(PINActual: string; PINNuevo: string; PINRepetir: string; out Respuesta: string): Boolean;
+begin
+  {$IFDEF SDAC}
+
+  // Verifico que las contrasenas coincides
+  if PINNuevo <> PINRepetir then
+  begin
+    // Envio el mensaje dependiendo si es web o de escritorio
+    {$IFDEF WEB}
+    // Revisar esto
+   // FrmMiUsuarioCambiarContrasena.MessageDlg(EPINNOCoincide, mtError, [mbOK]);
+    {$ENDIF}
+
+    {$IFDEF DESKTOP}
+      {$IFDEF AUTOSERVICIODESKTOP}
+
+      {$ELSE}
+        MessageDlg(EPINNOCoincide, mtError, [mbOK], 0);
+      {$ENDIF}
+    {$ENDIF}
+
+    // Aborto el codigo
+    // Abort;
+    Respuesta := EPINNOCoincide;
+    Result := False;
+  end
+  else
+    begin
+      // Esta funcion cambia el PIN actual del sistema en curso
+      // Verificar que el PIN es correcta
+      // Abro el Dataset para verificar si existe el personal
+//      DMPrincipal.MSVerificarPIN.Close;
+//      DMPrincipal.MSVerificarPIN.ParamByName('DocumentoNroConLetra').Value := DMUsuario.UsuarioRecord.DocumentoNro;
+//      DMPrincipal.MSVerificarPIN.Open;
+
+      if 1 = 1 then
+      begin
+
+        begin
+//          DMUsuario.MSCambiarMiContrasena.Close;
+//          DMUsuario.MSActualizarPIN.ParamByName('IdPersonal').Value := DMUsuario.UsuarioRecord.IdPersonal;
+//          DMUsuario.MSActualizarPIN.ParamByName('PINNuevo').Value := Encriptar(PINNuevo);
+//          DMUsuario.MSActualizarPIN.Execute;
+
+          {$IFDEF WEB}
+         // FrmMiUsuarioCambiarContrasena.MessageDlg(EPINCambiadoExito, mtInformation, [mbOK]);
+
+          // Cierro la ventana
+          //FrmMiUsuarioCambiarContrasena.Close;
+          {$ENDIF}
+
+          {$IFDEF DESKTOP}
+            {$IFNDEF SERVICE}
+
+               {$IF NOT (DEFINED(RUCAUTOMATE)
+                   OR DEFINED(SYNCRELOJ)
+                   OR DEFINED(MIDDLEWARESERVER)
+                   OR DEFINED(RHRELOJ)
+                   OR DEFINED(PRODUCTCRAWLER)
+                   OR DEFINED(PRODUCTSERVER)
+                   OR DEFINED(AUTOSERVICIODESKTOP) )}
+
+                   MessageDlg(EPINCambiadoExito, mtInformation, [mbOK], 0);
+
+                  // Cierro la ventana
+                  FrmMiUsuarioCambiarContrasena.Close;
+
+              {$ENDIF}
+            {$ENDIF}
+          {$ENDIF}
+
+          // Resultado verdadero
+         // Respuesta := EPINCambiadoExito;
+          Result := True;
+        end;
+
+      end
+      else
+        begin
+          // Dependiendo del ejecutable envio los mensajes en pantalla
+          {$IFDEF WEB}
+          // Revisar esto
+         // FrmMiUsuarioCambiarContrasena.MessageDlg(EPINActualIncorrecto, mtError, [mbOK]);
+          {$ENDIF}
+
+          {$IFDEF DESKTOP}
+            {$IFDEF AUTOSERVICIODESKTOP}
+
+            {$ELSE}
+              MessageDlg(EPINActualIncorrecto, mtError, [mbOK], 0);
+            {$ENDIF}
+          {$ENDIF}
+
+          // Aborto el codigo
+          //Abort;
+          Respuesta := EPINActualIncorrecto;
+          Result := False;
+        end;
+    end;
+
+  {$ENDIF}
+end;
+
+
+function CambiarContrasenaUsuarioActual(ContrasenaNueva: string; ContrasenaRepetir: string): Boolean;
+var
+  DatasetUsuario: TMSQuery;
+begin
+
+  // Establezco los dataset segun el proyecto que este usando
+  DatasetUsuario := DMUsuario.MSUsuario;
+
+  if ContrasenaNueva <> ContrasenaRepetir then
+  begin
+    {$IFDEF DESKTOP}
+    MessageDlg(EPasswordNoCoincide, mtError, [mbOK], 0);
+    {$ENDIF}
+
+    {$IFDEF WEB}
+    FrmUsuarioCambiarContrasena.MessageDlg('Password NoCoincide', mtError, [mbOK]);
+    {$ENDIF}
+
+    Abort;
+  end;
+
+
+    try
+      // Guardo en el campo
+      DatasetUsuario.Edit;
+      DatasetUsuario.FieldByName('Contrasena').AsString := TScrypt.HashPassword(ContrasenaNueva);
+      DatasetUsuario.Post;
+
+      // Cambio la contrasena en el SQL Server
+      // En caso que la seguridad del motor
+      if LeerParametrosConfiguracionINI('APLICACION', 'Seguridad', False) = 'Motor' then
+      begin
+        // Creo el usuario con la contrasena por default
+        CrearUsuarioSQLServer(DatasetUsuario.FieldByName('NombreUsuario').AsString, ContrasenaNueva, True);
+      end;
+
+    except
+    on E: Exception do
+      begin
+        //Log('CambiarContrasenaUsuarioActual ' + EExcepcion + E.Message);
+
+        {$IFDEF DESKTOP}
+          MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+        {$ENDIF}
+
+        {$IFDEF WEB}
+          //UniServerModule.Logger.AddLog(EExcepcion, UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+        {$ENDIF}
+      end;
+
+    end;
+
+
+end;
+
+
+
+function VerificarFortalezaContrasena(Password: string; var ErrorMessage, Strong: String): Boolean;
+var
+  regex: TStringList;
+  passed, i: Integer;
+BEGIN
+  Result := True;
+
+  // Si la contrasenñ esta vacia
+  if Length(Password) = 0 THEN
+  begin
+    Result := False;
+    ErrorMessage :=  'La contraseña no puede estar vacia';
+    Exit;
+  end;
+
+  // Establezco los caracteres de exprsiones regulares
+  regex := TStringList.Create;
+    regex.Add('[A-Z]');               //Caracteres mayusculas.
+    regex.Add('[a-z]');               //Caracteres miniscula.
+    regex.Add('[0-9]');               //Digitos.
+    regex.Add('[$@$!%*#?&]');         //Caracteres especiales.
+
+
+  passed := 0;
+
+  // Validar mediante expresiones regulares
+  for i := 0 to regex.Count - 1 DO
+  begin
+    if TRegEx.IsMatch(Password, regex[i]) then
+      passed := passed + 1;
+  end;
+
+
+  // Validar longitud de ocntrase?a
+  if (passed > 2) AND (Length(Password) > 8) then
+    passed := passed + 1;
+
+
+  case passed of
+    0: Strong := '';
+    1: Strong := 'Débil';
+    2: Strong := 'Medio';
+    3: Strong := 'Fuerte';
+    4,5: Strong := 'Muy fuerte';
+  end;
+
+  regex.Free;
+
+end;
+
+
+procedure SeleccionarOrganizacion;
+var
+  {$IFDEF SDAC}
+  DatasetOrganizacionDisponible: TMSQuery;
+  {$ENDIF}
+begin
+
+  // Establezco los dataset segun el proyecto que este usando
+  {$IFDEF SDAC}
+ // DatasetOrganizacionDisponible := DMPrincipal.MSOrganizacionDisponible;
+  {$ENDIF}
+
+  // Cargo la lista de organizaciones disponibles y permito seleccionar siempre que sea mayor a 1
+  if DatasetOrganizacionDisponible.RecordCount > 1 then
+  begin
+
+    // Crel el objeto cuando se trata de desktop, pero no servicios
+    {$IFDEF DESKTOP}
+      {$IFNDEF SERVICE}
+
+         {$IF NOT (DEFINED(RUCAUTOMATE)
+             OR DEFINED(SYNCRELOJ)
+             OR DEFINED(RHRELOJ)
+             OR DEFINED(PRODUCTCRAWLER)
+             OR DEFINED(PRODUCTSERVER)
+             OR DEFINED(MIDDLEWARESERVER) )}
+
+                if FrmSeleccionarOrganizacion = nil then
+                begin
+                  Application.CreateForm(TFrmSeleccionarOrganizacion, FrmSeleccionarOrganizacion);
+                end;
+         {$ENDIF}
+      {$ENDIF}
+    {$ENDIF}
+
+    {$IFNDEF SERVICE}
+        {$IF NOT (DEFINED(DYNAMICSLINK)
+             OR DEFINED(RHRELOJ)
+             OR DEFINED(RUCAUTOMATE)
+             OR DEFINED(PRODUCTCRAWLER)
+             OR DEFINED(PRODUCTSERVER)
+             OR DEFINED(SYNCRELOJ)
+             OR DEFINED(MIDDLEWARESERVER) )}
+              //FrmSeleccionarOrganizacion.ShowModal;
+        {$ENDIF}
+    {$ENDIF}
+  end
+  else
+    begin
+     // varOrganizacionID := DatasetOrganizacionDisponible.FieldByName('IdOrganizacion').AsInteger;
+    end;
+
+  // Cargo los datos de la organizacion seleccionada en el dataset en curso
+  try
+   DatasetOrganizacionDisponible.Open;
+  except
+    //Log('UnitValidarUsuario.SeleccionarOrganizacion' + DatasetOrganizacionDisponible.Name);
+  end;
+
+  {$IFDEF DESKTOP}
+  // Al terminar libero la ventana de seleccion de organizacion
+    {$IFNDEF SERVICE}
+
+       {$IF NOT (DEFINED(RUCAUTOMATE)
+             OR DEFINED(SYNCRELOJ)
+             OR DEFINED(RHRELOj)
+             OR DEFINED(PRODUCTCRAWLER)
+             OR DEFINED(PRODUCTSERVER)
+             OR DEFINED(MIDDLEWARESERVER) )}
+              FrmSeleccionarOrganizacion.Free;
+
+       {$ENDIF}
+
+    {$ENDIF}
+  {$ENDIF}
+end;
+
+
+procedure CapturarSesion(ObjetoComponente: string = '');
+begin
+  // Guardo la sesion
+  try
+    {$IFDEF WEB}
+    //UniSession.UserString := DMUsuario.UsuarioRecord.LoginUsuario;
+    {$ENDIF}
+
+   // DMUsuario.MSInsertarSesion.ParamByName('IdUsuario').AsInteger := DMUsuario.UsuarioRecord.IdUsuario;
+    //DMUsuario.MSInsertarSesion.ParamByName('NombreUsuario').AsString := DMUsuario.UsuarioRecord.LoginUsuario;
+    //DMUsuario.MSInsertarSesion.ParamByName('Modulo').AsString := ObtenerNombreModulo;
+
+    {$IFDEF WEB}
+//    DMUsuario.MSInsertarSesion.ParamByName('FechaHora').AsDateTime := UniApplication.UniSession.LastTimeStamp;;
+//    DMUsuario.MSInsertarSesion.ParamByName('SessionID').AsString := UniApplication.UniSession.SessionId;
+//    DMUsuario.MSInsertarSesion.ParamByName('IP').AsString := UniApplication.UniSession.RemoteIP;
+//    DMUsuario.MSInsertarSesion.ParamByName('NombreEquipo').AsString := UniApplication.UniSession.RemoteHost;
+    {$ENDIF}
+
+    if ObjetoComponente <> '' then
+    begin
+     // DMUsuario.MSInsertarSesion.ParamByName('ObjetoComponente').AsString := ObjetoComponente;
+    end;
+
+    // Ejecuto la insesion
+   // DMUsuario.MSInsertarSesion.Execute;
+
+  except
+    on E: Exception do
+    begin
+     // Log('CapturarSesion ' + EExcepcion + E.Message);
+
+      {$IFDEF DESKTOP}
+      MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+      {$ENDIF}
+
+      {$IFDEF WEB}
+     // UniServerModule.Logger.AddLog(EExcepcion, UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+      {$ENDIF}
+    end;
+
+  end;
+end;
+
+
+function CrearUsuarioSQLServer(Usuario: string; Contrasena: string; Activo: Boolean = True): Boolean;
+begin
+  // Dentro de un bloque try
+  try
+    DMUsuario.MSScriptCrearUsuario.MacroByName('BD').Value := '[' + DMPrincipal.MSConnection.Database + ']';
+    DMUsuario.MSScriptCrearUsuario.MacroByName('Usuario').Value := '[' + Usuario + ']';
+    DMUsuario.MSScriptCrearUsuario.MacroByName('UsuarioVerificacion').Value := QuotedStr(Usuario);
+    DMUsuario.MSScriptCrearUsuario.MacroByName('Contrasena').Value := QuotedStr(Contrasena);
+
+    // Si no esta creado el usuario
+    if Activo = True then
+    begin
+      DMUsuario.MSScriptCrearUsuario.MacroByName('Estado').Value := 'ALTER LOGIN [' + Usuario + '] ENABLE';
+    end
+    else
+      begin
+        DMUsuario.MSScriptCrearUsuario.MacroByName('Estado').Value := 'ALTER LOGIN [' + Usuario + '] DISABLE';
+      end;
+
+
+    {$IFDEF DEBUG}
+   // Log('DMUsuario.MSScriptCrearUsuario - '+DMUsuario.MSScriptCrearUsuario.SQL.Text);
+    {$ENDIF}
+
+    // Ejecuto la creacion del usuario
+    DMUsuario.MSScriptCrearUsuario.Execute;
+
+    Result := True;
+
+  except
+    on E: Exception do
+    begin
+      Result := False;
+
+     // Log(EExcepcion + E.Message);
+
+      {$IFDEF WEB}
+      MessageDlg('Excepcion' + E.Message, mtError, [mbOK]);
+      {$ENDIF}
+
+      {$IFDEF DESKTOP}
+      MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+      {$ENDIF}
+    end;
+
+  end;
+
+end;
+
+
+function BorrarUsuarioSQLServer(Usuario: string): Boolean;
+begin
+  // Dentro de un bloque try
+  try
+   DMUsuario.MSScriptBorrarUsuario.MacroByName('BD').Value := '[' + DMPrincipal.MSConnection.Database + ']';
+   DMUsuario.MSScriptBorrarUsuario.MacroByName('Usuario').Value := '[' + Usuario + ']';
+   DMUsuario.MSScriptBorrarUsuario.MacroByName('UsuarioVerificacion').Value := QuotedStr(Usuario);
+
+    {$IFDEF DEBUG}
+   // Log('DMUsuario.MSScriptCrearUsuario - '+DMUsuario.MSScriptCrearUsuario.SQL.Text);
+    {$ENDIF}
+    // Ejecuto la creacion del usuario
+    DMUsuario.MSScriptBorrarUsuario.Execute;
+
+    Result := True;
+
+  except
+    on E: Exception do
+    begin
+      Result := False;
+
+     // Log(EExcepcion + E.Message);
+
+      {$IFDEF WEB}
+      MessageDlg('Excepcion' + E.Message, mtError, [mbOK]);
+      {$ENDIF}
+
+      {$IFDEF DESKTOP}
+      MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+      {$ENDIF}
+    end;
+
+  end;
+end;
+
+
+end.
+
+

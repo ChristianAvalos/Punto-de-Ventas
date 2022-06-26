@@ -1,0 +1,162 @@
+// Todo el cotenido de este fichero esta protegido por leyes de propiedad intelectual
+// cualquier extracción, reproduccion o modificacion indebida, esta sujeta a sanciones legales
+// Adan Rodrigo Araujo - 2004-2021
+// PROYECTO: Core General
+// $LastChangedDate: 2022-03-01 14:06:01 -0300 (ma., 01 mar. 2022) $
+// $LastChangedRevision: 40884 $  por $LastChangedBy: aaraujo $
+// $HeadURL: http://blockchainguarani.com/svn/Desarrollo/Comunes/Usuario/Formulario/FormularioMiUsuarioCambiarContrasena.pas $
+
+unit FormularioMiUsuarioCambiarContrasena;
+
+{$INCLUDE 'compilador.inc'}
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,System.StrUtils,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, uniLabel, uniButton, uniGUIBaseClasses, uniEdit,
+  uniBitBtn;
+
+type
+  TFrmMiUsuarioCambiarContrasena = class(TUniForm)
+    txtPassword: TUniEdit;
+    txtPasswordRepetir: TUniEdit;
+    lblContrasena: TUniLabel;
+    lblConfirmar: TUniLabel;
+    txtContrasenaActual: TUniEdit;
+    lblContrasenaActual: TUniLabel;
+    btnAceptar: TUniBitBtn;
+    btnCancelar: TUniBitBtn;
+    lblFortalezaContrasena: TUniLabel;
+    lblAlertaContrasenha: TUniLabel;
+    procedure btnAceptarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure UniFormCreate(Sender: TObject);
+    procedure txtPasswordKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmMiUsuarioCambiarContrasena: TFrmMiUsuarioCambiarContrasena;
+
+implementation
+
+{$R *.dfm}
+
+
+uses
+  MainModule, uniGUIApplication, UnitRecursoString, UnitValidarUsuario,
+  DataModulePrincipal, DataModuleUsuario, UnitEncriptacion, UnitValidaciones, UnitCodigosComunesFormulario;
+
+function FrmMiUsuarioCambiarContrasena: TFrmMiUsuarioCambiarContrasena;
+begin
+  Result := TFrmMiUsuarioCambiarContrasena(UniMainModule.GetFormInstance(TFrmMiUsuarioCambiarContrasena));
+end;
+
+procedure TFrmMiUsuarioCambiarContrasena.btnAceptarClick(Sender: TObject);
+var
+  Respuesta: string;
+  OK: Boolean;
+begin
+
+  {$IFDEF AUTOSERVICIOWEB}
+  ValidarVacios(txtContrasenaActual, EEscribaPINActual);
+  ValidarVacios(txtPassword, EEscribaPINRepetir);
+  ValidarVacios(txtPasswordRepetir, EEscribaPINRepetir);
+
+  // Actualizo el PIN
+  CambiarPIN(txtContrasenaActual.Text, txtPassword.Text, txtPasswordRepetir.Text, Respuesta);
+
+  {$ELSE}
+  ValidarVacios(txtContrasenaActual, EEscribaContrasena);
+  ValidarVacios(txtPassword, EEscribaPass);
+  ValidarVacios(txtPasswordRepetir, EEscribaPass);
+
+  // Ejecuto la linea de cambio de contrasenas
+  OK := CambiarContrasena(txtContrasenaActual.Text, txtPassword.Text, txtPasswordRepetir.Text, Respuesta);
+
+  if OK = True then
+  begin
+    Close;
+  end
+  else
+    begin
+      txtPassword.Text := '';
+      txtPasswordRepetir.Text := '';
+
+      lblFortalezaContrasena.Text := '';
+      lblAlertaContrasenha.Text := '';
+    end;
+
+  {$ENDIF}
+
+end;
+
+
+procedure TFrmMiUsuarioCambiarContrasena.btnCancelarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+
+procedure TFrmMiUsuarioCambiarContrasena.txtPasswordKeyUp(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+var
+  str1, str2: string;
+begin
+
+  {$IFDEF AUTOSERVICIOWEB}
+  {$ELSE}
+    VerificarFortalezaContrasena(txtPassword.Text, str2, str1);
+    lblFortalezaContrasena.Caption := str1;
+    lblAlertaContrasenha.Caption := str2;
+
+    case AnsiIndexStr(str1, ['', 'Débil', 'Medio', 'Fuerte', 'Muy fuerte']) of
+      0: //''
+      begin
+
+      end;
+
+      1: //'Débil'
+      begin
+        lblFortalezaContrasena.Font.Color := clRed;
+      end;
+
+      2: // 'Bueno'
+      begin
+        lblFortalezaContrasena.Font.Color := $004080FF;
+      end;
+
+      3: // 'Fuerte'
+      begin
+        lblFortalezaContrasena.Font.Color := clGreen;
+      end;
+
+      4: // 'Muy fuerte'
+      begin
+        lblFortalezaContrasena.Font.Color := clOlive;
+      end;
+    end;
+  {$ENDIF}
+
+end;
+
+
+procedure TFrmMiUsuarioCambiarContrasena.UniFormCreate(Sender: TObject);
+begin
+
+  {$IFDEF AUTOSERVICIOWEB}
+  Self.Caption := 'Cambiar mi PIN';
+  lblContrasenaActual.Caption := 'PIN Actual';
+  lblContrasena.Caption := 'PIN';
+  txtPassword.EmptyText := 'Nuevo PIN';
+  txtPasswordRepetir.EmptyText := 'Confirmar PIN';
+  {$ENDIF}
+
+end;
+
+end.

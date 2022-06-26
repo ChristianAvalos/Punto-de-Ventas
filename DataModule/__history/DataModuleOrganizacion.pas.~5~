@@ -1,0 +1,105 @@
+unit DataModuleOrganizacion;
+
+interface
+
+uses
+  SysUtils, Classes, Data.DB, MemDS, DBAccess, MSAccess;
+
+type
+  TDMOrganizacion = class(TDataModule)
+    MSOrganizacion: TMSQuery;
+    DSOrganizacion: TDataSource;
+    MSOrganizacionIdOrganizacion: TIntegerField;
+    MSOrganizacionRazonSocial: TStringField;
+    MSOrganizacionDireccion: TStringField;
+    MSOrganizacionCiudad: TStringField;
+    MSOrganizacionIdPais: TIntegerField;
+    MSOrganizacionTelefono1: TStringField;
+    MSOrganizacionTelefono2: TStringField;
+    MSOrganizacionFax1: TStringField;
+    MSOrganizacionFax2: TStringField;
+    MSOrganizacionEmail: TStringField;
+    MSOrganizacionWebsite: TStringField;
+    MSOrganizacionLogotipo: TBlobField;
+    MSOrganizacionMetodoCosteo: TSmallintField;
+    MSOrganizacionRepresentanteContrato: TStringField;
+    MSOrganizacionRUC: TStringField;
+    DSPais: TDataSource;
+    MSPais: TMSQuery;
+    MSPaisIdPais: TIntegerField;
+    MSPaisNombre: TStringField;
+    MSPaisGentilicio: TStringField;
+    procedure MSOrganizacionAfterCancel(DataSet: TDataSet);
+    procedure MSOrganizacionAfterOpen(DataSet: TDataSet);
+    procedure MSOrganizacionAfterPost(DataSet: TDataSet);
+    procedure MSOrganizacionBeforeEdit(DataSet: TDataSet);
+    procedure MSOrganizacionBeforeInsert(DataSet: TDataSet);
+    procedure MSOrganizacionBeforePost(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function DMOrganizacion: TDMOrganizacion;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, uniGUIMainModule, MainModule, UnitValidaciones, UnitRecursoString, FormularioOrganizacion;
+
+function DMOrganizacion: TDMOrganizacion;
+begin
+  Result := TDMOrganizacion(UniMainModule.GetModuleInstance(TDMOrganizacion));
+end;
+
+procedure TDMOrganizacion.MSOrganizacionAfterCancel(DataSet: TDataSet);
+begin
+{$IFDEF WEB}
+  DeshabilitarControles(FrmOrganizacion);
+{$ENDIF}
+end;
+
+procedure TDMOrganizacion.MSOrganizacionAfterOpen(DataSet: TDataSet);
+begin
+    // Recupero la foto luego de realizar scroll
+ // RecuperarFoto(MSOrganizacionLogo, 'Logotipo', VTOrganizacionLogo, 'LogoBMP', MSOrganizacionIdOrganizacion.Value);
+end;
+
+procedure TDMOrganizacion.MSOrganizacionAfterPost(DataSet: TDataSet);
+begin
+{$IFDEF WEB}
+  DeshabilitarControles(FrmOrganizacion);
+
+{$ENDIF}
+  // Actualizar los datos de la organizacion
+ // DMPrincipal.MSOrganizacionDisponible.Refresh;
+  //DMPrincipal.MSOrganizacionSeleccionada.Refresh;
+end;
+
+procedure TDMOrganizacion.MSOrganizacionBeforeEdit(DataSet: TDataSet);
+begin
+  {$IFDEF WEB}
+  HabilitarControles(FrmOrganizacion);
+  {$ENDIF}
+end;
+
+procedure TDMOrganizacion.MSOrganizacionBeforeInsert(DataSet: TDataSet);
+begin
+  {$IFDEF WEB}
+  HabilitarControles(FrmOrganizacion);
+  {$ENDIF}
+end;
+
+procedure TDMOrganizacion.MSOrganizacionBeforePost(DataSet: TDataSet);
+begin
+  ValidarCampo(FrmOrganizacion, MSOrganizacionRazonSocial, EEscribaRazonSocial);
+  ValidarCampo(FrmOrganizacion, MSOrganizacionIdPais, ESeleccionePais);
+end;
+
+initialization
+  RegisterModuleClass(TDMOrganizacion);
+
+end.

@@ -1,0 +1,1100 @@
+
+unit UnitDatos;
+
+{$INCLUDE 'compilador.inc'}
+
+interface
+
+uses
+
+  System.Classes, System.SysUtils, Data.DB, MSAccess, Vcl.Dialogs, DBAccess,
+
+  {$IFDEF MIDDLEWARESERVER}
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  {$ENDIF}
+
+  {$IFDEF WEB}
+  ServerModule, UniGuiApplication, uniGUIDialogs, uniGUIForm,
+  {$ENDIF}
+
+  {$IF DEFINED(DESKTOP) OR DEFINED(SERVICE)}
+  Vcl.Forms,
+  {$ENDIF}
+
+  System.Variants, System.StrUtils;
+
+type
+  TParametroRecord = record
+    Campo: string;
+    Valor: string;
+  end;
+
+  TTipoProximoValor = (ValorInteger, ValorIntegerFecha, ValorString, ValorNumeroAnho);
+
+  function ObtenerProximoId(Esquema: String; Tabla: string): integer;
+  function ObtenerClavePrimaria(Esquema: String; Tabla: string): string;
+  function ObtenerProximoValorIdentity(Tabla: string): integer;
+
+  function ObtenerProximoValor(Tabla: string; CampoValor: TField; Parametros: array of TField; TipoProximoValor: TTipoProximoValor; CampoFecha: TField = nil): integer;
+
+  function ObtenerProximoValorAsignacion(): Integer;
+  function ResetearDatos(TableDestino: TMSTable; AParam: Boolean = True): Boolean;
+
+  procedure CargarEstadoyURev(Dataset: TCustomMSDataSet);
+  function FiniquitarTransacciones(DatasetOperaciones: TMSQuery; DatasetFiniquitado: TMSQuery; PInicio: integer; PFin: integer): Boolean;
+  procedure SeleccionarRegistros(Campo: TBooleanField; Posicion: Boolean);
+  procedure RefrescarDataSets(DataSource: TDataSource);
+  function ObtenerParametro(Parametro: string): TParametroRecord;
+
+  procedure VaciarMacros(DataSet: TDataSet);
+  procedure VaciarParametros(DataSet: TDataSet; ValorParametroDefecto: string = ''); overload;
+  procedure VaciarParametros(Datasets: array of TDataSet; ValorParametroDefecto: string = ''); overload;
+  procedure VaciarParametrosYMacros(DataSet: TDataSet; ValorParametroDefecto : string ='');
+
+  procedure AsignarIdOrganizacion(DataSet: TDataSet);
+  procedure AsignarUrev(DataSet: TDataSet);
+  function ProcesarDatasetString(Dataset: TCustomMSDataSet): string;
+
+implementation
+
+uses
+
+
+  {$IF NOT (DEFINED(RUCAUTOMATE)
+         OR DEFINED(DYNAMICSLINK)) }
+   // DataModuleComunGlobal,
+    {$ENDIF}
+
+    {$IFNDEF DEPLOY}
+    DataModulePrincipal, UnitCodigosComunesDataModule,
+    {$ENDIF}
+
+    {$IFDEF SDAC}
+    DataModuleUsuario,
+    {$ENDIF}
+
+    UnitCodigosComunesString,
+   // UnitLog,
+    UnitRecursoString;
+
+
+function ObtenerProximoId(Esquema: String; Tabla: string): integer;
+//  Esquema+Tabla
+begin
+  {$IFDEF SDAC}
+  // Obtengo el proximo ID
+  try
+    DMPrincipal.MSObtenerProximoId.Close;
+    DMPrincipal.MSObtenerProximoId.SQL.Clear;
+    DMPrincipal.MSObtenerProximoId.SQL.Add('select max(' + ObtenerClavePrimaria(Esquema, Tabla) + ') as Id from ' + Esquema + '.' + Tabla);
+    DMPrincipal.MSObtenerProximoId.Open;
+    Result := DMPrincipal.MSObtenerProximoIdId.Value + 1;
+  except
+    Result := -1;
+  end;
+  {$ENDIF}
+end;
+
+
+function ObtenerClavePrimaria(Esquema: String; Tabla: string): string;
+begin
+  {$IFDEF SDAC}
+  // Obtengo la clave primaria
+  DMPrincipal.MSObtenerIdentificarPK.Close;
+  DMPrincipal.MSObtenerIdentificarPK.Params.ParamByName('Esquema').Value := Esquema;
+  DMPrincipal.MSObtenerIdentificarPK.Params.ParamByName('Tabla').Value := Tabla;
+  DMPrincipal.MSObtenerIdentificarPK.Open;
+
+  if DMPrincipal.MSObtenerIdentificarPK.Eof = True then
+  begin
+    Result := ('valor = N/A');
+  end
+  else
+    begin
+        Result := DMPrincipal.MSObtenerIdentificarPKcolumn_name.Value;
+    end;
+  {$ENDIF}
+end;
+
+
+function ObtenerProximoValorIdentity(Tabla: string): integer;
+begin
+  {$IFDEF SDAC}
+  // Obtengo el proximo ID
+  try
+    DMPrincipal.MSObtenerProximoId.Close;
+    DMPrincipal.MSObtenerProximoId.SQL.Clear;
+    DMPrincipal.MSObtenerProximoId.SQL.Add('SELECT CAST(IDENT_CURRENT(''' + Tabla + ''') + IDENT_INCR(''' + Tabla + ''') AS INT) AS Id');
+    DMPrincipal.MSObtenerProximoId.Open;
+    Result := DMPrincipal.MSObtenerProximoId.FieldByName('Id').AsInteger;
+  except
+    Result := -1;
+  end;
+  {$ENDIF}
+end;
+
+
+function FiniquitarTransacciones(DatasetOperaciones: TMSQuery; DatasetFiniquitado: TMSQuery; PInicio: integer; PFin: integer): Boolean;
+begin
+
+  try
+    // Ejecuto el query para pasar a estado 4 o finiquitado las operaciones
+    DatasetFiniquitado.Close;
+    DatasetFiniquitado.Params[1].Value := PInicio;
+    DatasetFiniquitado.Params[2].Value := PFin;
+    DatasetFiniquitado.Execute;
+
+    // Refresco el dataset de operaciones
+    DatasetOperaciones.Refresh;
+
+    Result := True;
+
+  except
+    on E: Exception do
+      begin
+
+        {$IFDEF WEB}
+        // Cargo la excepcion al log
+        UniServerModule.Logger.AddLog('Excepción', UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+        MessageDlg(E.Message, mtError, [mbOK]);
+        {$ENDIF}
+
+        {$IF DEFINED(DESKTOP) OR DEFINED(SERVICE)}
+        Log(EExcepcion + E.Message);
+
+          {$IFDEF DESKTOP}
+            MessageDlg(E.Message, mtError, [mbOK], 0);
+          {$ENDIF}
+
+        {$ENDIF}
+
+        Result := False;
+      end;
+  end;
+
+end;
+
+
+procedure CargarEstadoyURev(Dataset: TCustomMSDataSet);
+begin
+
+  {$IFDEF SDAC}
+
+  // Funciona lo mismo para servicio o desktop
+  {$IF DEFINED(DESKTOP) AND
+      NOT (DEFINED(RUCAUTOMATE)
+       OR DEFINED(DYNAMICSLINK))}
+
+  // Verifico el objeto en memoria si fue creado
+  if DMComunGlobal = nil then
+  begin
+    Application.CreateForm(TDMComunGlobal, DMComunGlobal);
+  end;
+  {$ENDIF}
+
+  {$IFDEF SERVICE}
+  // Verifico el objeto en memoria si fue creado
+  if DMComunGlobal = nil then
+  begin
+    Application.CreateForm(TDMComunGlobal, DMComunGlobal);
+  end;
+  {$ENDIF}
+
+
+    {$IF NOT (DEFINED(RUCAUTOMATE)
+           OR DEFINED(DYNAMICSLINK)) }
+//    if DMComunGlobal <> nil then
+//    begin
+//
+//      // Verifico que este activo
+//      ActivarDataSets('UnitDatos',[DMComunGlobal.MSEstadoTransaccion],False);
+//
+//      try
+//        if (Dataset.FindField('IdEstadoTransaccion') <> nil) and (Dataset.FindField('EstadoTransaccion') <> nil) then
+//        begin
+//
+//          if (Dataset.FindField('EstadoTransaccion').ReadOnly = False ) then
+//          begin
+//            if VarIsNull(Dataset.FieldByName('IdEstadoTransaccion').Value) then
+//            begin
+//              // No hago nada
+//            end
+//            else
+//              begin
+//                // WTF hay que medir el rendimiento
+//                DMComunGlobal.MSEstadoTransaccion.Locate('IdEstadoTransaccion', Dataset.FieldByName('IdEstadoTransaccion').Value,[]);
+//                Dataset.FieldByName('EstadoTransaccion').Value := DMComunGlobal.MSEstadoTransaccionDescripcion.Value;
+//              end;
+//          end;
+//
+//        end;
+//
+//        if (Dataset.FindField('Urev') <> nil) then
+//        begin
+//          if (Dataset.FieldByName('UrevUsuario') <> nil) and (Dataset.FieldByName('Urev') <> nil)  then
+//          begin
+//
+//            // Evito que explote, evaluando el null
+//            if (VarIsNull(Dataset.FieldByName('UrevUsuario').Value)) or (VarIsNull(Dataset.FieldByName('UrevFechaHora').Value)) then
+//            begin
+//              // No hago nada
+//            end
+//            else
+//              begin
+//                Dataset.FieldByName('Urev').Value := Dataset.FieldByName('UrevUsuario').Value + ' - ' + DateTimeToStr(Dataset.FieldByName('UrevFechaHora').Value);
+//              end;
+//
+//          end;
+//        end;
+//
+//      except
+//        on E: Exception do
+//        begin
+//          Log(EExcepcion  + ' UnitDatos.CargarEstadoyURev - ' + DataSet.Name + ' - ' + E.Message + ' - ' + E.ClassName);
+//        end;
+//
+//      end;
+//
+//    end;
+    {$ENDIF}
+  {$ENDIF}
+
+end;
+
+
+procedure SeleccionarRegistros(Campo: TBooleanField; Posicion: Boolean);
+var
+  bm: TBookmark;
+begin
+  // Verifico el estado del dataset
+  if (Campo.DataSet.Active = False) or (Campo.DataSet.RecordCount = 0) then
+  begin
+   // Log('SeleccionarRegistros DataSet' + Campo.DataSet.Name + ' Campo ' + Campo.Name + ' Valor '+ Posicion.ToString);
+    Abort;
+  end;
+
+  //ReadOnly
+  if (Campo.ReadOnly = True) then
+  begin
+    Campo.ReadOnly := False;
+  end;
+
+  //Guardo la ubi del registro
+  bm := Campo.DataSet.GetBookmark;
+
+  // DisableControls  (No Funciona)
+ // Campo.DataSet.DisableControls;
+
+  // Mover al primer registro
+  Campo.DataSet.First;
+
+  // Mientras no llegue al fin del dataset
+  while Campo.DataSet.Eof = False do
+  begin
+
+    // Operacion dentro de un bloque try
+    try
+      // Editamos el registro
+      Campo.DataSet.Edit;
+      // Enviamos la posicion (Verdadero o falso)
+      Campo.Value := Posicion;
+      Campo.DataSet.Post;
+
+    except
+      on E: Exception do
+      begin
+        // Cargo la excepcion al log
+
+        {$IFDEF DESKTOP}
+        Log(EExcepcion + E.Message);
+        MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+        {$ENDIF}
+
+        {$IFDEF WEB}
+       // UniServerModule.Logger.AddLog(EExcepcion+' SeleccionarRegistros', UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' +  Campo.DataSet.Name+' - ' + E.Message);
+        MessageDlg(EExcepcion + E.Message, mtError, [mbOK]);
+        {$ENDIF}
+      end;
+    end;
+
+    // Saltamos al siguiente registro
+    Campo.DataSet.Next;
+  end;
+
+ // Campo.DataSet.EnableControls;
+
+  //ubico en el campo que estaba
+  Campo.DataSet.GotoBookmark(bm);
+end;
+
+procedure RefrescarDataSets(DataSource: TDataSource);
+var
+  i: integer;
+begin
+
+  if DataSource.Dataset.Active = False then
+    ActivarDataSets('RefrescarDataSets',[DataSource.Dataset]);
+
+
+  // Refresco el dataset asociado al datasource indicado
+  DataSource.Dataset.Refresh;
+
+  // Recorro todo el DataModule para encontrar los dataset
+  for i := 0 to (DataSource.Dataset.Owner.ComponentCount - 1) do
+  begin
+
+    // Los dataset localizados deben cumplir tres condiciones
+    // 1- Debe ser un TMSQUERY
+    // 2- Debe estar activo
+    // 3- y el MasterSource debe ser el Datasource del dataset principal
+    if (DataSource.Dataset.Owner.Components[i] is TMSQuery) and
+      ((TMSQuery(DataSource.Dataset.Owner.Components[i]).Active = True)) and
+      ((TMSQuery(DataSource.Dataset.Owner.Components[i]).MasterSource = DataSource)) then
+    begin
+      // Procedo a refrescar
+      TMSQuery(DataSource.Dataset.Owner.Components[i]).Refresh;
+    end;
+
+  end;
+end;
+
+
+function ObtenerParametro(Parametro: string): TParametroRecord;
+begin
+  // Esta funcion permite obtener Campo y valor de un string indicado
+  // Extracto los caracteres a la izquierda de '=' como nombre del parametro y
+  // Extracto los caracteres a la derecha de '=' como valor del parametro
+  // Elimino espacios posibles en el nombre del campo
+  Result.Campo := Stripped(' ', (AnsiLeftStr(Parametro, (AnsiPos('=', Parametro) - 1))));
+  Result.Valor := AnsiRightStr(Parametro, (Length(Parametro) - AnsiPos('=', Parametro)));
+end;
+
+
+function ObtenerProximoValorAsignacion(): Integer;
+var
+  sql: string;
+begin
+  // Cierro el dataset principal de querys libres, g]tambien lo limpio si hay un select anterior
+  {$IFDEF SDAC}
+  DMPrincipal.MSQuerySQL.Close;
+  DMPrincipal.MSQuerySQL.SQL.Clear;
+
+  sql := 'SELECT (ISNULL(MAX(CAST(Numero AS INT)), 0) + 1) AS Numero FROM Operacion.SalidaMaestro sm JOIN Definicion.DefinicionSalida df ON (df.idDefinicionSalida = sm.IdDefinicionSalida) WHERE df.IdTipoOperacion = 25';
+  DMPrincipal.MSQuerySQL.SQL.Add(sql);
+
+  // Abro el dataset
+  try
+    DMPrincipal.MSQuerySQL.Open;
+  except
+    on E: Exception do
+      begin
+        {$IFDEF WEB}
+        UniServerModule.Logger.AddLog(EExcepcion, UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+        MessageDlg(EExcepcion + E.Message, mtError, [mbOK]);
+        {$ENDIF}
+
+        {$IF DEFINED(DESKTOP) OR DEFINED(SERVICE)}
+        Log(EExcepcion + 'UnitDatos' + E.Message);
+          {$IFDEF DESKTOP}
+          MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+          {$ENDIF}
+        {$ENDIF}
+      end;
+  end;
+
+  Result := DMPrincipal.MSQuerySQL.FieldByName('Numero').Value;
+  {$ENDIF}
+
+end;
+
+
+function ObtenerProximoValor(Tabla: string; CampoValor: TField; Parametros: array of TField; TipoProximoValor: TTipoProximoValor; CampoFecha: TField = nil): integer;
+// Ej. : ObtenerProximoValor('Patrimonio.Ubicacion', MSUbicacionClaveExterna, [MSUbicacionIdOrganizacion], ValorInteger)
+var
+  i: integer;
+  query, query2, sql: string;
+begin
+  // Este procedimiento devuelve el proximo valor que debe tener un numero de comprobante
+
+  // Cierro el dataset principal de querys libres, g]tambien lo limpio si hay un select anterior
+  {$IFDEF SDAC}
+  DMPrincipal.MSQuerySQL.Close;
+  DMPrincipal.MSQuerySQL.SQL.Clear;
+
+  // Cargo el query a ejecutar, dependiendo del tipo de valor proximo indicado en el sistema
+  case TipoProximoValor of
+
+    // Esta seccion se utiliza cuando se le pasa un integer y se necesita obtener el valor siguiente
+    // Ejemplo
+    // Si se le pasa 200 esta parte retornara 201
+    ValorInteger:
+      begin
+          sql := 'SELECT ISNULL(MAX(CAST(' + CampoValor.FieldName + ' AS INT)),0) AS ' + CampoValor.FieldName + ' FROM ' + Tabla;
+      end;
+
+    // Esta seccion se utiliza cuando se le pasa un integer y una Fecha se necesita obtener el valor siguiente en el mismo año que la fecha
+    // Ejemplo
+    // Si se le pasa 200 y la fecha se pasa 27/01/2013 esta parte retornara:
+    // En caso de que el año actual sea 2013 retornara el siguiente osea 201
+    // En caso de que el año sea 2014 o superiores retornara siempre 1
+    ValorIntegerFecha:
+      begin
+          sql := 'SELECT ISNULL(MAX(CAST(' + CampoValor.FieldName + ' AS INT)),0) AS ' +
+          CampoValor.FieldName + ' FROM ' + Tabla +
+          ' WHERE YEAR(' + CampoFecha.FieldName + ') = YEAR(GETDATE())';
+      end;
+
+    // SELECT ISNULL(MAX( CAST (Numero AS INT) ), 0) AS Numero FROM Patrimonio.RecepcionBien
+
+    // Esta seccion se utiliza cuando se le pasa un integer y se necesita obtener el valor siguiente
+    // Ejemplo
+    // Si se le pasa 200 esta parte retornara 201
+    ValorString:
+      begin
+          sql := 'SELECT ISNULL(MAX(CAST(' + CampoValor.FieldName + ' AS INT)),0) AS ' +
+          CampoValor.FieldName + ' FROM ' + Tabla;
+      end;
+
+    // Esta seccion se utiliza cuando se le pasa un numero/año se necesita obtener el valor siguiente en el mismo año que la fecha
+    // Ejemplo
+    // Si se le pasa 200/2013 o 200/13 esta parte retornara:
+    // En caso de que el año actual sea 2013 retornara el siguiente osea 201
+    // En caso de que el año actual sea 2014 o superiores retornara siempre 1
+    ValorNumeroAnho:
+      begin
+          sql :=
+          'SELECT ' + CampoValor.FieldName + '=(ISNULL( MAX( CAST( (CASE WHEN CHARINDEX(''/'',' + CampoValor.FieldName + ')' +
+          ' IS NULL THEN 0 ELSE SUBSTRING(' + CampoValor.FieldName + ',1, ' +
+          '(CASE WHEN CHARINDEX(''/'',' + CampoValor.FieldName + ') = 0 THEN 0 ELSE CHARINDEX(''/'',' + CampoValor.FieldName +
+          ' )-1 END) ) END ) AS INT) ) ,0)) ' +
+          ' FROM ' + Tabla + ' WHERE SUBSTRING(' + CampoValor.FieldName +
+          ',CHARINDEX(''/'',' + CampoValor.FieldName + ')+3,2) ' +
+          ' = SUBSTRING(CAST(YEAR(GETDATE()) AS VARCHAR(4)),3,2)' +
+          ' AND '+ CampoValor.FieldName + ' NOT LIKE ''%.%'' AND  '+ CampoValor.FieldName + ' NOT LIKE ''%,%'' ';  // Added by RubenOlmedo 29/6/2016 9:08:34 a. m. por AISP
+
+      end;
+  end;
+
+  //Esta seccion se utiliza para pasar los parametros adicionales
+  if High(Parametros) > -1 then
+    begin
+      case TipoProximoValor of
+
+        ValorInteger:
+        begin
+          sql := sql + ' WHERE ';
+        end;
+
+        ValorIntegerFecha:
+        begin
+          sql := sql + ' AND ';
+        end;
+
+        ValorString:
+        begin
+          sql := sql + ' WHERE ';
+        end;
+
+        ValorNumeroAnho:
+        begin
+          sql := sql + ' AND ';
+        end;
+      end;
+    end;
+
+  DMPrincipal.MSQuerySQL.SQL.Add(sql);
+
+  // Recorro el array de Parametros y asigno los valores al query de consulta de verificacion
+  for i := 0 to High(Parametros) do
+    begin
+
+      // En caso que existan mas de un parametro, en la siguiente vez se agrega 'AND' antes del parametro
+      if i > 0 then
+        begin
+            DMPrincipal.MSQuerySQL.SQL.Add(' AND ');
+        end;
+
+      // Agrego el nombre del campo correspondiente al query
+      DMPrincipal.MSQuerySQL.SQL.Add(Parametros[i].FieldName + ' = ');
+
+      if TipoProximoValor =  ValorNumeroAnho then
+      begin // Solucion Temporal
+        if (Parametros[i].FieldName = 'IdOrganizacion') then
+        begin
+       //   DMPrincipal.MSQuerySQL.SQL.Add(' 1 ');
+        end;
+      end;
+
+
+      // Dependiendo si es integer o string
+      if Parametros[i].DataType = ftInteger then
+        begin
+          DMPrincipal.MSQuerySQL.SQL.Add(Parametros[i].AsString);
+          query2 := query2 + Parametros[i].AsString;
+        end;
+
+      if Parametros[i].DataType = ftString then
+        begin
+          // En caso que sea un string agrego el #39 para las comillas
+          DMPrincipal.MSQuerySQL.SQL.Add(#39 + Parametros[i].AsString + #39);
+        end;
+
+    end;
+
+
+  // Abro el dataset
+  try
+    {$IFDEF DEBUG}
+    Log('UnitDatos.ObtenerProximoValor ' + CampoValor.FieldName);
+    Log(DMPrincipal.MSQuerySQL.SQL.Text);
+    {$ENDIF}
+
+    DMPrincipal.MSQuerySQL.Open;
+
+  except
+    on E: Exception do
+      begin
+        Log('UnitDatos.ObtenerProximoValor '+ EExcepcion + ' - ' + E.Message + ' : ' + DMPrincipal.MSQuerySQL.SQL.Text);
+
+        {$IFDEF DESKTOP}
+        MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+        {$ENDIF}
+
+        {$IFDEF WEB}
+        MessageDlg(EExcepcion + E.Message, mtError, [mbOK]);
+        UniServerModule.Logger.AddLog(EExcepcion+' ObtenerProximoValor', UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+        {$ENDIF}
+      end;
+  end;
+
+  // Devuelvo resultado
+  // Verifico si existe el campo
+  // not (oTry.FindField(cField) = Nil);
+
+  if DMPrincipal.MSQuerySQL.FindField(CampoValor.FieldName) <> nil then
+  begin
+    Result := DMPrincipal.MSQuerySQL.FieldByName(CampoValor.FieldName).Value + 1;
+  end
+  else
+    begin
+
+      Result := -1;
+      Log('ObtenerProximoValor '+EExcepcion + ' Campo ' + CampoValor.FieldName + ' no existe ' +DMPrincipal.MSQuerySQL.SQL.text );
+
+      {$IFDEF DESKTOP}
+      MessageDlg(EExcepcion + ' Campo ' + CampoValor.FieldName + ' no existe', mtError, [mbOK], 0);
+      {$ENDIF}
+
+      {$IFDEF WEB}
+      MessageDlg(EExcepcion + ' Campo ' + CampoValor.FieldName + ' no existe', mtError, [mbOK]);
+      {$ENDIF}
+    end;
+
+  {$ENDIF}
+end;
+
+
+
+function ResetearDatos(TableDestino: TMSTable; AParam: Boolean = True): Boolean;
+var
+  i: integer;
+begin
+  {$IFDEF SDAC}
+  // Borro el contenido de la tabla destino
+  try
+    DMPrincipal.MSSQL.SQL.Clear;
+    DMPrincipal.MSSQL.SQL.Add('DELETE FROM ' + TableDestino.TableName);
+    DMPrincipal.MSSQL.Execute();
+
+    Log('Borrado datos: ' + TableDestino.TableName);
+  except
+    on E: Exception do
+    begin
+      Log(EExcepcion + E.Message);
+      MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+    end;
+  end;
+
+    // Inicializo el Identity de la tabla
+    if AParam = True then
+    begin
+      try
+        DMPrincipal.MSSQL.SQL.Clear;
+        DMPrincipal.MSSQL.SQL.Add('DBCC CHECKIDENT (' + #39 + TableDestino.TableName + #39 + ', RESEED, 0)');
+        DMPrincipal.MSSQL.Execute();
+
+        Log('Identity a 0: ' + TableDestino.TableName);
+      except
+        on E: Exception do
+        begin
+          Log(EExcepcion + E.Message);
+          MessageDlg(EExcepcion + E.Message, mtError, [mbOK], 0);
+        end;
+      end;
+    end;
+  {$ENDIF}
+
+end;
+
+
+
+procedure VaciarMacros(DataSet: TDataSet);
+var
+  i: Integer;
+begin
+
+  if ((DataSet.ClassType = TMSQuery) or (DataSet.ClassType = TMSStoredProc)) then
+  begin
+    for i := 0 to TCustomMSDataSet(DataSet).Macros.Count -1 do
+    begin
+      TCustomMSDataSet(DataSet).Macros[i].Clear;
+    end;
+  end;
+
+end;
+
+
+procedure VaciarParametros(DataSet: TDataSet; ValorParametroDefecto: string = '');
+begin
+  // Llamo al codigo unificado
+  VaciarParametros([DataSet], ValorParametroDefecto);
+end;
+
+
+procedure VaciarParametros(Datasets: array of TDataSet; ValorParametroDefecto: string = '');
+var
+  i, x: integer;
+begin
+
+  // Recorro el arreglo
+  for i := Low(Datasets) to High(Datasets) do
+  begin
+    //verifico que este asignado el procedicimineto al dataset
+    if Assigned(Datasets[i]) then
+    begin
+      // Verifico que sea de los tipos de dataset utilizados
+      if ((Datasets[i].ClassType = TMSQuery) or (Datasets[i].ClassType = TMSStoredProc)) then
+      begin
+
+        // Cierro el dataset
+        TCustomMSDataSet(Datasets[i]).Close;
+
+        // Limpio los filtros
+        if TCustomMSDataSet(Datasets[i]).Filtered then
+        begin
+          TCustomMSDataSet(Datasets[i]).Filtered := False;
+        end;
+
+        // Aisgno el principal si tiene
+        AsignarPrincipal('VaciarParametros', [Datasets[i]]);
+
+        // recorro el dataset y limpio
+        for x := 0 to TCustomMSDataSet(Datasets[i]).Params.Count - 1 do
+        begin
+          if not(ValorParametroDefecto = '') then
+          begin
+            TCustomMSDataSet(Datasets[i]).Params[x].Value := ValorParametroDefecto;
+          end
+          else
+          begin
+            TCustomMSDataSet(Datasets[i]).Params[x].Clear;
+          end;
+        end;
+
+        // Asigno el IdOrganizacion
+        AsignarIdOrganizacion(Datasets[i]);
+      end;
+    end
+    else
+    begin
+      log('Error-UnitDatos-VaciarParametros'+Chr(13)+'el dataset no fue asignado');
+
+      {$IFDEF WEB}
+      MessageDlg('Error-VaciarParametros'+Chr(13)+'el dataset no fue asignado', mtError, [mbOK]);
+      {$ENDIF}
+    end;
+  end;
+
+end;
+
+
+procedure VaciarParametrosYMacros(DataSet: TDataSet; ValorParametroDefecto : string ='');
+begin
+  DataSet.Filter := '';
+  DataSet.Filtered := False;
+  VaciarParametros([DataSet], ValorParametroDefecto);
+  VaciarMacros(DataSet);
+end;
+
+
+
+procedure AsignarIdOrganizacion(DataSet: TDataSet);
+begin
+
+  // Para evitar asignar a dataset que no estan creados
+  if Assigned(DataSet) = True then
+  begin
+
+    // En caso que se encuentren en insercion o edicion
+    if DataSet.State in [dsInsert, dsEdit] then
+    begin
+      try
+        if (DataSet.FindField('IdOrganizacion') <> nil) then
+        begin
+
+          if DataSet.FieldByName('IdOrganizacion').IsNull then
+          begin
+            DataSet.FieldByName('IdOrganizacion').Value := varOrganizacionID;
+          end;
+
+        end;
+      except
+        on E: Exception do
+        begin
+
+          {$IF Defined(DESKTOP) or Defined(SERVICE))}
+          Log(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name + ' - ' + E.Message + E.Message);
+          {$ENDIF}
+
+          {$IFDEF DESKTOP}
+          MessageDlg(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name + ' - ' + E.Message, mtError, [mbOK], 0);
+          {$ENDIF}
+
+          {$IFDEF WEB}
+          UniServerModule.Logger.AddLog(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name, UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+          MessageDlg(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name, mtError, [mbOK]);
+          {$ENDIF}
+        end;
+      end;
+    end
+    else
+      begin
+
+        try
+          // En caso que sean otros tipos de query
+          if ((DataSet.ClassType = TMSQuery) or (DataSet.ClassType = TMSStoredProc)) then
+          begin
+
+            if TCustomMSDataSet(DataSet).FindParam('IdOrganizacion') <> nil then
+            begin
+
+              // WTF???
+              if DataSet.State in dsEditModes then
+              begin
+                TCustomMSDataSet(DataSet).FieldByName('IdOrganizacion').Value := varOrganizacionID;
+              end
+              else
+                begin
+                  TCustomMSDataSet(DataSet).ParamByName('IdOrganizacion').Value := varOrganizacionID;
+                end;
+
+            end;
+          end;
+
+        except
+          on E: Exception do
+          begin
+            {$IF Defined(DESKTOP) or Defined(SERVICE))}
+            Log(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name + ' - ' + E.Message + E.Message);
+            {$ENDIF}
+
+            {$IFDEF DESKTOP}
+            MessageDlg(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name + ' - ' + E.Message, mtError, [mbOK], 0);
+            {$ENDIF}
+
+            {$IFDEF WEB}
+            UniServerModule.Logger.AddLog(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name, UniApplication.RemoteAddress + ' - ' + E.ClassName + ' - ' + E.Message);
+            MessageDlg(EExcepcion + EErrorAsignarCampoIdOrganizacionDataset + DataSet.Name, mtError, [mbOK]);
+            {$ENDIF}
+          end;
+        end;
+
+      end;
+  end;
+
+end;
+
+procedure AsignarUrev(DataSet: TDataSet);
+// Ej. AsignarUrev(DataSet);
+var
+  UsuarioLogin: string;
+  IdUsuarioLogin: Integer;
+begin
+
+{$IFDEF SDAC}
+  if DMUsuario <> nil then
+  begin
+    UsuarioLogin := DMUsuario.UsuarioRecord.LoginUsuario;
+    IdUsuarioLogin := DMUsuario.UsuarioRecord.IdUsuario;
+  end;
+{$ENDIF}
+
+  if DataSet.State in [dsInsert, dsEdit] then
+  begin
+    try
+        if (DataSet.FindField('Urev') <> nil) then
+        begin
+          if DataSet.State in [dsInsert] then
+          begin
+            DataSet.FieldByName('Urev').Value := UsuarioLogin;
+          end
+          else
+          begin
+            if (DataSet.FindField('Urev') <> nil) then
+            begin
+              DataSet.FieldByName('Urev').Value := 'Editado - ' + UsuarioLogin;
+            end;
+          end;
+        end;
+
+        if (DataSet.FindField('UrevUsuario') <> nil) then
+        begin
+          if DataSet.State in [dsInsert] then
+          begin
+            DataSet.FieldByName('UrevUsuario').Value := UsuarioLogin;
+          end
+          else
+          begin
+            DataSet.FieldByName('UrevUsuario').Value := 'Editado - ' + UsuarioLogin;
+          end;
+        end;
+
+        if ((DataSet.FindField('IdUsuario') <> nil)) then
+        begin
+          if DataSet.State = dsBrowse then
+          begin
+            DataSet.FieldByName('IdUsuario').Value := IdUsuarioLogin;
+          end;
+        end;
+
+        // si existe el campo y esta en modo de edicion o insert agrego fecha hora
+        if ((DataSet.FindField('UrevFechaHora') <> nil)) then
+        begin
+          DataSet.FieldByName('UrevFechaHora').Value := Now;
+        end;
+
+      except
+      on E: Exception do
+      begin
+        Log('Error al asignar el campo urev a el dataset: ' + DataSet.Name + ' - ' + E.Message);
+      end;
+    end;
+  end;
+
+  if (DataSet <> nil) then
+  begin
+
+{$IFDEF SDAC}
+    try
+      if TCustomMSDataSet(DataSet).FindParam('IdUsuario') <> nil then
+      begin
+        TCustomMSDataSet(DataSet).ParamByName('IdUsuario').Value := IdUsuarioLogin;
+      end;
+
+      if TCustomMSDataSet(DataSet).FindParam('Urev') <> nil then
+      begin
+        TCustomMSDataSet(DataSet).ParamByName('Urev').Value := UsuarioLogin;
+      end;
+
+      if TCustomMSDataSet(DataSet).FindParam('UrevUsuario') <> nil then
+      begin
+        TCustomMSDataSet(DataSet).ParamByName('UrevUsuario').Value := UsuarioLogin;
+      end;
+
+      if ((TCustomMSDataSet(DataSet).FindParam('UrevFechaHora') <> nil)) then
+      begin
+        TCustomMSDataSet(DataSet).ParamByName('UrevFechaHora').Value := Now;
+      end;
+
+    except
+      on E: Exception do
+      begin
+        Log('Error al asignar el parametro urev a el dataset: ' + DataSet.Name + ' - ' + E.Message);
+      end;
+    end;
+{$ENDIF}
+
+  end;
+
+end;
+
+
+function ProcesarDatasetString(Dataset: TCustomMSDataSet): string;
+var
+  i: integer;
+  ArregloParametro: TArray<string>;
+  sAux: string;
+  Parametro: TMSParam;
+  SqlTexto: string;
+begin
+
+  case IndexText(Dataset.ClassType.ClassName, [TMSQuery.ClassName, TMSStoredProc.ClassName]) of
+    0: // TMSQuery
+    begin
+      SqlTexto := Dataset.FinalSQL;
+
+      if SqlTexto.Contains('DECLARE') = False then
+      begin
+
+        // Agrego declare si aun no tiene
+        Result := 'DECLARE ';
+
+        // Recorro los parametros (cargo a un arreglo, para evitar duplicados
+        for i := 0 to Dataset.ParamCount - 1 do
+        begin
+          // En caso que no se encuntre agun en el arreglo, lo inserto
+          if MatchStr(Dataset.Params[i].Name, ArregloParametro) = False then
+          begin
+            Insert(Dataset.Params[i].Name, ArregloParametro, high(ArregloParametro));
+          end;
+        end;
+
+        // Recorro el arreglo, y extraigo los elementos del parametro
+        for i := Low(ArregloParametro) to High(ArregloParametro) do
+        begin
+          // Guardo el parametro par poder utilizarlo luego
+          Parametro := Dataset.ParamByName(ArregloParametro[i]);
+
+          // Reemplazo el : por @ para poder ejecutar directamente en sql serever
+          sAux := '@' + Parametro.Name + ' ';
+
+          case Parametro.DataType of
+            ftSmallint, ftInteger: sAux := sAux + 'int';
+            ftString: sAux := sAux + 'varchar';
+            ftDate: sAux := sAux + 'date';
+            ftDateTime: sAux := sAux + 'datetime';
+            ftTime: sAux := sAux + 'time';
+            ftFloat: sAux := sAux + 'float';
+            ftCurrency: sAux := sAux + 'money';
+            ftBoolean: sAux := sAux + 'bit';
+          end;
+
+          // En caso que el valor del parametro sea null lo interpreto como tal
+          if Parametro.IsNull = True then
+          begin
+            sAux := sAux + ' = ' + 'NULL';
+          end
+          else
+            begin
+
+              // En caso que tenga valor, lo formateo ya sea un texto, numero o boleano
+              case Parametro.DataType of
+                ftSmallint, ftInteger, ftFloat, ftCurrency: sAux := sAux + ' = ' + Parametro.AsString;
+                ftString, ftDate, ftDateTime, ftTime: sAux := sAux + ' = ' + QuotedStr(Parametro.AsString);
+                ftBoolean: sAux := sAux + ' = ' + BoolToStr(Parametro.AsBoolean).Replace('-', '');
+              end;
+
+            end;
+
+          // Agrego el separador final
+          if i <> High(ArregloParametro) then
+          begin
+            sAux := sAux + ', ';
+          end
+          else
+            begin
+              sAux := sAux + ';';
+            end;
+
+          Result := Result + sAux;
+
+        end;
+
+
+        Result := Result + Chr(13);
+
+        // Agrego la consulta final, reemlazando el : por @ para poder ejeuctar en sql server
+        Result := Result + ( SqlTexto.Replace(':', '@', [rfReplaceAll] ));
+
+      end
+      else
+        begin
+
+          for i := 0 to Dataset.ParamCount - 1 do
+          begin
+            Parametro := Dataset.Params[i];
+
+            // En caso que el valor del parametro sea null lo interpreto como tal
+            if Parametro.IsNull = True then
+            begin
+              sAux := 'NULL';
+            end
+            else
+              begin
+
+                // En caso que tenga valor, lo formateo ya sea un texto, numero o boleano
+                case Parametro.DataType of
+                  ftSmallint, ftInteger, ftFloat, ftCurrency: sAux := Parametro.AsString;
+                  ftString, ftDate, ftDateTime, ftTime: sAux := QuotedStr(Parametro.AsString);
+                  ftBoolean: sAux := BoolToStr(Parametro.AsBoolean).Replace('-', '');
+                end;
+
+              end;
+
+            // Reemplazo el texto
+            SqlTexto := SqlTexto.Replace(':' + Parametro.Name, sAux, [rfReplaceAll]);
+
+          end;
+
+          Result := Result + SqlTexto;
+
+        end;
+
+    end;
+
+    1: // TMStoreProc
+    begin
+
+      // El texto para ejcutar el SP
+      Result := 'EXEC ';
+      Result := Result + TMSStoredProc(Dataset).StoredProcName + ' ';
+
+      // Recorro los parametros
+      for i := 0 to Dataset.ParamCount - 1 do
+      begin
+        // Obtengo un parametro para luego utilizar
+        Parametro := Dataset.Params[i];
+
+        // En caso que sea distinto del parametro de retorno
+        if Parametro.Name <> 'RETURN_VALUE' then
+        begin
+          // En caso que el valor del parametro sea null lo interpreto como tal
+          if Parametro.IsNull = True then
+          begin
+            sAux := 'NULL';
+          end
+          else
+            begin
+
+              // En caso que tenga valor, lo formateo ya sea un texto, numero o boleano
+              case Parametro.DataType of
+                ftSmallint, ftInteger, ftFloat, ftCurrency: sAux := Parametro.AsString;
+                ftString, ftMemo, ftDate, ftDateTime, ftTime: sAux := QuotedStr(Parametro.AsString);
+                ftBoolean: sAux := BoolToStr(Parametro.AsBoolean).Replace('-', '');
+              end;
+
+            end;
+
+          // Dependiendo si es el final del SP
+          if i <> Dataset.ParamCount - 1 then
+          begin
+            Result := Result + ('@' + Parametro.Name + ' = ' + sAux + ', ');
+          end
+          else
+            begin
+              Result := Result + ('@' + Parametro.Name + ' = ' + sAux);
+            end;
+
+        end;
+
+      end;
+
+
+    end;
+
+  end;
+
+end;
+
+
+end.

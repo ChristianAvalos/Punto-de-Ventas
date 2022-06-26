@@ -1,0 +1,43 @@
+// Todo el cotenido de este fichero esta protegido por leyes de propiedad intelectual
+// cualquier extracción, reproduccion o modificacion indebida, esta sujeta a sanciones legales
+// Adan Rodrigo Araujo - 2004-2021
+// PROYECTO: Core Web
+// $LastChangedDate: 2021-11-08 22:35:58 -0300 (lu., 08 nov. 2021) $
+// $LastChangedRevision: 38315 $  por $LastChangedBy: aaraujo $
+// $HeadURL: https://svnserver/svn/Desarrollo/Comunes/Frame/FrameBarraInformacionOrganizacionUsuario.pas $
+
+unit FrameBarraInformacionOrganizacionUsuario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uniGUITypes, uniGUIFrame, DBCtrls,
+  UniDBText,  StdCtrls, UniLabel, uniGUIAbstractClasses,
+  uniGUIForm, uniGUIBaseClasses,
+  uniDBEdit, uniDBMemo, uniDBLookupComboBox, uniDBDateTimePicker, uniCanvas,
+  uniGUIClasses;
+
+type
+  TFmeBarraInformacionOrganizacionUsuario = class(TUniFrame)
+    lblEtiquetaOrganizacion: TUniLabel;
+    lblEtiquetaUsuario: TUniLabel;
+    lblOrganizacion: TUniDBText;
+    lblUsuario: TUniDBText;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  DataModulePrincipal;
+
+{ TFmeBarraInformacionOrganizacionUsuario }
+
+
+end.

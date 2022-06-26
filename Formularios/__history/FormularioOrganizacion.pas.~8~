@@ -1,0 +1,75 @@
+unit FormularioOrganizacion;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniFileUpload, uniDBNavigator,
+  uniMemo, uniDBMemo, uniEdit, uniDBEdit, uniImage, uniDBImage, uniPanel,
+  uniLabel, uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox,
+  uniButton, FrameBarraInformacionOrganizacionUsuario, uniGUIFrame, FrameTitulo;
+
+type
+  TFrmOrganizacion = class(TUniForm)
+    FmeTitulo: TFmeTitulo;
+    btnEliminarFoto: TUniButton;
+    btnSubirFoto: TUniButton;
+    cboPais: TUniDBLookupComboBox;
+    lblCiudad: TUniLabel;
+    lblDireccion: TUniLabel;
+    lblEmail: TUniLabel;
+    lblFax: TUniLabel;
+    lblPais: TUniLabel;
+    lblRazonSocial: TUniLabel;
+    lblSitioWeb: TUniLabel;
+    lblTelefono: TUniLabel;
+    PanelFoto: TUniPanel;
+    BlobFoto: TUniDBImage;
+    txtCiudad: TUniDBEdit;
+    txtDireccion: TUniDBMemo;
+    txtEmail: TUniDBEdit;
+    txtFax1: TUniDBEdit;
+    txtFax2: TUniDBEdit;
+    txtRazonSocial: TUniDBEdit;
+    txtSitioWeb: TUniDBEdit;
+    txtTelefono1: TUniDBEdit;
+    txtTelefono2: TUniDBEdit;
+    UniDBNavigator: TUniDBNavigator;
+    lblRuc: TUniLabel;
+    txtRuc: TUniDBEdit;
+    UniFileUpload: TUniFileUpload;
+    FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario;
+    procedure UniFormCreate(Sender: TObject);
+    procedure UniFormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmOrganizacion: TFrmOrganizacion;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication, DataModuleOrganizacion, UnitCodigosComunesDataModule;
+
+function FrmOrganizacion: TFrmOrganizacion;
+begin
+  Result := TFrmOrganizacion(UniMainModule.GetFormInstance(TFrmOrganizacion));
+end;
+
+procedure TFrmOrganizacion.UniFormCreate(Sender: TObject);
+begin
+  ActivarDataSets(Self.Name, [DMOrganizacion.MSOrganizacion]);
+end;
+
+procedure TFrmOrganizacion.UniFormShow(Sender: TObject);
+begin
+ ActivarDataSets(Self.Name, [DMOrganizacion.MSPais],  False);
+end;
+
+end.

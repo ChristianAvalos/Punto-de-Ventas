@@ -1,0 +1,7 @@
+object UniMainModule: TUniMainModule
+  MonitoredKeys.Keys = <>
+  ApplicationDataModuleOptions.CreateOnDemand = True
+  Height = 482
+  Width = 664
+  PixelsPerInch = 96
+end

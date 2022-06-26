@@ -1,0 +1,81 @@
+Puntodeventas.exe: 00002DBC: 17:17:42 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002DBC: 17:17:42 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002DBC: 17:17:42 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002DBC: 17:17:42 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+Puntodeventas.exe: 00002DBC: 17:17:42 [TUniServerModule]:HTTP Server Started on Port: 8077
+Puntodeventas.exe: 00002DBC: 17:18:08 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00002DBC: 17:18:08 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00002DBC: 17:18:09 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00002DBC: 17:18:09 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00002DBC: 17:18:09 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00002154: 17:18:34 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002154: 17:18:34 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002154: 17:18:34 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002154: 17:18:34 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00002154: 17:18:34 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+Puntodeventas.exe: 00002154: 17:18:34 [TUniServerModule]:HTTP Server Started on Port: 8077
+Puntodeventas.exe: 000015B8: 17:18:36 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: ZdDyrdoMUf10A1D7D46 ) : Addr: $00000000009F94AE
+Puntodeventas.exe: 00003A7C: 17:19:25 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003A7C: 17:19:25 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003A7C: 17:19:25 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003A7C: 17:19:25 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003A7C: 17:19:25 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $000000000044FF82
+Puntodeventas.exe: 00003B84: 17:20:04 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003B84: 17:20:04 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003B84: 17:20:04 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003B84: 17:20:04 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003B84: 17:20:04 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $000000000044FF82
+Puntodeventas.exe: 000039F8: 17:20:40 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000039F8: 17:20:40 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000039F8: 17:20:40 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000039F8: 17:20:40 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000039F8: 17:20:40 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $000000000044FF82
+Puntodeventas.exe: 00000C98: 17:24:58 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00000C98: 17:24:58 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00000C98: 17:24:58 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00000C98: 17:24:58 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00000C98: 17:24:58 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $000000000044FF82
+Puntodeventas.exe: 000035EC: 17:26:18 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000035EC: 17:26:18 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000035EC: 17:26:18 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000035EC: 17:26:18 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000035EC: 17:26:18 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $000000000044FF82
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 000035EC: 17:30:01 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 000035EC: 17:30:01 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 000035EC: 17:30:01 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00002D60: 17:33:06 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002D60: 17:33:06 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002D60: 17:33:07 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002D60: 17:33:07 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00002D60: 17:33:07 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $000000000044FF82
+Puntodeventas.exe: 00001028: 17:33:37 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00001028: 17:33:37 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00001028: 17:33:37 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00001028: 17:33:37 [TUniServerModule]:Starting HTTP Server on Port: 8079...
+Puntodeventas.exe: 00001028: 17:33:37 [TUniServerModule]:HTTP Server Started on Port: 8079
+Puntodeventas.exe: 00002D60: 17:33:46 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00002D60: 17:33:46 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00002D60: 17:33:47 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00002D60: 17:33:47 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00002D60: 17:33:47 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00001028: 17:34:20 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0

@@ -1,0 +1,150 @@
+object DMUsuario: TDMUsuario
+  Height = 480
+  Width = 640
+  PixelsPerInch = 96
+  object MSExisteUsuarios: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      
+        'SELECT ISNULL(COUNT(*), 0) AS CantidadUsuarios FROM Usuario.Usua' +
+        'rio')
+    Left = 120
+    Top = 40
+    object MSExisteUsuariosCantidadUsuarios: TIntegerField
+      FieldName = 'CantidadUsuarios'
+      ReadOnly = True
+    end
+  end
+  object MSUsuario: TMSQuery
+    SQLInsert.Strings = (
+      'INSERT INTO Usuario.Usuario'
+      
+        '  (IdOrganizacion, NombreUsuario, Contrasena, Email, Activo, Nom' +
+        'bresApellidos, Foto, DocumentoNro, Observacion, UrevUsuario, Ure' +
+        'vFechaHora)'
+      'VALUES'
+      
+        '  (:IdOrganizacion, :NombreUsuario, :Contrasena, :Email, :Activo' +
+        ', :NombresApellidos, :Foto, :DocumentoNro, :Observacion, :UrevUs' +
+        'uario, :UrevFechaHora)'
+      'SET :IdUsuario = SCOPE_IDENTITY()')
+    SQLDelete.Strings = (
+      'DELETE FROM Usuario.Usuario'
+      'WHERE'
+      '  IdUsuario = :Old_IdUsuario')
+    SQLUpdate.Strings = (
+      'UPDATE Usuario.Usuario'
+      'SET'
+      
+        '  IdOrganizacion = :IdOrganizacion, NombreUsuario = :NombreUsuar' +
+        'io, Contrasena = :Contrasena, Email = :Email, Activo = :Activo, ' +
+        'NombresApellidos = :NombresApellidos, Foto = :Foto, DocumentoNro' +
+        ' = :DocumentoNro, Observacion = :Observacion, UrevUsuario = :Ure' +
+        'vUsuario, UrevFechaHora = :UrevFechaHora'
+      'WHERE'
+      '  IdUsuario = :Old_IdUsuario')
+    SQLRefresh.Strings = (
+      
+        'SELECT IdOrganizacion, NombreUsuario, Contrasena, Email, Activo,' +
+        ' NombresApellidos, Foto, DocumentoNro, Observacion, UrevUsuario,' +
+        ' UrevFechaHora FROM Usuario.Usuario'
+      'WHERE'
+      '  IdUsuario = :IdUsuario')
+    SQLLock.Strings = (
+      'SELECT * FROM Usuario.Usuario'
+      'WITH (UPDLOCK, ROWLOCK, HOLDLOCK)'
+      'WHERE'
+      '  IdUsuario = :Old_IdUsuario')
+    SQLRecCount.Strings = (
+      'SET :PCOUNT = (SELECT COUNT(*) FROM Usuario.Usuario'
+      ')')
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'SELECT * FROM Usuario.Usuario u'
+      'ORDER BY  u.IdUsuario ;')
+    BeforeUpdateExecute = MSUsuarioBeforeUpdateExecute
+    AfterUpdateExecute = MSUsuarioAfterUpdateExecute
+    BeforeInsert = MSUsuarioBeforeInsert
+    BeforeEdit = MSUsuarioBeforeEdit
+    BeforePost = MSUsuarioBeforePost
+    AfterPost = MSUsuarioAfterPost
+    AfterCancel = MSUsuarioAfterCancel
+    BeforeDelete = MSUsuarioBeforeDelete
+    OnNewRecord = MSUsuarioNewRecord
+    OnPostError = MSUsuarioPostError
+    Left = 32
+    Top = 40
+    object MSUsuarioIdUsuario: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'IdUsuario'
+      ReadOnly = True
+    end
+    object MSUsuarioIdOrganizacion: TIntegerField
+      FieldName = 'IdOrganizacion'
+    end
+    object MSUsuarioNombreUsuario: TStringField
+      FieldName = 'NombreUsuario'
+    end
+    object MSUsuarioContrasena: TStringField
+      FieldName = 'Contrasena'
+      Size = 200
+    end
+    object MSUsuarioEmail: TStringField
+      FieldName = 'Email'
+      Size = 100
+    end
+    object MSUsuarioActivo: TBooleanField
+      FieldName = 'Activo'
+    end
+    object MSUsuarioNombresApellidos: TStringField
+      FieldName = 'NombresApellidos'
+      Size = 50
+    end
+    object MSUsuarioFoto: TBlobField
+      FieldName = 'Foto'
+    end
+    object MSUsuarioDocumentoNro: TStringField
+      FieldName = 'DocumentoNro'
+      Size = 30
+    end
+    object MSUsuarioObservacion: TStringField
+      FieldName = 'Observacion'
+      Size = 500
+    end
+    object MSUsuarioUrevUsuario: TStringField
+      FieldName = 'UrevUsuario'
+      Size = 50
+    end
+    object MSUsuarioUrevFechaHora: TDateTimeField
+      FieldName = 'UrevFechaHora'
+    end
+    object MSUsuarioUrevCalc: TWideStringField
+      FieldName = 'UrevCalc'
+      ReadOnly = True
+      Size = 4000
+    end
+  end
+  object DSUsuario: TDataSource
+    DataSet = MSUsuario
+    Left = 29
+    Top = 108
+  end
+  object MSVerificarPermiso: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      
+        'SELECT ISNULL(COUNT(*), 0) AS CantidadUsuarios FROM Usuario.Usua' +
+        'rio')
+    Left = 248
+    Top = 40
+    object IntegerField2: TIntegerField
+      FieldName = 'CantidadUsuarios'
+      ReadOnly = True
+    end
+  end
+  object DSVerificarPermiso: TDataSource
+    DataSet = MSVerificarPermiso
+    Left = 257
+    Top = 114
+  end
+end
