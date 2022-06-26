@@ -100,7 +100,6 @@ end;
 procedure TMainForm.UniFormAfterShow(Sender: TObject);
 begin
      // CargarIndicadorDemo(TClasePanel(PanelModoDemo));
-     //prueba de git
 end;
 
 procedure TMainForm.UniFormCreate(Sender: TObject);
