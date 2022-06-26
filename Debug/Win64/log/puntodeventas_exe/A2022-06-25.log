@@ -1,0 +1,5 @@
+Puntodeventas.exe: 00002A0C: 23:50:46 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002A0C: 23:50:46 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002A0C: 23:50:46 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002A0C: 23:50:46 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00002A0C: 23:50:46 [TUniServerModule]:HTTP Server Started on Port: 8078
