@@ -40,6 +40,7 @@ type
     mnuHerramientas: TUniMenuItem;
     mnuHerramientasFicheroUsuario: TUniMenuItem;
     UniNativeImageList: TUniNativeImageList;
+    mnuHerramientasOrganizacion: TUniMenuItem;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);

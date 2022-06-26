@@ -30,6 +30,8 @@ object MainForm: TMainForm
     Color = 4276545
     Layout = 'vbox'
     LayoutConfig.Height = '100%'
+    ExplicitLeft = -2
+    ExplicitHeight = 831
     object PanelLogotipo: TUniPanel
       Left = 14
       Top = 3
@@ -1004,10 +1006,6 @@ object MainForm: TMainForm
         Caption = 'Fichero de usuarios'
         ImageIndex = 20
         OnClick = mnuHerramientasFicheroUsuarioClick
-      end
-      object mnuHerramientasOrganizacion: TUniMenuItem
-        Caption = 'Configuraci'#243'n de organizaci'#243'n'
-        OnClick = mnuHerramientasOrganizacionClick
       end
     end
   end
