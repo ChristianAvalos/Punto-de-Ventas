@@ -94,7 +94,7 @@ implementation
 
 uses
   UniGUIVars, uniGUIMainModule, MainModule, DataModulePrincipal, UnitCodigosComunesDataModule, UnitVerificarModulo, UnitValidarUsuario,
-   UnitRecursoString, UnitCodigosComunes, UnitCodigosComunesFormulario, UnitCodigosComunesString, SCrypt, FormularioUsuario, FormularioCRUDMaestro, UnitValidaciones;
+   UnitRecursoString, UnitCodigosComunes, UnitCodigosComunesFormulario, UnitCodigosComunesString, SCrypt, FormularioUsuario, FormularioCRUDMaestro, UnitValidaciones, UnitOperacionesFotografia, Main;
 
 function DMUsuario: TDMUsuario;
 begin
@@ -112,6 +112,22 @@ procedure TDMUsuario.MSUsuarioAfterPost(DataSet: TDataSet);
 begin
   {$IFDEF WEB}
     DMAfterPost(FrmUsuario);
+
+    // Refresco los datos del usuario actual, si coincide con que hago de hacer post
+  if DMUsuario.MSUsuarioIdUsuario.Value = DMUsuario.UsuarioRecord.IdUsuario then
+  begin
+    // Actualizo primero el record actual del usuario
+    DMUsuario.UsuarioRecord.LoginUsuario := DMUsuario.MSUsuarioNombreUsuario.Value;
+
+    // Actualizo el dataset
+    DMPrincipal.MSVerificarUsuario.Close;
+    DMPrincipal.MSVerificarUsuario.ParamByName('NombreUsuario').AsString := DMUsuario.UsuarioRecord.LoginUsuario;
+    DMPrincipal.MSVerificarUsuario.Open;
+    // Actualizo la foto actual
+    DMUsuario.UsuarioRecord.Foto := DMPrincipal.MSVerificarUsuarioFoto;
+    CargarFotoPerfil(TImagePerfil(MainForm.imgFotoUsuario));
+    end;
+
   {$ENDIF}
 end;
 

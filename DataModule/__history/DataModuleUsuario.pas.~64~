@@ -52,6 +52,9 @@ type
     MSUsuarioUrevCalc: TWideStringField;
     MSScriptCrearUsuario: TMSScript;
     MSScriptBorrarUsuario: TMSScript;
+    MSUsuarioPasswordStatus: TStringField;
+    MSCambiarMiContrasena: TMSQuery;
+    MSUsuarioTemplate: TBlobField;
     procedure MSUsuarioAfterCancel(DataSet: TDataSet);
     procedure MSUsuarioAfterPost(DataSet: TDataSet);
     procedure MSUsuarioAfterUpdateExecute(Sender: TCustomMSDataSet;
@@ -65,6 +68,7 @@ type
     procedure MSUsuarioNewRecord(DataSet: TDataSet);
     procedure MSUsuarioPostError(DataSet: TDataSet; E: EDatabaseError;
       var Action: TDataAction);
+    procedure MSUsuarioCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
     FEnviadoDesdeFrm, FUsuarioBorrar: string;
@@ -108,6 +112,8 @@ procedure TDMUsuario.MSUsuarioAfterPost(DataSet: TDataSet);
 begin
   {$IFDEF WEB}
     DMAfterPost(FrmUsuario);
+    // Actualizo la foto actual
+    DMUsuario.UsuarioRecord.Foto := DMPrincipal.MSVerificarUsuarioFoto;
   {$ENDIF}
 end;
 
@@ -140,7 +146,7 @@ begin
   UsuarioBorrar := MSUsuarioNombreUsuario.Value;
 
   {$IFDEF WEB}
-    DMBeforeDelete(FrmUsuario, TMSQuery(DataSet), 'Usuario.Usuario', MSUsuarioIdUsuario, True, True);
+ //   DMBeforeDelete(FrmUsuario, TMSQuery(DataSet), 'Usuario.Usuario', MSUsuarioIdUsuario, True, True);
   {$ENDIF}
 end;
 
@@ -167,7 +173,7 @@ begin
   end;
   {$IFDEF WEB}
   // Valido los parametros de usuario
-  ValidarCampo(FrmUsuario, MSUsuarioNombreUsuario, '', StringVacio);
+  ValidarCampo(FrmUsuario, MSUsuarioNombreUsuario, 'Escriba usuario', StringVacio);
   VerificarValorRepetido('Usuario.Usuario', [MSUsuarioNombreUsuario], FrmUsuario, 'Usuario ya existe', True);
   ValidarCampo(FrmUsuario, MSUsuarioNombresApellidos , 'Escriba nombre o apellido', StringVacio);
    {$ENDIF}
@@ -194,6 +200,21 @@ begin
   DMBeforeUpdateExecute(Sender, Params);
 end;
 
+procedure TDMUsuario.MSUsuarioCalcFields(DataSet: TDataSet);
+begin
+    // Determino si el usuario tiene o no contraseña definida
+
+    if MSUsuarioContrasena.Value = '' then
+    begin
+      MSUsuarioPasswordStatus.Value := 'No establecida' ;
+    end
+    else
+      begin
+        MSUsuarioPasswordStatus.Value := 'Establecida';
+      end;
+
+end;
+
 procedure TDMUsuario.MSUsuarioNewRecord(DataSet: TDataSet);
 
 begin
@@ -201,7 +222,6 @@ begin
   MSUsuarioActivo.Value := True;
   // Parametro por defecto del usuario
    MSUsuarioContrasena.Value := TScrypt.HashPassword('123456');
-  HabilitarControles(FrmUsuario);
 end;
 
 procedure TDMUsuario.MSUsuarioPostError(DataSet: TDataSet; E: EDatabaseError;
