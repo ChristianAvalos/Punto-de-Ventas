@@ -437,10 +437,10 @@ begin
 
     // Por ahora solo funciona en cosas con Web, para optimizar el ancho de banda
     {$IFDEF WEB}
-//    if DMPrincipal.MSVerificarUsuarioFoto.IsNull = False then
-//    begin
-//      DMUsuario.UsuarioRecord.Foto := DMPrincipal.MSVerificarUsuarioFoto;
-//    end;
+    if DMPrincipal.MSVerificarUsuarioFoto.IsNull = False then
+    begin
+      DMUsuario.UsuarioRecord.Foto := DMPrincipal.MSVerificarUsuarioFoto;
+    end;
     {$ENDIF}
 
     {$IFDEF RAPY}

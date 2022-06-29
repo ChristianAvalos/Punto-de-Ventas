@@ -63,7 +63,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario;
+  uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario, UnitOperacionesFotografia;
 
 function MainForm: TMainForm;
 begin
@@ -116,6 +116,20 @@ begin
   //Ocultos los datos innecesarios por el momento
   lblOrganigramaUsuario.Visible:= False;
   imgOrganigrama.Visible:=False;
+
+  // Cargo la foto de la ficha del personal, si no tiene en formato estandar,
+  if Assigned(DMUsuario.UsuarioRecord.Foto) then
+  begin
+    if DMUsuario.UsuarioRecord.Foto.IsNull = False then
+    begin
+      CargarFotoPerfil(TImagePerfil(imgFotoUsuario));
+    end;
+  end
+  else
+    begin
+      CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
+    end;
+
 end;
 
 procedure TMainForm.Usuarios1Click(Sender: TObject);

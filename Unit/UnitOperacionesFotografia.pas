@@ -2055,7 +2055,7 @@ begin
         end
         else
           begin
-            // Consulto la foto en la base de datos, la ultima foto
+            //Consulto la foto en la base de datos, la ultima foto
 //            DMUsuario.MSConsultarFoto.Close;
 //            DMUsuario.MSConsultarFoto.ParamByName('IdPersonal').Value := IdPersonal;
 //            DMUsuario.MSConsultarFoto.Open;

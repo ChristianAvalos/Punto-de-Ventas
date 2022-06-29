@@ -1,0 +1,78 @@
+Puntodeventas.exe: 0000421C: 20:30:42 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 0000421C: 20:30:42 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 0000421C: 20:30:42 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 0000421C: 20:30:42 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 0000421C: 20:30:42 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 0000421C: 20:30:42 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 0000421C: 20:31:37 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 0000421C: 20:31:37 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 0000421C: 20:31:38 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 0000421C: 20:31:38 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 0000421C: 20:31:38 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 000007E4: 20:31:43 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000007E4: 20:31:43 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000007E4: 20:31:43 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000007E4: 20:31:43 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000007E4: 20:31:43 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000007E4: 20:31:43 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000007E4: 20:31:43 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00001D20: 20:36:16 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00001D20: 20:36:16 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00001D20: 20:36:16 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00001D20: 20:36:16 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00001D20: 20:36:16 [TUniGUISessionManager]:Cache erase job created, Folder count: [2]
+Puntodeventas.exe: 00001D20: 20:36:17 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00001D20: 20:36:17 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000006F8: 20:36:26 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: VMCExpyPKx10AAD20E3 ) : Addr: $0000000000A14CAE
+Puntodeventas.exe: 00004138: 20:36:43 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: Ls2HfsWtQu10AAD2072 ) : Addr: $0000000000A14CAE
+Puntodeventas.exe: 00003C90: 20:50:05 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003C90: 20:50:05 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003C90: 20:50:05 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003C90: 20:50:05 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00003C90: 20:50:05 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00003C90: 20:50:05 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003C90: 20:50:05 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000013AC: 21:01:36 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000013AC: 21:01:36 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000013AC: 21:01:36 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000013AC: 21:01:36 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000013AC: 21:01:36 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000013AC: 21:01:36 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000013AC: 21:01:36 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000032F4: 21:01:55 [Access violation at address 00000000016B6117 in module 'Puntodeventas.exe'. Read of address 0000000000000000-127.0.0.1]:EAccessViolation : Access violation at address 00000000016B6117 in module 'Puntodeventas.exe'. Read of address 0000000000000000 : Addr: $00000000016B6117
+Puntodeventas.exe: 0000258C: 21:02:14 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 0000258C: 21:02:14 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 0000258C: 21:02:14 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 0000258C: 21:02:14 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 0000258C: 21:02:14 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 0000258C: 21:02:14 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000023C0: 21:02:24 [Access violation at address 00000000016B6117 in module 'Puntodeventas.exe'. Read of address 0000000000000000-127.0.0.1]:EAccessViolation : Access violation at address 00000000016B6117 in module 'Puntodeventas.exe'. Read of address 0000000000000000 : Addr: $00000000016B6117
+Puntodeventas.exe: 000037F8: 21:03:16 [Access violation at address 00000000016B6117 in module 'Puntodeventas.exe'. Read of address 0000000000000000-127.0.0.1]:EAccessViolation : Access violation at address 00000000016B6117 in module 'Puntodeventas.exe'. Read of address 0000000000000000 : Addr: $00000000016B6117
+Puntodeventas.exe: 000029B4: 21:04:27 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000029B4: 21:04:27 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000029B4: 21:04:27 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000029B4: 21:04:27 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000029B4: 21:04:27 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000029B4: 21:04:27 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000029B4: 21:04:27 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000D54: 21:05:28 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00000D54: 21:05:28 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00000D54: 21:05:28 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00000D54: 21:05:28 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00000D54: 21:05:28 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00000D54: 21:05:28 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00000D54: 21:05:28 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00003C18: 21:05:36 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: dsXOWcD5cS10AAD2982 ) : Addr: $0000000000A14CAE
+Puntodeventas.exe: 000020CC: 21:05:36 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: NijqqWwu1D10AAD2915 ) : Addr: $0000000000A14CAE
+Puntodeventas.exe: 000028BC: 21:10:02 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000028BC: 21:10:02 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000028BC: 21:10:02 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000028BC: 21:10:02 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000028BC: 21:10:02 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000028BC: 21:10:02 [TUniServerModule]:HTTP Server Started on Port: 8078
