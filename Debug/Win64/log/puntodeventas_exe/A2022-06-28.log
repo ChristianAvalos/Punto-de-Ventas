@@ -153,3 +153,4 @@ Puntodeventas.exe: 00003A68: 22:50:04 [TUniGUISessionManager]:Cache erase job cr
 Puntodeventas.exe: 00003A68: 22:50:04 [TUniServerModule]:Starting HTTP Server on Port: 8078...
 Puntodeventas.exe: 00003A68: 22:50:04 [TUniServerModule]:HTTP Server Started on Port: 8078
 Puntodeventas.exe: 00003AE0: 22:50:07 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: TjA6pusfjg10AAD4586 ) : Addr: $0000000000A14CAE
+Puntodeventas.exe: 00003A68: 22:52:30 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0

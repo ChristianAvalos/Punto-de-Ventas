@@ -50,6 +50,7 @@ type
     procedure UniFormCreate(Sender: TObject);
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
+    procedure imgLogotipoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,6 +69,20 @@ uses
 function MainForm: TMainForm;
 begin
   Result := TMainForm(UniMainModule.GetFormInstance(TMainForm));
+end;
+
+procedure TMainForm.imgLogotipoClick(Sender: TObject);
+begin
+  if PanelGeneralIzquierda.Width = 230 then
+  begin
+    PanelGeneralIzquierda.Width := 80;
+    UniTreeMenu.Micro := True;
+  end
+  else
+    begin
+      PanelGeneralIzquierda.Width := 230;
+      UniTreeMenu.Micro := False;
+    end;
 end;
 
 procedure TMainForm.lblCerrarSesionClick(Sender: TObject);

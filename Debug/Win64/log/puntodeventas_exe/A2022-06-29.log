@@ -1,0 +1,11 @@
+Puntodeventas.exe: 00003358: 21:08:39 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003358: 21:08:39 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003358: 21:08:39 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003358: 21:08:39 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003358: 21:08:39 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00002AAC: 21:55:03 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002AAC: 21:55:03 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002AAC: 21:55:03 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002AAC: 21:55:03 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00002AAC: 21:55:03 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00002AAC: 21:55:03 [TUniServerModule]:HTTP Server Started on Port: 8078
