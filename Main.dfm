@@ -501,7 +501,6 @@ object MainForm: TMainForm
           C39A19E90000000049454E44AE426082}
         Proportional = True
         Transparent = True
-        OnClick = imgLogotipoClick
       end
     end
     object PanelSeparacionMenu0: TUniPanel

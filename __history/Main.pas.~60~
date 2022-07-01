@@ -7,8 +7,7 @@ uses
   Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
   uniGUIClasses, uniGUIRegClasses, uniGUIForm, Vcl.Menus, uniMainMenu,
   uniGUIFrame, FrameBarraMain, uniLabel, Vcl.Imaging.pngimage, uniImage,
-  uniGUIBaseClasses, uniPanel, uniPageControl, uniTreeView, uniTreeMenu,
-  uniImageList, Vcl.Imaging.jpeg;
+  uniGUIBaseClasses, uniPanel, uniPageControl, uniTreeView, uniTreeMenu;
 
 type
   TMainForm = class(TUniForm)
@@ -39,8 +38,6 @@ type
     imgLogout: TUniImage;
     mnuHerramientas: TUniMenuItem;
     mnuHerramientasFicheroUsuario: TUniMenuItem;
-    UniNativeImageList: TUniNativeImageList;
-    mnuHerramientasOrganizacion: TUniMenuItem;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
@@ -49,7 +46,6 @@ type
     procedure Organizacin1Click(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
-    procedure lblCerrarSesionClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,17 +59,11 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario, UnitOperacionesFotografia;
+  uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion;
 
 function MainForm: TMainForm;
 begin
   Result := TMainForm(UniMainModule.GetFormInstance(TMainForm));
-end;
-
-procedure TMainForm.lblCerrarSesionClick(Sender: TObject);
-begin
-  UniApplication.UniSession.Logout;
-  UniApplication.Restart;
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);
@@ -110,26 +100,7 @@ end;
 
 procedure TMainForm.UniFormShow(Sender: TObject);
 begin
-  // Nombre de usuario
-  lblNombreApellidoUsuario.Caption := DMUsuario.UsuarioRecord.NombresApellidos;
-
-  //Ocultos los datos innecesarios por el momento
-  lblOrganigramaUsuario.Visible:= False;
-  imgOrganigrama.Visible:=False;
-
-  // Cargo la foto de la ficha del personal, si no tiene en formato estandar,
-  if Assigned(DMUsuario.UsuarioRecord.Foto) then
-  begin
-    if DMUsuario.UsuarioRecord.Foto.IsNull = False then
-    begin
-      CargarFotoPerfil(TImagePerfil(imgFotoUsuario));
-    end;
-  end
-  else
-    begin
-      CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
-    end;
-
+      // Ajusto la pantalla del formulario
 end;
 
 procedure TMainForm.Usuarios1Click(Sender: TObject);
