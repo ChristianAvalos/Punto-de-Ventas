@@ -19,3 +19,20 @@ Puntodeventas.exe: 00002584: 00:05:16 [TUniServerModule]:Server First Init.
 Puntodeventas.exe: 00002584: 00:05:16 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
 Puntodeventas.exe: 00002584: 00:05:16 [TUniServerModule]:Starting HTTP Server on Port: 8078...
 Puntodeventas.exe: 00002584: 00:05:16 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000045FC: 00:21:17 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000045FC: 00:21:17 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000045FC: 00:21:17 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000045FC: 00:21:17 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000045FC: 00:21:17 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $0000000000450132
+Puntodeventas.exe: 000045FC: 00:21:44 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 000045FC: 00:21:44 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 000045FC: 00:21:45 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 000045FC: 00:21:45 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 000045FC: 00:21:45 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00002584: 00:21:55 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0
