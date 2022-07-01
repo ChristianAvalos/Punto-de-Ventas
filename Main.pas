@@ -47,7 +47,6 @@ type
     Operacionesdeentrada1: TUniMenuItem;
     Operacionesdesalida1: TUniMenuItem;
     mnuFicherosArticulosFicha: TUniMenuItem;
-    PanelVentana: TUniPanel;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
@@ -57,11 +56,8 @@ type
     procedure UniFormCreate(Sender: TObject);
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
-<<<<<<< HEAD
-    procedure imgLogotipoClick(Sender: TObject);
     procedure mnuFicherosArticulosFichaClick(Sender: TObject);
-=======
->>>>>>> parent of 440456b (menu.micro)
+
   private
     { Private declarations }
   public
