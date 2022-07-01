@@ -47,16 +47,16 @@
     <Transaction>2022/02/14 10:43:38.000.596,=F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas</Transaction>
     <Transaction>2022/02/14 11:06:21.000.706,=F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraMain.pas</Transaction>
     <Transaction>2022/02/14 22:10:16.000.738,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/02/14 22:11:10.000.168,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioOrganizacion.dfm</Transaction>
     <Transaction>2022/02/14 22:11:10.000.168,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioOrganizacion.pas</Transaction>
+    <Transaction>2022/02/14 22:11:10.000.168,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioOrganizacion.dfm</Transaction>
     <Transaction>2022/02/14 22:12:26.000.475,=F:\Proyectos Personales\PuntodeVentas\Formularios\FrameTitulo.pas</Transaction>
     <Transaction>2022/02/14 22:14:32.000.590,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioOrganizacion.pas=</Transaction>
     <Transaction>2022/02/14 22:15:58.000.257,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/02/14 22:16:49.000.687,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioOrganizacion.dfm</Transaction>
     <Transaction>2022/02/14 22:16:49.000.687,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioOrganizacion.pas</Transaction>
     <Transaction>2022/02/14 22:20:31.000.197,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/02/14 22:21:06.000.313,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleOrganizacion.pas</Transaction>
     <Transaction>2022/02/14 22:21:06.000.313,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleOrganizacion.dfm</Transaction>
+    <Transaction>2022/02/14 22:21:06.000.313,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleOrganizacion.pas</Transaction>
     <Transaction>2022/02/14 22:31:42.000.739,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/02/17 10:39:34.000.189,=F:\Proyectos Personales\PuntodeVentas\Unit\UnitOperacionesFotografia.pas</Transaction>
     <Transaction>2022/03/19 14:57:36.000.463,F:\Proyectos Personales\SistemaBaseDelphi\PuntodeVentas\PuntodeVentas.dproj=F:\Proyectos Personales\SistemaBaseDelphi\PuntodeVentas\ProgramaBase.dproj</Transaction>
@@ -66,6 +66,9 @@
     <Transaction>2022/03/26 17:16:29.000.163,F:\Proyectos Personales\PuntodeVentas\Puntodeventas.dproj=F:\Proyectos Personales\PuntodeVentas\Puntodeventas.dproj</Transaction>
     <Transaction>2022/04/14 10:51:14.000.216,=F:\Proyectos Personales\PuntodeVentas\Unit\LuxandFaceSDK.pas</Transaction>
     <Transaction>2022/05/26 22:33:19.000.575,=F:\Proyectos Personales\PuntodeVentas\Unit\UnitArchivos.pas</Transaction>
+    <Transaction>2022/06/30 23:06:40.615,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/06/30 23:09:58.588,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioFicheroArticulo.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/06/30 23:09:58.588,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioFicheroArticulo.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="DataModule"/>
@@ -101,6 +104,8 @@
     <File Path="Formularios\FrameBarraUltimaRevision.pas"/>
     <File Path="Formularios\FrameTitulo.pas"/>
     <File Path="Formularios\FrameTitulo.dfm"/>
+    <File Path="Formularios\FormularioFicheroArticulo.pas"/>
+    <File Path="Formularios\FormularioFicheroArticulo.dfm"/>
     <File Path="Unit"/>
     <File Path="Unit\ActiveDs_TLB.pas"/>
     <File Path="Unit\adshlp.pas"/>

@@ -1,0 +1,32 @@
+unit FormularioFicheroArticulo;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm;
+
+type
+  TFrmFicheroArticulos = class(TUniForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmFicheroArticulos: TFrmFicheroArticulos;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication;
+
+function FrmFicheroArticulos: TFrmFicheroArticulos;
+begin
+  Result := TFrmFicheroArticulos(UniMainModule.GetFormInstance(TFrmFicheroArticulos));
+end;
+
+end.

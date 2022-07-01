@@ -8,7 +8,7 @@ uses
   uniGUIClasses, uniGUIRegClasses, uniGUIForm, Vcl.Menus, uniMainMenu,
   uniGUIFrame, FrameBarraMain, uniLabel, Vcl.Imaging.pngimage, uniImage,
   uniGUIBaseClasses, uniPanel, uniPageControl, uniTreeView, uniTreeMenu,
-  uniImageList, Vcl.Imaging.jpeg;
+  uniImageList, Vcl.Imaging.jpeg, FrameBarraNavegacionPrincipal;
 
 type
   TMainForm = class(TUniForm)
@@ -41,6 +41,13 @@ type
     mnuHerramientasFicheroUsuario: TUniMenuItem;
     UniNativeImageList: TUniNativeImageList;
     mnuHerramientasOrganizacion: TUniMenuItem;
+    mnuFicheros: TUniMenuItem;
+    mnuFicherosArticulos: TUniMenuItem;
+    mnuOperaciones: TUniMenuItem;
+    Operacionesdeentrada1: TUniMenuItem;
+    Operacionesdesalida1: TUniMenuItem;
+    mnuFicherosArticulosFicha: TUniMenuItem;
+    PanelVentana: TUniPanel;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
@@ -51,6 +58,7 @@ type
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
     procedure imgLogotipoClick(Sender: TObject);
+    procedure mnuFicherosArticulosFichaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,7 +72,8 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario, UnitOperacionesFotografia;
+  uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
+  UnitOperacionesFotografia, FormularioFicheroArticulo;
 
 function MainForm: TMainForm;
 begin
@@ -89,6 +98,12 @@ procedure TMainForm.lblCerrarSesionClick(Sender: TObject);
 begin
   UniApplication.UniSession.Logout;
   UniApplication.Restart;
+end;
+
+procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
+begin
+FrmFicheroArticulos.Parent :=UniContainerPanel;
+FrmFicheroArticulos.Show();
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);

@@ -41,7 +41,8 @@ uses
   UnitOperacionesFotografia in 'Unit\UnitOperacionesFotografia.pas',
   FormularioMiUsuarioCambiarContrasena in 'Formularios\FormularioMiUsuarioCambiarContrasena.pas' {FrmMiUsuarioCambiarContrasena: TUniForm},
   LuxandFaceSDK in 'Unit\LuxandFaceSDK.pas',
-  UnitArchivos in 'Unit\UnitArchivos.pas';
+  UnitArchivos in 'Unit\UnitArchivos.pas',
+  FormularioFicheroArticulo in 'Formularios\FormularioFicheroArticulo.pas' {FrmFicheroArticulos: TUniForm};
 
 {$R *.res}
 
