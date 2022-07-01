@@ -10,6 +10,7 @@ Puntodeventas.exe: 00002AAC: 21:55:03 [TUniGUISessionManager]:Cache erase job cr
 Puntodeventas.exe: 00002AAC: 21:55:03 [TUniServerModule]:Starting HTTP Server on Port: 8078...
 Puntodeventas.exe: 00002AAC: 21:55:03 [TUniServerModule]:HTTP Server Started on Port: 8078
 <<<<<<< HEAD
+<<<<<<< HEAD
 Puntodeventas.exe: 00000F58: 22:04:03 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: FQRgYHyu1L10AAEB145 ) : Addr: $0000000000A14CAE
 Puntodeventas.exe: 00002AAC: 22:08:24 [TUniServerModule]:Shutting Down Server.
 Puntodeventas.exe: 00002AAC: 22:08:24 [TUniServerModule]:Stopping HTTP Server.
@@ -22,5 +23,7 @@ Puntodeventas.exe: 00002AAC: 22:08:25 [TUniGUISessionManager]:Session manager te
 Puntodeventas.exe: 00002AAC: 22:08:26 [TUniServerModule]:Server Shutdown Completed.
 Puntodeventas.exe: 00002AAC: 22:08:26 []:<-------------------------------------------------------------->
 Puntodeventas.exe: 00002AAC: 22:08:26 [Terminated]:Exit Code: 0
+=======
+>>>>>>> parent of 4bf6630 (log)
 =======
 >>>>>>> parent of 4bf6630 (log)
