@@ -36,3 +36,8 @@ Puntodeventas.exe: 000045FC: 00:21:45 [TUniServerModule]:Server Shutdown Complet
 Puntodeventas.exe: 000045FC: 00:21:45 []:<-------------------------------------------------------------->
 Puntodeventas.exe: 000045FC: 00:21:45 [Terminated]:Exit Code: 0
 Puntodeventas.exe: 00002584: 00:21:55 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0
+Puntodeventas.exe: 00004A80: 10:45:25 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00004A80: 10:45:25 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00004A80: 10:45:25 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00004A80: 10:45:25 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00004A80: 10:45:25 [TUniServerModule]:HTTP Server Started on Port: 8078
