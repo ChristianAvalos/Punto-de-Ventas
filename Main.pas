@@ -29,8 +29,6 @@ type
     lblNombreApellidoUsuario: TUniLabel;
     lblOrganigramaUsuario: TUniLabel;
     imgOrganigrama: TUniImage;
-    PanelVentanaTitulo: TUniPanel;
-    lblTituloPanelVentana: TUniLabel;
     UniContainerPanel: TUniContainerPanel;
     imgFotoUsuario: TUniImage;
     UniMenuItems1: TUniMenuItems;
@@ -47,6 +45,13 @@ type
     Operacionesdeentrada1: TUniMenuItem;
     Operacionesdesalida1: TUniMenuItem;
     mnuFicherosArticulosFicha: TUniMenuItem;
+    PanelDerecha: TUniPanel;
+    PanelHbox: TUniPanel;
+    PanelVbox: TUniPanel;
+    PanelVentana: TUniPanel;
+    UniPageControl1: TUniPageControl;
+    UniTabSheet1: TUniTabSheet;
+    UniContainerPanel1: TUniContainerPanel;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
@@ -72,7 +77,7 @@ implementation
 
 uses
   uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
-  UnitOperacionesFotografia, FormularioFicheroArticulo;
+  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos;
 
 function MainForm: TMainForm;
 begin
@@ -86,9 +91,19 @@ begin
 end;
 
 procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
+var
+Ts : TUniTabSheet;
 begin
-FrmFicheroArticulos.Parent :=UniContainerPanel;
-FrmFicheroArticulos.Show();
+//FrmFicheroArticulos.Parent :=UniContainerPanel1;
+//FrmFicheroArticulos.Show();
+  Ts := UniTabSheet1.Create(self);
+  Ts.PageControl :=UniPageControl1;
+  Ts.Closable := True;
+  Ts.Caption:='Prueba';
+//  FrameArticulos.Create(self);
+//  FrameArticulos.Parent:=Ts;
+
+  UniPageControl1.ActivePage:=Ts;
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);

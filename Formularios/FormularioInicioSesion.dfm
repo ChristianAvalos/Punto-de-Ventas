@@ -181,14 +181,14 @@ object FrmLogin: TFrmLogin
   end
   object chkRecordarMisCredenciales: TUniCheckBox
     Left = 53
-    Top = 108
-    Width = 155
+    Top = 107
+    Width = 179
     Height = 17
     Hint = ''
     Caption = 'Recordar mis credenciales'
     ParentFont = False
     Font.Color = clGray
-    TabOrder = 5
+    TabOrder = 4
   end
   object lnkOlvideMiContrasena: TUniLabel
     Left = 15

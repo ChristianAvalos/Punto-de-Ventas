@@ -1,4 +1,5 @@
 object UniMainModule: TUniMainModule
+  Theme = 'uni_mac_yosemite'
   TouchTheme = 'material'
   DocumentKeyOptions = [dkDisableBackSpace, dkDisableF5]
   BrowserOptions = [boDisableMouseRightClick, boDisableChromeRefresh]
@@ -12,5 +13,4 @@ object UniMainModule: TUniMainModule
   ApplicationDataModuleOptions.CreateOnDemand = True
   Height = 482
   Width = 664
-  PixelsPerInch = 96
 end

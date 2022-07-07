@@ -42,7 +42,8 @@ uses
   FormularioMiUsuarioCambiarContrasena in 'Formularios\FormularioMiUsuarioCambiarContrasena.pas' {FrmMiUsuarioCambiarContrasena: TUniForm},
   LuxandFaceSDK in 'Unit\LuxandFaceSDK.pas',
   UnitArchivos in 'Unit\UnitArchivos.pas',
-  FormularioFicheroArticulo in 'Formularios\FormularioFicheroArticulo.pas' {FrmFicheroArticulos: TUniForm};
+  FormularioFicheroArticulo in 'Formularios\FormularioFicheroArticulo.pas' {FrmFicheroArticulos: TUniForm},
+  FrameFicheroArticulos in 'Frames\FrameFicheroArticulos.pas' {FrameArticulos: TUniFrame};
 
 {$R *.res}
 
