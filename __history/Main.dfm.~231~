@@ -563,7 +563,7 @@ object MainForm: TMainForm
         Color = 4276545
         SingleExpand = True
         SelectOnExpander = True
-        ExplicitTop = 7
+        ExplicitTop = 5
       end
       object MenuPrincipalBotom: TUniPanel
         Left = 0
@@ -991,53 +991,11 @@ object MainForm: TMainForm
           LayoutConfig.Margin = '5 1 10 1'
           ExplicitWidth = 307
           ExplicitHeight = 226
-          object PanelVentanaTitulo: TUniPanel
+          object UniContainerPanel: TUniContainerPanel
             Left = 0
             Top = 0
             Width = 909
-            Height = 56
-            Cursor = crHandPoint
-            Hint = ''
-            Align = alTop
-            TabOrder = 1
-            ClientEvents.UniEvents.Strings = (
-              
-                'beforeInit=function beforeInit(sender, config)'#13#10'{'#13#10'  sender.cls=' +
-                #39'gray_borders'#39';'#13#10'}')
-            BorderStyle = ubsNone
-            Caption = ''
-            Color = 16119285
-            Layout = 'hbox'
-            LayoutAttribs.Align = 'middle'
-            LayoutConfig.Width = '100%'
-            ExplicitLeft = -577
-            ExplicitTop = 170
-            ExplicitWidth = 884
-            object lblTituloPanelVentana: TUniLabel
-              Left = 3
-              Top = 26
-              Width = 402
-              Height = 13
-              Hint = ''
-              AutoSize = False
-              Caption = 'Titulo Panel Ventana'
-              ParentFont = False
-              Font.Charset = ANSI_CHARSET
-              Font.Color = 3355443
-              Font.Name = 'Arial'
-              ClientEvents.UniEvents.Strings = (
-                
-                  'beforeInit=function beforeInit(sender, config)'#13#10'{'#13#10'  sender.base' +
-                  'Cls='#39'subtitlegray'#39';'#13#10'}')
-              TabOrder = 1
-              LayoutConfig.Margin = '0 0 0 18'
-            end
-          end
-          object UniContainerPanel: TUniContainerPanel
-            Left = 0
-            Top = 56
-            Width = 909
-            Height = 715
+            Height = 771
             Hint = ''
             ParentColor = False
             Color = clWhite
@@ -1062,20 +1020,21 @@ object MainForm: TMainForm
                 'troke:'#39'#d8d8d8'#39',font: '#39'normal 10px Arial'#39'}},{type:"Category",pos' +
                 'ition:"bottom",fields:["LL"],label:{stroke:'#39'#d8d8d8'#39',font: '#39'norm' +
                 'al 10px Arial'#39'}}];                '#13#10'}')
-            TabOrder = 2
+            TabOrder = 1
             Layout = 'fit'
             LayoutAttribs.Align = 'center'
             LayoutConfig.Flex = 80
             LayoutConfig.BodyPadding = '10'
             LayoutConfig.Width = '100%'
             ExplicitTop = 55
-            ScrollHeight = 715
+            ExplicitHeight = 715
+            ScrollHeight = 771
             ScrollWidth = 909
             object UniPageControl1: TUniPageControl
               Left = 0
               Top = 0
               Width = 909
-              Height = 715
+              Height = 771
               Hint = ''
               ActivePage = UniTabSheet1
               Images = UniNativeImageList
@@ -1087,10 +1046,36 @@ object MainForm: TMainForm
                 AlignmentControl = uniAlignmentClient
                 ParentAlignmentControl = False
                 Caption = 'Main'
+                Layout = 'vbox'
                 ExplicitLeft = 0
                 ExplicitTop = 0
                 ExplicitWidth = 909
                 ExplicitHeight = 715
+                object UniContainerPanel1: TUniContainerPanel
+                  Left = 0
+                  Top = 0
+                  Width = 901
+                  Height = 743
+                  Hint = ''
+                  ParentColor = False
+                  Color = clWhite
+                  Align = alClient
+                  ParentAlignmentControl = False
+                  AutoScroll = True
+                  ClientEvents.UniEvents.Strings = (
+                    
+                      'beforeInit=function beforeInit(sender, config)'#13#10'{'#13#10'  config.bord' +
+                      'er=false;'#13#10'  config.smooth=true;'#13#10'}')
+                  TabOrder = 0
+                  Layout = 'fit'
+                  LayoutAttribs.Align = 'center'
+                  LayoutConfig.Flex = 80
+                  LayoutConfig.BodyPadding = '10'
+                  LayoutConfig.Width = '100%'
+                  ExplicitTop = -1
+                  ScrollHeight = 743
+                  ScrollWidth = 901
+                end
               end
             end
           end

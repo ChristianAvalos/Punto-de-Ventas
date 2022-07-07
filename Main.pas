@@ -100,7 +100,7 @@ begin
   Ts.PageControl :=UniPageControl1;
   Ts.Closable := True;
   Ts.Caption:='Prueba';
-//  FrameArticulos.Create(self);
+  //FrameArticulos.Create(self);
 //  FrameArticulos.Parent:=Ts;
 
   UniPageControl1.ActivePage:=Ts;

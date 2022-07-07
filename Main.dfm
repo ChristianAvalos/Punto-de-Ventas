@@ -563,7 +563,6 @@ object MainForm: TMainForm
         Color = 4276545
         SingleExpand = True
         SelectOnExpander = True
-        ExplicitTop = 5
       end
       object MenuPrincipalBotom: TUniPanel
         Left = 0
@@ -656,9 +655,6 @@ object MainForm: TMainForm
       Layout = 'hbox'
       LayoutAttribs.Align = 'middle'
       LayoutConfig.Width = '100%'
-      ExplicitLeft = 3
-      ExplicitTop = 2
-      ExplicitWidth = 874
       object imgFotoUsuario: TUniImage
         Left = 13
         Top = 3
@@ -948,7 +944,6 @@ object MainForm: TMainForm
       LayoutConfig.Flex = 1
       LayoutConfig.Width = '100%'
       LayoutConfig.Margin = '0 0 15 0'
-      ExplicitTop = 61
       object PanelVbox: TUniPanel
         Left = 0
         Top = 0
@@ -966,8 +961,6 @@ object MainForm: TMainForm
         LayoutConfig.Flex = 50
         LayoutConfig.Height = '100%'
         LayoutConfig.Margin = '0 10 0 10'
-        ExplicitWidth = 307
-        ExplicitHeight = 226
         object PanelVentana: TUniPanel
           Left = 0
           Top = 0
@@ -989,8 +982,6 @@ object MainForm: TMainForm
           LayoutConfig.Flex = 62
           LayoutConfig.Width = '100%'
           LayoutConfig.Margin = '5 1 10 1'
-          ExplicitWidth = 307
-          ExplicitHeight = 226
           object UniContainerPanel: TUniContainerPanel
             Left = 0
             Top = 0
@@ -1026,8 +1017,6 @@ object MainForm: TMainForm
             LayoutConfig.Flex = 80
             LayoutConfig.BodyPadding = '10'
             LayoutConfig.Width = '100%'
-            ExplicitTop = 55
-            ExplicitHeight = 715
             ScrollHeight = 771
             ScrollWidth = 909
             object UniPageControl1: TUniPageControl
@@ -1040,17 +1029,12 @@ object MainForm: TMainForm
               Images = UniNativeImageList
               Align = alClient
               TabOrder = 1
-              ExplicitTop = -1
               object UniTabSheet1: TUniTabSheet
                 Hint = ''
                 AlignmentControl = uniAlignmentClient
                 ParentAlignmentControl = False
                 Caption = 'Main'
                 Layout = 'vbox'
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 909
-                ExplicitHeight = 715
                 object UniContainerPanel1: TUniContainerPanel
                   Left = 0
                   Top = 0
@@ -1072,7 +1056,6 @@ object MainForm: TMainForm
                   LayoutConfig.Flex = 80
                   LayoutConfig.BodyPadding = '10'
                   LayoutConfig.Width = '100%'
-                  ExplicitTop = -1
                   ScrollHeight = 743
                   ScrollWidth = 901
                 end
