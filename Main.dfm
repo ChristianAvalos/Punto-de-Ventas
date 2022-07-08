@@ -5008,7 +5008,6 @@ object MainForm: TMainForm
                     Align = alClient
                     LayoutConfig.Flex = 100
                     LayoutConfig.Width = '100%'
-                    ExplicitTop = -1
                   end
                 end
               end
@@ -5023,7 +5022,7 @@ object MainForm: TMainForm
     ScreenMask.Enabled = True
     ScreenMask.Target = Owner
     Left = 114
-    Top = 274
+    Top = 273
     object HolaMundo1: TUniMenuItem
       Caption = 'Hola Mundo'
     end

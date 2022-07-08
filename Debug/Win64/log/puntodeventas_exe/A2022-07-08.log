@@ -21,3 +21,189 @@ Puntodeventas.exe: 00000AE4: 00:03:19 [TUniServerModule]:Starting HTTP Server on
 Puntodeventas.exe: 00000AE4: 00:03:19 [TUniServerModule]:HTTP Server Started on Port: 8078
 Puntodeventas.exe: 000048A4: 00:03:20 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
 Puntodeventas.exe: 00003F24: 00:04:13 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: znvnmF5EjB10ABB150E ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00000AE4: 00:09:51 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0
+Puntodeventas.exe: 00003AAC: 09:39:46 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003AAC: 09:39:46 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003AAC: 09:39:46 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003AAC: 09:39:46 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003AAC: 09:39:46 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00003F20: 09:39:47 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003CA8: 09:42:12 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003CA8: 09:42:12 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003CA8: 09:42:12 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003CA8: 09:42:12 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00003CA8: 09:42:12 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003CA8: 09:42:12 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000704: 09:42:13 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 0000371C: 09:42:22 [127.0.0.1]:EComponentError : A component named FrmFicheroArticulos already exists : Addr: $000000000053DF44
+Puntodeventas.exe: 00003CA8: 09:52:54 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0
+Puntodeventas.exe: 000041F4: 11:10:09 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000041F4: 11:10:09 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000041F4: 11:10:09 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000041F4: 11:10:09 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000041F4: 11:10:09 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000041F4: 11:10:09 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 0000300C: 11:10:09 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003D3C: 11:10:16 [127.0.0.1]:EAccessViolation : Access violation at address 00000000016CB002 in module 'Puntodeventas.exe'. Read of address 0000000000000780 : Addr: $00000000016CB002
+Puntodeventas.exe: 00004154: 11:11:24 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00004154: 11:11:24 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00004154: 11:11:24 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00004154: 11:11:24 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00004154: 11:11:24 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00002A18: 11:11:24 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00004154: 11:11:24 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00004154: 11:11:25 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $0000000000450072
+Puntodeventas.exe: 00004154: 11:11:28 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00004154: 11:11:28 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00004154: 11:11:29 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00004154: 11:11:29 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00004154: 11:11:29 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00004154: 11:11:29 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00004154: 11:11:29 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00004154: 11:11:29 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00004154: 11:11:29 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00004154: 11:11:29 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00004154: 11:11:29 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 000041F4: 11:11:34 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 000041F4: 11:11:34 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 000041F4: 11:11:35 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 000041F4: 11:11:35 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 000041F4: 11:11:35 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00000F68: 11:11:36 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00000F68: 11:11:36 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00000F68: 11:11:36 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00000F68: 11:11:36 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00000F68: 11:11:36 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00000F68: 11:11:36 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00000F68: 11:11:36 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00001FE0: 11:11:37 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000043F8: 11:11:54 [127.0.0.1]:EAccessViolation : Access violation at address 00000000016CB002 in module 'Puntodeventas.exe'. Read of address 0000000000000780 : Addr: $00000000016CB002
+Puntodeventas.exe: 000046A0: 11:11:59 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000046A0: 11:11:59 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000046A0: 11:11:59 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000046A0: 11:11:59 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000046A0: 11:11:59 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000046A0: 11:11:59 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00003ADC: 11:11:59 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003134: 11:12:01 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: UHRCQilgIQ10ABBCAF0 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00003134: 11:12:03 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: EFeV6dshiY10ABBCAE1 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00003134: 11:12:04 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: IPhRn7EtTL10ABBCA8B ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 000046A0: 11:12:08 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 000046A0: 11:12:08 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 000046A0: 11:12:09 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 000046A0: 11:12:09 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 000046A0: 11:12:09 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 000044C4: 11:12:12 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000044C4: 11:12:12 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000044C4: 11:12:12 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000044C4: 11:12:12 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000044C4: 11:12:12 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000044C4: 11:12:12 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00003C10: 11:12:13 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000FC4: 11:12:22 [127.0.0.1]:EAccessViolation : Access violation at address 00000000016CB002 in module 'Puntodeventas.exe'. Read of address 0000000000000780 : Addr: $00000000016CB002
+Puntodeventas.exe: 00001C90: 11:18:53 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00001C90: 11:18:53 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00001C90: 11:18:53 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00001C90: 11:18:53 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00001C90: 11:18:54 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00001C90: 11:18:54 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000B68: 11:18:54 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002AE4: 11:18:59 [127.0.0.1]:EAccessViolation : Access violation at address 00000000016CB002 in module 'Puntodeventas.exe'. Read of address 0000000000000000 : Addr: $00000000016CB002
+Puntodeventas.exe: 000022F0: 11:19:48 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000022F0: 11:19:48 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000022F0: 11:19:48 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000022F0: 11:19:48 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000022F0: 11:19:48 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000022F0: 11:19:48 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000EE8: 11:19:49 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00001770: 11:19:53 [127.0.0.1]:EAccessViolation : Access violation at address 00000000016CAFEE in module 'Puntodeventas.exe'. Read of address 0000000000000000 : Addr: $00000000016CAFEE
+Puntodeventas.exe: 00004134: 11:20:33 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00004134: 11:20:33 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00004134: 11:20:33 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00004134: 11:20:33 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00004134: 11:20:33 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00004134: 11:20:33 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $0000000000450072
+Puntodeventas.exe: 00001770: 11:20:33 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002EE0: 11:20:37 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: 8qXd7DfOKI10ABBCCEA ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 0000422C: 11:20:38 []:Error deleting folder: "F:\Proyectos Personales\PuntodeVentas\Debug\Win64\cache\puntodeventas_exe\rMPUsWl9sJ10ABBCD2A\" [OS Error:2]
+Puntodeventas.exe: 00002EE0: 11:20:38 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: ufOE4LTHWv10ABBCB1A ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 000022F0: 11:20:49 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 000022F0: 11:20:49 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 000022F0: 11:20:50 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 000022F0: 11:20:50 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 000022F0: 11:20:50 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00003F80: 11:20:56 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003F80: 11:20:56 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003F80: 11:20:56 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003F80: 11:20:56 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00003F80: 11:20:56 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003F80: 11:20:56 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00003C84: 11:20:57 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003D2C: 11:21:10 [127.0.0.1]:EAccessViolation : Access violation at address 00000000016CAFEE in module 'Puntodeventas.exe'. Read of address 0000000000000000 : Addr: $00000000016CAFEE
+Puntodeventas.exe: 000037C4: 11:22:37 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000037C4: 11:22:37 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000037C4: 11:22:37 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000037C4: 11:22:37 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000037C4: 11:22:37 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000037C4: 11:22:37 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000037C4: 11:22:37 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00004534: 11:22:37 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000E58: 11:22:39 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: tVXAOSYTbY10ABBCD78 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00002C1C: 11:24:56 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002C1C: 11:24:56 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002C1C: 11:24:56 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002C1C: 11:24:56 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00002C1C: 11:24:56 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00002C1C: 11:24:56 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00002650: 11:24:56 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000008DC: 11:24:57 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: O5tbS33rPI10ABBCDEC ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00004498: 11:25:39 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00004498: 11:25:39 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00004498: 11:25:39 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00004498: 11:25:39 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00004498: 11:25:39 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00004498: 11:25:39 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000BD0: 11:25:40 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 0000337C: 11:25:40 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: jZJZIDJs5x10ABBCE8D ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00001788: 11:31:49 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00001788: 11:31:49 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00001788: 11:31:49 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00001788: 11:31:49 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00001788: 11:31:49 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00001788: 11:31:49 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00004050: 11:31:49 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000614: 11:33:14 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00000614: 11:33:14 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00000614: 11:33:14 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00000614: 11:33:14 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00000614: 11:33:14 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00000614: 11:33:14 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 0000251C: 11:33:14 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000017F0: 11:33:15 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: RYbPMSwg7k10ABBD06B ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 000017F0: 11:33:16 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: 2DyjPZWX8A10ABBCEC0 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00003E0C: 11:34:16 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003E0C: 11:34:16 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003E0C: 11:34:16 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003E0C: 11:34:16 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00003E0C: 11:34:16 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003E0C: 11:34:16 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00001E30: 11:34:16 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002EB0: 11:34:17 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: rzHI3dJ5GV10ABBD0CE ) : Addr: $0000000000A286BD

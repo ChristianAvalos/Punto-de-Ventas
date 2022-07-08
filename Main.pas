@@ -64,6 +64,7 @@ type
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
     procedure mnuFicherosArticulosFichaClick(Sender: TObject);
+    procedure TabSheetClose(Sender: TObject; var AllowClose: Boolean);
 
   private
     { Private declarations }
@@ -96,10 +97,14 @@ end;
 procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
 var
 Ts : TUniTabSheet;
- begin
-  if mnuFicherosArticulosFicha.Count = 0 then
+Nd : TUniTreeNode;
+begin
+  Nd := UniTreeMenu.Selected;
+
+  if Nd.Count = 0 then
    begin
-   if B<>'SI' then
+   Ts := Nd.Data;
+   if not Assigned(Ts) then
    Begin
     //Creo el nuevo tab
     Ts := TUniTabSheet.Create(Self);
@@ -107,14 +112,13 @@ Ts : TUniTabSheet;
     //le doy los atributos que va a mostrar
     Ts.Name:=FrmFicheroArticulos.Name;
     Ts.Closable := True;
+    Ts.OnClose := TabSheetClose;
+    Ts.Tag := NativeInt(Nd);
     Ts.Caption:=FrmFicheroArticulos.Caption;
-//    Ts.AlignmentControl:=uniAlignmentClient;
-//    TS.Align:=alClient;
-//    Ts.PageControl.AlignmentControl:= uniAlignmentClient;
 
     FrmFicheroArticulos.Parent :=TS;
     //Paso esta variable para que no se cree un tab mas si ya esta abierto
-    B:='SI';
+    Nd.Data:=Ts;
    end;
    UniPageControl1.ActivePage:=Ts;
    end;
@@ -140,6 +144,21 @@ end;
 procedure TMainForm.Organizacin1Click(Sender: TObject);
 begin
 FrmOrganizacion.Show;
+end;
+
+procedure TMainForm.TabSheetClose(Sender: TObject; var AllowClose: Boolean);
+var
+  Ts : TUniTabSheet;
+  Nd : TUniTreeNode;
+begin
+  Ts := Sender as TUniTabSheet;
+  Nd := Pointer(Ts.Tag);
+  if Assigned(Nd) then
+  begin
+    Nd.Data := nil;
+    if UniTreeMenu.Selected = Nd then
+      UniTreeMenu.Selected := nil;
+  end;
 end;
 
 procedure TMainForm.UniFormAfterShow(Sender: TObject);
