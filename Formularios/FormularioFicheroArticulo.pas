@@ -5,11 +5,12 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
-  uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniLabel;
+  uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniLabel, uniDBNavigator;
 
 type
   TFrmFicheroArticulos = class(TUniForm)
     UniLabel1: TUniLabel;
+    UniDBNavigator1: TUniDBNavigator;
   private
     { Private declarations }
   public

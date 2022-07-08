@@ -249,3 +249,4 @@ Puntodeventas.exe: 00000D9C: 23:38:15 [TUniGUISessionManager]:Cache erase job cr
 Puntodeventas.exe: 00000D9C: 23:38:15 [TUniServerModule]:Starting HTTP Server on Port: 8078...
 Puntodeventas.exe: 00000D9C: 23:38:15 [TUniServerModule]:HTTP Server Started on Port: 8078
 Puntodeventas.exe: 000037FC: 23:38:15 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000D9C: 23:48:50 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0

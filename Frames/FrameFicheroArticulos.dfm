@@ -9,8 +9,8 @@ object FrameArticulos: TFrameArticulos
     901
     757)
   object UniPanel1: TUniPanel
-    Left = 96
-    Top = 75
+    Left = 1
+    Top = -1
     Width = 733
     Height = 538
     Hint = ''

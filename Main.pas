@@ -52,6 +52,8 @@ type
     UniPageControl1: TUniPageControl;
     UniTabSheet1: TUniTabSheet;
     UniContainerPanel1: TUniContainerPanel;
+    UniImage1: TUniImage;
+    UniImageList1: TUniImageList;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
@@ -65,6 +67,7 @@ type
 
   private
     { Private declarations }
+    B :string;
   public
     { Public declarations }
   end;
@@ -93,17 +96,29 @@ end;
 procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
 var
 Ts : TUniTabSheet;
-begin
-//FrmFicheroArticulos.Parent :=UniContainerPanel1;
-//FrmFicheroArticulos.Show();
-  Ts := UniTabSheet1.Create(self);
-  Ts.PageControl :=UniPageControl1;
-  Ts.Closable := True;
-  Ts.Caption:='Prueba';
-  //FrameArticulos.Create(self);
-//  FrameArticulos.Parent:=Ts;
+ begin
+  if mnuFicherosArticulosFicha.Count = 0 then
+   begin
+   if B<>'SI' then
+   Begin
+    //Creo el nuevo tab
+    Ts := TUniTabSheet.Create(Self);
+    Ts.PageControl :=UniPageControl1;
+    //le doy los atributos que va a mostrar
+    Ts.Name:=FrmFicheroArticulos.Name;
+    Ts.Closable := True;
+    Ts.Caption:=FrmFicheroArticulos.Caption;
+//    Ts.AlignmentControl:=uniAlignmentClient;
+//    TS.Align:=alClient;
+//    Ts.PageControl.AlignmentControl:= uniAlignmentClient;
 
-  UniPageControl1.ActivePage:=Ts;
+    FrmFicheroArticulos.Parent :=TS;
+    //Paso esta variable para que no se cree un tab mas si ya esta abierto
+    B:='SI';
+   end;
+   UniPageControl1.ActivePage:=Ts;
+   end;
+
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);
