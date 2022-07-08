@@ -207,3 +207,9 @@ Puntodeventas.exe: 00003E0C: 11:34:16 [TUniServerModule]:Starting HTTP Server on
 Puntodeventas.exe: 00003E0C: 11:34:16 [TUniServerModule]:HTTP Server Started on Port: 8078
 Puntodeventas.exe: 00001E30: 11:34:16 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
 Puntodeventas.exe: 00002EB0: 11:34:17 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: rzHI3dJ5GV10ABBD0CE ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 000034F0: 11:42:48 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000034F0: 11:42:48 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000034F0: 11:42:48 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000034F0: 11:42:48 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000034F0: 11:42:48 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000CF4: 11:42:48 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css

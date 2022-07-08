@@ -68,7 +68,7 @@ type
 
   private
     { Private declarations }
-    B :string;
+  procedure CreaMenu(Formulario:TUniForm);
   public
     { Public declarations }
   end;
@@ -88,13 +88,7 @@ begin
   Result := TMainForm(UniMainModule.GetFormInstance(TMainForm));
 end;
 
-procedure TMainForm.lblCerrarSesionClick(Sender: TObject);
-begin
-  UniApplication.UniSession.Logout;
-  UniApplication.Restart;
-end;
-
-procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
+procedure TMainForm.CreaMenu(Formulario: TUniForm);
 var
 Ts : TUniTabSheet;
 Nd : TUniTreeNode;
@@ -110,19 +104,29 @@ begin
     Ts := TUniTabSheet.Create(Self);
     Ts.PageControl :=UniPageControl1;
     //le doy los atributos que va a mostrar
-    Ts.Name:=FrmFicheroArticulos.Name;
+    Ts.Name:=Formulario.name;
     Ts.Closable := True;
     Ts.OnClose := TabSheetClose;
     Ts.Tag := NativeInt(Nd);
-    Ts.Caption:=FrmFicheroArticulos.Caption;
+    Ts.Caption:=Formulario.Caption;
 
-    FrmFicheroArticulos.Parent :=TS;
+    Formulario.Parent :=TS;
     //Paso esta variable para que no se cree un tab mas si ya esta abierto
     Nd.Data:=Ts;
    end;
    UniPageControl1.ActivePage:=Ts;
    end;
+end;
 
+procedure TMainForm.lblCerrarSesionClick(Sender: TObject);
+begin
+  UniApplication.UniSession.Logout;
+  UniApplication.Restart;
+end;
+
+procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
+begin
+CreaMenu(FrmFicheroArticulos);
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);
