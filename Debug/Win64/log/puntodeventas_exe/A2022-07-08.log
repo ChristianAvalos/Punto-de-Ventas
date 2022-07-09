@@ -269,3 +269,227 @@ Puntodeventas.exe: 00003A24: 22:34:46 [HandleFileRequest[127.0.0.1]]:File not fo
 Puntodeventas.exe: 00000CD0: 22:34:46 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
 Puntodeventas.exe: 00002824: 22:35:02 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
 Puntodeventas.exe: 00002824: 22:35:02 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00000F34: 22:38:25 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000039B8: 22:38:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00001E80: 22:38:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00003C9C: 22:38:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00000A8C: 22:47:13 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00000A8C: 22:47:13 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00000A8C: 22:47:13 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00000A8C: 22:47:13 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00000A8C: 22:47:13 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00000A8C: 22:47:14 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00000A8C: 22:47:14 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00003AC4: 22:47:14 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000043F0: 22:47:14 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00001F80: 22:47:15 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00001D24: 22:47:15 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000031CC: 23:07:24 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000031CC: 23:07:24 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000031CC: 23:07:24 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000031CC: 23:07:24 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000031CC: 23:07:24 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000031CC: 23:07:24 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00000AA8: 23:07:25 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003C9C: 23:07:25 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000ABC: 23:07:25 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00003FE4: 23:07:25 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 0000058C: 23:07:34 [127.0.0.1]:EMSError : Error de inicio de sesión del usuario 'davalos'. : Addr: $0000000000E4241E
+Puntodeventas.exe: 0000058C: 23:07:39 [127.0.0.1]:EMSError : Error de inicio de sesión del usuario 'davalos'. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000016D4: 23:07:40 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002B9C: 23:07:40 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000A48: 23:07:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00003DA0: 23:07:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000005D0: 23:07:48 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000005D0: 23:07:48 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000043C4: 23:07:52 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000005D0: 23:07:52 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000994: 23:07:52 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00000FD4: 23:07:52 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000020D0: 23:08:01 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003448: 23:08:01 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002868: 23:08:01 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00001020: 23:08:01 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000031B0: 23:08:06 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000031B0: 23:08:06 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000031B0: 23:08:22 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000031B0: 23:08:22 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00002CAC: 23:08:26 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000031B0: 23:08:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003214: 23:08:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00001F0C: 23:08:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000011A0: 23:08:35 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002A70: 23:08:35 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003E54: 23:08:35 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00001538: 23:08:35 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00004434: 23:09:41 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00004434: 23:09:41 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00004434: 23:09:41 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00004434: 23:09:41 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00004434: 23:09:41 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00002534: 23:09:41 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00004434: 23:09:41 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00004110: 23:09:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 000035E0: 23:09:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00000688: 23:09:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00004434: 23:09:44 [InitWebServer]:EIdCouldNotBindSocket : Could not bind socket. : Addr: $0000000000450072
+Puntodeventas.exe: 000012DC: 23:09:53 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000012DC: 23:09:53 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000012DC: 23:10:01 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000012DC: 23:10:01 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00001CF0: 23:10:06 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: JPfz6raLcN10ABC87A3 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00001CF0: 23:10:08 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: IVlCpghhCG10ABC853F ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00004624: 23:10:09 []:Error deleting folder: "F:\Proyectos Personales\PuntodeVentas\Debug\Win64\cache\puntodeventas_exe\vKtvPF8lBN10ABC8D6E\" [OS Error:2]
+Puntodeventas.exe: 00004434: 23:10:11 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00004434: 23:10:11 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00004434: 23:10:12 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00004434: 23:10:12 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00004434: 23:10:12 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00004434: 23:10:12 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00004434: 23:10:12 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00004434: 23:10:12 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00004434: 23:10:12 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00004434: 23:10:12 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00004434: 23:10:12 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 000031CC: 23:10:16 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 000031CC: 23:10:16 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 000031CC: 23:10:17 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 000031CC: 23:10:17 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 000031CC: 23:10:17 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 000038B8: 23:10:22 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000038B8: 23:10:22 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000038B8: 23:10:22 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000038B8: 23:10:22 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 000038B8: 23:10:22 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000038B8: 23:10:22 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000035C0: 23:10:22 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000018C8: 23:10:22 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 0000289C: 23:10:23 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00000878: 23:10:23 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00002150: 23:10:42 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00002150: 23:10:43 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 0000233C: 23:11:00 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 0000233C: 23:11:00 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00001678: 23:11:09 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003390: 23:11:09 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000688: 23:11:10 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000005CC: 23:11:10 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00001EA8: 23:16:10 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00001EA8: 23:16:10 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00001EA8: 23:16:10 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00001EA8: 23:16:10 [TUniGUISessionManager]:Cache erase job created, Folder count: [2]
+Puntodeventas.exe: 00001EA8: 23:16:10 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00001EA8: 23:16:10 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00002918: 23:16:10 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000198: 23:16:11 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 000003D8: 23:16:11 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000011FC: 23:16:11 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00001EA8: 23:16:22 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00001EA8: 23:16:22 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00001EA8: 23:16:23 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00001EA8: 23:16:23 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00001EA8: 23:16:23 [Terminated]:Exit Code: 0
+Puntodeventas.exe: 00001C7C: 23:16:29 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00001C7C: 23:16:29 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00001C7C: 23:16:29 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00001C7C: 23:16:29 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00001C7C: 23:16:30 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00001C7C: 23:16:30 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000032E8: 23:16:30 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000980: 23:16:31 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002108: 23:16:31 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000005DC: 23:16:31 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000025CC: 23:17:50 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 000025CC: 23:17:52 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00003FB8: 23:31:52 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003FB8: 23:31:52 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003FB8: 23:31:52 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003FB8: 23:31:52 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 00003FB8: 23:31:52 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00003FB8: 23:31:52 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003FB8: 23:31:52 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 0000464C: 23:31:53 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003BF8: 23:31:53 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002CEC: 23:31:53 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00002FA8: 23:31:53 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00003A10: 23:31:58 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002558: 23:31:58 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 0000306C: 23:31:58 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00003DB0: 23:31:58 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00003C9C: 23:32:09 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003D00: 23:32:09 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 0000435C: 23:32:10 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00004718: 23:32:10 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00004344: 23:32:25 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002868: 23:32:25 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000F5C: 23:32:25 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00000BE4: 23:32:26 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00004124: 23:32:35 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002C4C: 23:32:36 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00001528: 23:32:36 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00002440: 23:32:36 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00001470: 23:32:45 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002A3C: 23:32:45 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003444: 23:32:45 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00001AFC: 23:32:46 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00000418: 23:33:26 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000CA4: 23:33:27 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00004038: 23:33:27 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000025B8: 23:33:27 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00001774: 23:34:40 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00004290: 23:34:40 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 000006F0: 23:34:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000039AC: 23:34:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00002384: 23:34:53 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000E04: 23:34:54 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003BFC: 23:34:54 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00003884: 23:34:54 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000029B8: 23:35:12 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00001F90: 23:35:12 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002B10: 23:35:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00000CE0: 23:35:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000005DC: 23:36:11 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000024F8: 23:36:12 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 000045F0: 23:36:12 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00000CD8: 23:36:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000009AC: 23:36:23 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00000C6C: 23:36:23 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003E98: 23:36:24 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00003908: 23:36:24 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00000E4C: 23:37:08 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00000E4C: 23:37:08 [TUniGUIServerModule.AppHandleException]:EMSError : No se puede modificar el inicio de sesión 'davalos' porque no existe o el usuario no tiene permiso. : Addr: $0000000000E4241E
+Puntodeventas.exe: 00002074: 23:37:57 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002BF0: 23:37:58 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002CB8: 23:37:59 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000006FC: 23:37:59 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 0000066C: 23:38:38 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 0000066C: 23:38:38 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 0000066C: 23:38:38 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 0000066C: 23:38:38 [TUniServerModule]:Debug Mode = ON
+Puntodeventas.exe: 0000066C: 23:38:38 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 0000066C: 23:38:38 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 0000066C: 23:38:38 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00002918: 23:38:38 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00004300: 23:38:39 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 000029E4: 23:38:39 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 0000166C: 23:38:39 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00000304: 23:39:30 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00002BE0: 23:39:31 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000B0C: 23:39:31 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000044FC: 23:39:32 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00000F68: 23:39:41 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00003324: 23:39:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002938: 23:39:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00002AB8: 23:39:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf

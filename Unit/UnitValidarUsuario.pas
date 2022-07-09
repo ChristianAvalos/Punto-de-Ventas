@@ -162,9 +162,6 @@ begin
       FrmLogin.MessageDlg(ENoExistenUsuariosDefinidos, mtWarning, [mbOK]);
       {$ENDIF}
 
-      {$IFDEF DESKTOP}
-      MessageDlg(ENoExistenUsuariosDefinidos, mtWarning, [mbOK], 0);
-      {$ENDIF}
     end;
 
     OmitirEventos_y_Ejecutar(DatasetUsuario,
@@ -214,10 +211,6 @@ begin
 
             {$IFDEF WEB}
             FrmLogin.MessageDlg(E.Message, mtError, [mbOK]);
-            {$ENDIF}
-
-            {$IFDEF DESKTOP}
-            MessageDlg(E.Message, mtError, [mbOK], 0);
             {$ENDIF}
           end;
         end;

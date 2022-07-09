@@ -20,12 +20,12 @@ object DMUsuario: TDMUsuario
       
         '  (IdOrganizacion, NombreUsuario, Contrasena, Email, Activo, Nom' +
         'bresApellidos, Foto, DocumentoNro, Observacion, UrevUsuario, Ure' +
-        'vFechaHora)'
+        'vFechaHora, Template)'
       'VALUES'
       
         '  (:IdOrganizacion, :NombreUsuario, :Contrasena, :Email, :Activo' +
         ', :NombresApellidos, :Foto, :DocumentoNro, :Observacion, :UrevUs' +
-        'uario, :UrevFechaHora)'
+        'uario, :UrevFechaHora, :Template)'
       'SET :IdUsuario = SCOPE_IDENTITY()')
     SQLDelete.Strings = (
       'DELETE FROM Usuario.Usuario'
@@ -39,14 +39,14 @@ object DMUsuario: TDMUsuario
         'io, Contrasena = :Contrasena, Email = :Email, Activo = :Activo, ' +
         'NombresApellidos = :NombresApellidos, Foto = :Foto, DocumentoNro' +
         ' = :DocumentoNro, Observacion = :Observacion, UrevUsuario = :Ure' +
-        'vUsuario, UrevFechaHora = :UrevFechaHora'
+        'vUsuario, UrevFechaHora = :UrevFechaHora, Template = :Template'
       'WHERE'
       '  IdUsuario = :Old_IdUsuario')
     SQLRefresh.Strings = (
       
         'SELECT IdOrganizacion, NombreUsuario, Contrasena, Email, Activo,' +
         ' NombresApellidos, Foto, DocumentoNro, Observacion, UrevUsuario,' +
-        ' UrevFechaHora FROM Usuario.Usuario'
+        ' UrevFechaHora, Template FROM Usuario.Usuario'
       'WHERE'
       '  IdUsuario = :IdUsuario')
     SQLLock.Strings = (
@@ -69,6 +69,7 @@ object DMUsuario: TDMUsuario
     AfterPost = MSUsuarioAfterPost
     AfterCancel = MSUsuarioAfterCancel
     BeforeDelete = MSUsuarioBeforeDelete
+    AfterDelete = MSUsuarioAfterDelete
     OnCalcFields = MSUsuarioCalcFields
     OnNewRecord = MSUsuarioNewRecord
     OnPostError = MSUsuarioPostError

@@ -4,8 +4,11 @@ interface
 
 uses
   System.SysUtils, System.Classes, Data.DB, MemDS, DBAccess, MSAccess,
-   vcl.Dialogs, DAScript, MSScript, System.VarUtils, System.Variants, System.StrUtils;
+   vcl.Dialogs, DAScript, MSScript, System.VarUtils, System.Variants, System.StrUtils,
 
+  {$IFDEF WEB}
+  uniGUIDialogs, uniMainMenu;
+  {$ENDIF}
 type
     TUsuarioRecord = record
     IdUsuario: integer;
@@ -69,17 +72,18 @@ type
     procedure MSUsuarioPostError(DataSet: TDataSet; E: EDatabaseError;
       var Action: TDataAction);
     procedure MSUsuarioCalcFields(DataSet: TDataSet);
+    procedure MSUsuarioAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
     FEnviadoDesdeFrm, FUsuarioBorrar: string;
-
+    Activo: Boolean;
   public
     { Public declarations }
 
   property UsuarioBorrar: string read FUsuarioBorrar write FUsuarioBorrar;
       var
     UsuarioRecord: TUsuarioRecord;
-    Activo: Boolean;
+
     published
     property EnviadoDesdeFrm: string read FEnviadoDesdeFrm write FEnviadoDesdeFrm;
   end;
@@ -94,7 +98,9 @@ implementation
 
 uses
   UniGUIVars, uniGUIMainModule, MainModule, DataModulePrincipal, UnitCodigosComunesDataModule, UnitVerificarModulo, UnitValidarUsuario,
-   UnitRecursoString, UnitCodigosComunes, UnitCodigosComunesFormulario, UnitCodigosComunesString, SCrypt, FormularioUsuario, FormularioCRUDMaestro, UnitValidaciones, UnitOperacionesFotografia, Main;
+   UnitRecursoString, UnitCodigosComunes, UnitCodigosComunesFormulario, UnitCodigosComunesString,
+   SCrypt, FormularioUsuario, FormularioCRUDMaestro, UnitValidaciones, UnitOperacionesFotografia, Main, UnitEncriptacion,
+   ServerModule,uniGUIApplication,UnitDatos;
 
 function DMUsuario: TDMUsuario;
 begin
@@ -106,6 +112,20 @@ begin
   {$IFDEF WEB}
     DMAfterCancel(FrmUsuario);
   {$ENDIF}
+end;
+
+procedure TDMUsuario.MSUsuarioAfterDelete(DataSet: TDataSet);
+begin
+  // En caso que la seguridad del motor
+  if LeerParametrosConfiguracionINI('APLICACION', 'Seguridad', False) = 'Motor' then
+  begin
+    // Borro el usuario
+    if UsuarioBorrar <> '' then
+    begin
+      // Se deshabilita el usuario, pero no se borra
+      CrearUsuarioSQLServer(UsuarioBorrar, Contrasena, False);
+    end;
+  end;
 end;
 
 procedure TDMUsuario.MSUsuarioAfterPost(DataSet: TDataSet);
@@ -135,7 +155,7 @@ procedure TDMUsuario.MSUsuarioAfterUpdateExecute(Sender: TCustomMSDataSet;
   StatementTypes: TStatementTypes; Params: TMSParams);
 begin
 var
-  //Activo: Boolean;
+ // Activo: Boolean;
   NombreUsuario: string;
 
 begin
@@ -198,11 +218,6 @@ begin
     {$IFDEF WEB}
     FrmUsuario.MessageDlg(EUsuarioCaracterInvalido, mtError, [mbOK]);
     {$ENDIF}
-
-    {$IFDEF DESKTOP}
-    MessageDlg(EUsuarioCaracterInvalido, mtError, [mbOK], 0);
-    {$ENDIF}
-
     Abort;
   end;
   DMBeforePost(DataSet);

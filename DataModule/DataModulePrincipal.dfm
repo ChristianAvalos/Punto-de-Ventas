@@ -1,7 +1,6 @@
 object DMPrincipal: TDMPrincipal
   Height = 707
   Width = 814
-  PixelsPerInch = 96
   object MSConnection: TMSConnection
     Database = 'PuntoVenta'
     IsolationLevel = ilReadUnCommitted
@@ -231,7 +230,7 @@ object DMPrincipal: TDMPrincipal
   object msqlmntr1: TMSSQLMonitor
     DBMonitorOptions.Host = '127.0.0.1'
     TraceFlags = [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfService, tfMisc, tfParams]
-    Left = 126
-    Top = 22
+    Left = 140
+    Top = 46
   end
 end
