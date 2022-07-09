@@ -2,7 +2,7 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/07/06 23:26:04.000.358,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
-    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.dfm</Transaction>
+    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.pas</Transaction>
   </Transactions>
 </BorlandProject>
