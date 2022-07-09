@@ -180,7 +180,7 @@ begin
   UsuarioBorrar := MSUsuarioNombreUsuario.Value;
 
   {$IFDEF WEB}
- //   DMBeforeDelete(FrmUsuario, TMSQuery(DataSet), 'Usuario.Usuario', MSUsuarioIdUsuario, True, True);
+  DMBeforeDelete(FrmUsuario, TMSQuery(DataSet), 'Usuario.Usuario', MSUsuarioIdUsuario, True, True);
   {$ENDIF}
 end;
 

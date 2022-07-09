@@ -31,7 +31,7 @@ type
   {$IFDEF WEB}
   procedure DMBeforeInsert(Formulario: TUniForm = nil);
   procedure DMBeforeEdit(Formulario: TUniForm = nil; MSQuery: TMSQuery = nil; VerificarFiniquitado: Boolean = False);
-  //function DMBeforeDelete(Formulario: TUniForm = nil; MSQuery: TMSQuery = nil; Tabla: string=''; PrimaryField: TField = nil; VerificarDatoRelacionado: Boolean = False; ConfirmarBorrado: Boolean = False; VerificarPermiso: Boolean = False; VerificarFiniquitado: Boolean = False; Menu: string =''): Boolean;
+  function DMBeforeDelete(Formulario: TUniForm = nil; MSQuery: TMSQuery = nil; Tabla: string=''; PrimaryField: TField = nil; VerificarDatoRelacionado: Boolean = False; ConfirmarBorrado: Boolean = False; VerificarPermiso: Boolean = False; VerificarFiniquitado: Boolean = False; Menu: string =''): Boolean;
   {$ENDIF}
 
   procedure DMCalcFields(DataSet: TDataSet);
@@ -274,141 +274,143 @@ begin
 end;
 
 
-//{$IFDEF WEB}
-//function DMBeforeDelete(Formulario: TUniForm = nil; MSQuery: TMSQuery = nil;
-//  Tabla: string = ''; PrimaryField: TField = nil;
-//  VerificarDatoRelacionado: Boolean = False; ConfirmarBorrado: Boolean = False;
-//  VerificarPermiso: Boolean = False; VerificarFiniquitado: Boolean = False;
-//  Menu: string = ''): Boolean;
-//// Ej. DMBeforeDelete(FrmMultas, TMSQuery(DataSet),'Salario.Multa', MSMultaIdMulta, True, True);
-//
-//var
-//  isBorradoConfirmado, isNoFueAbortadoPermiso, isNoFueAbortadoFiniquito, isNoFueAbortadoRelacionado, ResultAux: Boolean;
-//begin
-//  // Reinicio el valor
-//  Result := False;
-//  ResultAux := False;
-//
-//  isNoFueAbortadoPermiso := true;
-//  isNoFueAbortadoFiniquito := true;
-//  isNoFueAbortadoRelacionado := true;
-//
-//  //si el dataset que mando tiene datos
-//  if MSQuery.RecordCount > 0 then
-//  begin
-//    // Este codigo para evitar el borrado, guardo el evento temporalmente
-//    DMPrincipal.MSQuerySQL.BeforeDelete := MSQuery.BeforeDelete;
-//    MSQuery.BeforeDelete := nil;
-//
-//    if Formulario <> nil then
-//    begin
-//
-//      if ConfirmarBorrado = True then
-//      begin
-//
-//        // Pregunto si validara     ESeguroContinuar
-//        Formulario.MessageDlg(EBorrarRegistro, mtConfirmation, mbYesNo,
-//          procedure(Sender: TComponent; AResult: integer)
-//          begin
-//            isBorradoConfirmado := true;
-//            // Si el usuario elige si
-//            if AResult = mrYes then
-//            begin
-//
-//              // Verifico si datos relacionados
-//              if VerificarDatoRelacionado = True then
-//              begin
-//                isNoFueAbortadoRelacionado := VerificarDatoTablaRelacionada(Tabla, PrimaryField, Formulario, false);
-//              end;
-//
-//              if VerificarPermiso = True then
-//              begin
-//                isNoFueAbortadoPermiso := DMUsuario.VerificarPrivilegios(Menu, True , True , False);
-//              end;
-//
-//              if VerificarFiniquitado = True then
-//              begin
-//                isNoFueAbortadoFiniquito := VerificarFiniquidoTransaccion(MSQuery, Formulario, False);
-//              end;
-//
-//              //aborto - pero despues de haber colocado nuevamente el evento del beforeDelete al datasource
-//              if ((isNoFueAbortadoPermiso = False) or (isNoFueAbortadoFiniquito  = False) or (isNoFueAbortadoRelacionado  = False) ) then
-//              begin
-//                // Restauro el evento, al dataset original
-//                MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
-//                Abort;
-//              end
-//              else
-//                begin
-//                  // Borro finalmente
-//                  MSQuery.Delete;
-//
-//                  // Devuelvo el valor verdadero, a una variable auxiliar,
-//                  // porque no permite dentro de una messagedlg que devuelve datos
-//                  ResultAux := True;
-//
-//                  // Restauro el evento, al dataset original
-//                  MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
-//                end;
-//
-//            end;
-//
-//            if AResult = mrNO then
-//            begin
-//              // Restauro el evento, al dataset original
-//              MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
-//            end;
-//            if AResult <> mrNO and mrYes then
-//            begin
-//              // Restauro el evento, al dataset original
-//              MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
-//            end;
-//
-//
-//          end);
-//
-//      end
-//      else // Si no hay confirmacion de eliminacion
-//        begin
-//
-//          if VerificarDatoRelacionado = True then
-//          begin
-//            isNoFueAbortadoRelacionado := VerificarDatoTablaRelacionada(Tabla, PrimaryField, Formulario, false);
-//          end;
-//
-//          if VerificarPermiso = True then
-//          begin
-//            isNoFueAbortadoPermiso := DMUsuario.VerificarPrivilegios(Menu, True , True , False);
-//          end;
-//
-//          if VerificarFiniquitado = True then
-//          begin
-//            isNoFueAbortadoFiniquito := VerificarFiniquidoTransaccion(MSQuery, Formulario, False);
-//          end;
-//
-//          // Restauro el evento, al dataset original
-//          MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
-//
-//          //aborto - pero despues de haber colocado nuevamente el evento del beforeDelete al datasource
-//          if ((isNoFueAbortadoPermiso = False) or (isNoFueAbortadoFiniquito  = False) or (isNoFueAbortadoRelacionado  = False) ) then
-//          begin
-//            Abort;
-//          end;
-//
-//        end;
-//    end;
-//
-//    // Aborto  al final solo cuando es con confirmacion, y aun no selecciono si o no
-//    if (ConfirmarBorrado = True and isBorradoConfirmado = false) then
-//    begin
-//      Abort;
-//    end;
-//
-//    // Devuelvo el result Auxiliar
-//    Result := ResultAux;
-//  end;
-//end;
-//{$ENDIF}
+{$IFDEF WEB}
+function DMBeforeDelete(Formulario: TUniForm = nil; MSQuery: TMSQuery = nil;
+  Tabla: string = ''; PrimaryField: TField = nil;
+  VerificarDatoRelacionado: Boolean = False; ConfirmarBorrado: Boolean = False;
+  VerificarPermiso: Boolean = False; VerificarFiniquitado: Boolean = False;
+  Menu: string = ''): Boolean;
+// Ej. DMBeforeDelete(FrmMultas, TMSQuery(DataSet),'Salario.Multa', MSMultaIdMulta, True, True);
+
+var
+  isBorradoConfirmado, isNoFueAbortadoPermiso, isNoFueAbortadoFiniquito, isNoFueAbortadoRelacionado, ResultAux: Boolean;
+begin
+  // Reinicio el valor
+  Result := False;
+  ResultAux := False;
+
+  isNoFueAbortadoPermiso := true;
+  isNoFueAbortadoFiniquito := true;
+  isNoFueAbortadoRelacionado := true;
+
+  //si el dataset que mando tiene datos
+  if MSQuery.RecordCount > 0 then
+  begin
+    // Este codigo para evitar el borrado, guardo el evento temporalmente
+    DMPrincipal.MSQuerySQL.BeforeDelete := MSQuery.BeforeDelete;
+    MSQuery.BeforeDelete := nil;
+
+    if Formulario <> nil then
+    begin
+
+      if ConfirmarBorrado = True then
+      begin
+
+        // Pregunto si validara     ESeguroContinuar
+        Formulario.MessageDlg(EBorrarRegistro, mtConfirmation, mbYesNo,
+          procedure(Sender: TComponent; AResult: integer)
+          begin
+            isBorradoConfirmado := true;
+            // Si el usuario elige si
+            if AResult = mrYes then
+            begin
+
+              // Verifico si datos relacionados
+              if VerificarDatoRelacionado = True then
+              begin
+                isNoFueAbortadoRelacionado := VerificarDatoTablaRelacionada(Tabla, PrimaryField, Formulario, false);
+              end;
+
+              if VerificarPermiso = True then
+              begin
+                //isNoFueAbortadoPermiso := DMUsuario.VerificarPrivilegios(Menu, True , True , False);
+                 isNoFueAbortadoPermiso:=True;
+              end;
+
+              if VerificarFiniquitado = True then
+              begin
+                isNoFueAbortadoFiniquito := VerificarFiniquidoTransaccion(MSQuery, Formulario, False);
+              end;
+
+              //aborto - pero despues de haber colocado nuevamente el evento del beforeDelete al datasource
+              if ((isNoFueAbortadoPermiso = False) or (isNoFueAbortadoFiniquito  = False) or (isNoFueAbortadoRelacionado  = False) ) then
+              begin
+                // Restauro el evento, al dataset original
+                MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
+                Abort;
+              end
+              else
+                begin
+                  // Borro finalmente
+                  MSQuery.Delete;
+
+                  // Devuelvo el valor verdadero, a una variable auxiliar,
+                  // porque no permite dentro de una messagedlg que devuelve datos
+                  ResultAux := True;
+
+                  // Restauro el evento, al dataset original
+                  MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
+                end;
+
+            end;
+
+            if AResult = mrNO then
+            begin
+              // Restauro el evento, al dataset original
+              MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
+            end;
+            if AResult <> mrNO and mrYes then
+            begin
+              // Restauro el evento, al dataset original
+              MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
+            end;
+
+
+          end);
+
+      end
+      else // Si no hay confirmacion de eliminacion
+        begin
+
+          if VerificarDatoRelacionado = True then
+          begin
+            isNoFueAbortadoRelacionado := VerificarDatoTablaRelacionada(Tabla, PrimaryField, Formulario, false);
+          end;
+
+          if VerificarPermiso = True then
+          begin
+            //isNoFueAbortadoPermiso := DMUsuario.VerificarPrivilegios(Menu, True , True , False);
+            isNoFueAbortadoPermiso:=True;
+          end;
+
+          if VerificarFiniquitado = True then
+          begin
+            isNoFueAbortadoFiniquito := VerificarFiniquidoTransaccion(MSQuery, Formulario, False);
+          end;
+
+          // Restauro el evento, al dataset original
+          MSQuery.BeforeDelete := DMPrincipal.MSQuerySQL.BeforeDelete;
+
+          //aborto - pero despues de haber colocado nuevamente el evento del beforeDelete al datasource
+          if ((isNoFueAbortadoPermiso = False) or (isNoFueAbortadoFiniquito  = False) or (isNoFueAbortadoRelacionado  = False) ) then
+          begin
+            Abort;
+          end;
+
+        end;
+    end;
+
+    // Aborto  al final solo cuando es con confirmacion, y aun no selecciono si o no
+    if (ConfirmarBorrado = True and isBorradoConfirmado = false) then
+    begin
+      Abort;
+    end;
+
+    // Devuelvo el result Auxiliar
+    Result := ResultAux;
+  end;
+end;
+{$ENDIF}
 
 
 procedure DMCalcFields(DataSet: TDataSet);

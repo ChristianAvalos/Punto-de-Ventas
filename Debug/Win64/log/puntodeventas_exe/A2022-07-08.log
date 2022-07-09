@@ -493,3 +493,24 @@ Puntodeventas.exe: 00000F68: 23:39:41 [HandleFileRequest[127.0.0.1]]:File not fo
 Puntodeventas.exe: 00003324: 23:39:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
 Puntodeventas.exe: 00002938: 23:39:41 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
 Puntodeventas.exe: 00002AB8: 23:39:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00002DFC: 23:46:03 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00002DFC: 23:46:03 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00002DFC: 23:46:03 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00002DFC: 23:46:03 [TUniGUISessionManager]:Cache erase job created, Folder count: [2]
+Puntodeventas.exe: 00002DFC: 23:46:03 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00002DFC: 23:46:03 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 00001588: 23:46:04 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 00004188: 23:46:04 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00002020: 23:46:04 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 0000290C: 23:46:04 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00002DFC: 23:53:55 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 00002DFC: 23:53:55 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 00002DFC: 23:53:56 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 00002DFC: 23:53:56 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 00002DFC: 23:53:56 [Terminated]:Exit Code: 0

@@ -52,6 +52,7 @@ resourcestring
   EEscribaRazonSocial = 'Escriba la razon social';
   ESeleccionePais = 'Seleccione pais';
   EModoNoEidicion = 'No encuentra en modo de Edición';
+  EBorrarRegistro = 'Borrar Registro';
 
     // MIME
   EMimeTIFF = 'image/tiff';
