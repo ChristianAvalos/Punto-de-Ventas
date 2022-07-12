@@ -1,0 +1,56 @@
+//NOMBRE DEL PROGRAMA
+program Puntodeventas;
+
+uses
+  Forms,
+  ServerModule in 'ServerModule.pas' {UniServerModule: TUniGUIServerModule},
+  MainModule in 'MainModule.pas' {UniMainModule: TUniGUIMainModule},
+  Main in 'Main.pas' {MainForm: TUniForm},
+  FormularioInicioSesion in 'Formularios\FormularioInicioSesion.pas' {FrmLogin: TUniLoginForm},
+  UnitVersion in 'Unit\UnitVersion.pas',
+  UnitServerModule in 'Unit\UnitServerModule.pas',
+  UnitVerificarModulo in 'Unit\UnitVerificarModulo.pas',
+  DataModulePrincipal in 'DataModule\DataModulePrincipal.pas' {DMPrincipal: TDataModule},
+  UnitValidaciones in 'Unit\UnitValidaciones.pas',
+  UnitRecursoString in 'Unit\UnitRecursoString.pas',
+  UnitValidarUsuario in 'Unit\UnitValidarUsuario.pas',
+  DataModuleUsuario in 'DataModule\DataModuleUsuario.pas' {DMUsuario: TDataModule},
+  UnitCodigosComunesDataModule in 'Unit\UnitCodigosComunesDataModule.pas',
+  SCrypt in 'Unit\SCrypt.pas',
+  UnitEncriptacion in 'Unit\UnitEncriptacion.pas',
+  UnitCodigosComunesString in 'Unit\UnitCodigosComunesString.pas',
+  ActiveDs_TLB in 'Unit\ActiveDs_TLB.pas',
+  adshlp in 'Unit\adshlp.pas',
+  FormularioCRUDMaestro in 'Formularios\FormularioCRUDMaestro.pas' {FrmCRUDMaestro: TUniForm},
+  FrameBarraInformacionOrganizacionUsuario in 'Formularios\FrameBarraInformacionOrganizacionUsuario.pas' {FmeBarraInformacionOrganizacionUsuario: TUniFrame},
+  FrameBarraNavegacionPrincipal in 'Formularios\FrameBarraNavegacionPrincipal.pas' {FmeBarraNavegacionPrincipal: TUniFrame},
+  FormularioPopupCRUDMaestro in 'Formularios\FormularioPopupCRUDMaestro.pas' {FrmPopupCRUDMaestro: TUniForm},
+  UnitSoporte in 'Unit\UnitSoporte.pas',
+  UnitCodigosComunesFormulario in 'Unit\UnitCodigosComunesFormulario.pas',
+  UnitCodigosComunes in 'Unit\UnitCodigosComunes.pas',
+  FrameBarraEstado in 'Formularios\FrameBarraEstado.pas' {FmeBarraEstado: TUniFrame},
+  FormularioUsuario in 'Formularios\FormularioUsuario.pas' {FrmUsuario: TUniForm},
+  UnitAuditoria in 'Unit\UnitAuditoria.pas',
+  FormularioUsuarioCambiarContrasena in 'Formularios\FormularioUsuarioCambiarContrasena.pas' {FrmUsuarioCambiarContrasena: TUniForm},
+  UnitDatos in 'Unit\UnitDatos.pas',
+  FrameBarraUltimaRevision in 'Formularios\FrameBarraUltimaRevision.pas',
+  FrameBarraMain in 'Formularios\FrameBarraMain.pas' {FmeBarraMain: TUniFrame},
+  FrameTitulo in 'Formularios\FrameTitulo.pas' {FmeTitulo: TUniFrame},
+  FormularioOrganizacion in 'Formularios\FormularioOrganizacion.pas' {FrmOrganizacion: TUniForm},
+  DataModuleOrganizacion in 'DataModule\DataModuleOrganizacion.pas' {DMOrganizacion: TDataModule},
+  UnitOperacionesFotografia in 'Unit\UnitOperacionesFotografia.pas',
+  FormularioMiUsuarioCambiarContrasena in 'Formularios\FormularioMiUsuarioCambiarContrasena.pas' {FrmMiUsuarioCambiarContrasena: TUniForm},
+  LuxandFaceSDK in 'Unit\LuxandFaceSDK.pas',
+  UnitArchivos in 'Unit\UnitArchivos.pas',
+  FormularioFicheroArticulo in 'Formularios\FormularioFicheroArticulo.pas' {FrmFicheroArticulos: TUniForm},
+  FrameFicheroArticulos in 'Frames\FrameFicheroArticulos.pas' {FrameArticulos: TUniFrame};
+
+{$R *.res}
+
+
+begin
+  ReportMemoryLeaksOnShutdown := True;
+  Application.Initialize;
+  TUniServerModule.Create(Application);
+  Application.Run;
+end.

@@ -303,6 +303,32 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <FormType>dfm</FormType>
             <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="Unit\UnitMenuEventos.pas"/>
+        <DCCReference Include="Formularios\FormularioAlerta.pas">
+            <Form>FrmAlerta</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioUsuarioPermiso.pas">
+            <Form>FrmUsuarioPermiso</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioInfoPopupMaestro.pas">
+            <Form>FrmInfoPopupMaestro</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DataModule\DataModuleComunUsuario.pas">
+            <Form>DMComunUsuario</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioUsuarioPermisoFormulario.pas">
+            <Form>FrmUsuarioPermisoFormulario</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

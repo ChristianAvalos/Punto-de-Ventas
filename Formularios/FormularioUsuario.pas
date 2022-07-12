@@ -38,6 +38,7 @@ type
     UniFileUpload: TUniFileUpload;
     PanelFoto: TUniPanel;
     BlobFoto: TUniDBImage;
+    btnPermisos: TUniMenuButton;
     procedure UniFormShow(Sender: TObject);
     procedure mnuContraseapordefectoClick(Sender: TObject);
     procedure btnCambiarContrasenaClick(Sender: TObject);
@@ -46,6 +47,7 @@ type
     procedure btnSubirFotoClick(Sender: TObject);
     procedure btnEliminarFotoClick(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
+    procedure btnPermisosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,7 +66,7 @@ uses
   {$IFNDEF DYNAMICSLINK}
    UnitOperacionesFotografia,
    {$ENDIF}
-  UnitRecursoString, LuxandFaceSDK;
+  UnitRecursoString, LuxandFaceSDK, FormularioUsuarioPermiso;
 
 function FrmUsuario: TFrmUsuario;
 begin
@@ -101,6 +103,19 @@ begin
       MSUsuario.Post;
     end;
   end;
+end;
+
+procedure TFrmUsuario.btnPermisosClick(Sender: TObject);
+begin
+  inherited;
+  // Verificar que no se encuentre en modo edicion o insercion
+  if DMUsuario.MSUsuario.State in dsEditModes then
+  begin
+    DMUsuario.MSUsuario.Post;
+  end;
+  FrmUsuarioPermiso.EnviadoDesdeFrm := Self.Name;
+  FrmUsuarioPermiso.BorderIcons := [biSystemMenu, biMinimize, biMaximize];
+  FrmUsuarioPermiso.ShowModal;
 end;
 
 procedure TFrmUsuario.btnSubirFotoClick(Sender: TObject);

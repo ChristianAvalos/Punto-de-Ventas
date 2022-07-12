@@ -1,0 +1,10 @@
+Puntodeventas.exe: 00004658: 22:06:52 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00004658: 22:06:52 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00004658: 22:06:52 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00004658: 22:06:52 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00004658: 22:06:52 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000046C8: 22:06:52 [HandleFileRequest[127.0.0.1]]:File not found: C:\Program Files (x86)\FMSoft\Framework\unigui\uni-1.90.0.1563\css\uni-xtheme.css
+Puntodeventas.exe: 000011C0: 22:06:52 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00001E98: 22:06:53 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00002410: 22:06:53 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00004658: 22:44:05 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0

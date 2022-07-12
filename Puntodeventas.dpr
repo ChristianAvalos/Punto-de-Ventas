@@ -43,7 +43,13 @@ uses
   LuxandFaceSDK in 'Unit\LuxandFaceSDK.pas',
   UnitArchivos in 'Unit\UnitArchivos.pas',
   FormularioFicheroArticulo in 'Formularios\FormularioFicheroArticulo.pas' {FrmFicheroArticulos: TUniForm},
-  FrameFicheroArticulos in 'Frames\FrameFicheroArticulos.pas' {FrameArticulos: TUniFrame};
+  FrameFicheroArticulos in 'Frames\FrameFicheroArticulos.pas' {FrameArticulos: TUniFrame},
+  UnitMenuEventos in 'Unit\UnitMenuEventos.pas',
+  FormularioAlerta in 'Formularios\FormularioAlerta.pas' {FrmAlerta: TUniForm},
+  FormularioUsuarioPermiso in 'Formularios\FormularioUsuarioPermiso.pas' {FrmUsuarioPermiso: TUniForm},
+  FormularioInfoPopupMaestro in 'Formularios\FormularioInfoPopupMaestro.pas' {FrmInfoPopupMaestro: TUniForm},
+  DataModuleComunUsuario in 'DataModule\DataModuleComunUsuario.pas' {DMComunUsuario: TDataModule},
+  FormularioUsuarioPermisoFormulario in 'Formularios\FormularioUsuarioPermisoFormulario.pas' {FrmUsuarioPermisoFormulario: TUniForm};
 
 {$R *.res}
 

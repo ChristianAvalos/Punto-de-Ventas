@@ -38,7 +38,6 @@ type
     MSUsuario: TMSQuery;
     DSUsuario: TDataSource;
     MSVerificarPermiso: TMSQuery;
-    IntegerField2: TIntegerField;
     DSVerificarPermiso: TDataSource;
     MSUsuarioIdUsuario: TIntegerField;
     MSUsuarioIdOrganizacion: TIntegerField;
@@ -58,6 +57,29 @@ type
     MSUsuarioPasswordStatus: TStringField;
     MSCambiarMiContrasena: TMSQuery;
     MSUsuarioTemplate: TBlobField;
+    DSPermisosDisponibles: TDataSource;
+    MSPermisosDisponibles: TMSQuery;
+    MSPermisosDisponiblesIdPermiso: TIntegerField;
+    MSPermisosDisponiblesIdUsuario: TIntegerField;
+    MSPermisosDisponiblesModulo: TStringField;
+    MSPermisosDisponiblesObjetoComponente: TStringField;
+    MSPermisosDisponiblesTipoComponente: TStringField;
+    MSPermisosDisponiblesTipoAcceso: TStringField;
+    MSPermisosDisponiblesUrevFechaHora: TDateTimeField;
+    MSPermisosDisponiblesUrevUsuario: TStringField;
+    MSPermisosDisponiblesUrevCalc: TWideStringField;
+    MSVerificarPermisoIdPermiso: TIntegerField;
+    MSVerificarPermisoIdUsuario: TIntegerField;
+    MSVerificarPermisoModulo: TStringField;
+    MSVerificarPermisoObjetoComponente: TStringField;
+    MSVerificarPermisoTipoComponente: TStringField;
+    MSVerificarPermisoTipoAcceso: TStringField;
+    MSVerificarPermisoUrevFechaHora: TDateTimeField;
+    MSVerificarPermisoUrevUsuario: TStringField;
+    MSVerificarPermisoUrevCalc: TWideStringField;
+    MSInsertarOperacion: TMSQuery;
+    MSBorrarPermiso: TMSSQL;
+    MSUsuarioOcultarMenuSinAcceso: TBooleanField;
     procedure MSUsuarioAfterCancel(DataSet: TDataSet);
     procedure MSUsuarioAfterPost(DataSet: TDataSet);
     procedure MSUsuarioAfterUpdateExecute(Sender: TCustomMSDataSet;
@@ -73,12 +95,17 @@ type
       var Action: TDataAction);
     procedure MSUsuarioCalcFields(DataSet: TDataSet);
     procedure MSUsuarioAfterDelete(DataSet: TDataSet);
+    procedure MSPermisosDisponiblesBeforePost(DataSet: TDataSet);
+    procedure MSVerificarPermisoBeforeOpen(DataSet: TDataSet);
+    procedure MSVerificarPermisoBeforePost(DataSet: TDataSet);
+    procedure MSVerificarPermisoNewRecord(DataSet: TDataSet);
   private
     { Private declarations }
     FEnviadoDesdeFrm, FUsuarioBorrar: string;
     Activo: Boolean;
   public
     { Public declarations }
+  function VerificarPrivilegios(NombreObjeto: String; VerificarTipoAcceso: Boolean = False; MostrarAlertaPermiso: Boolean = True ;  Abortar : Boolean= true): Boolean;
 
   property UsuarioBorrar: string read FUsuarioBorrar write FUsuarioBorrar;
       var
@@ -100,11 +127,19 @@ uses
   UniGUIVars, uniGUIMainModule, MainModule, DataModulePrincipal, UnitCodigosComunesDataModule, UnitVerificarModulo, UnitValidarUsuario,
    UnitRecursoString, UnitCodigosComunes, UnitCodigosComunesFormulario, UnitCodigosComunesString,
    SCrypt, FormularioUsuario, FormularioCRUDMaestro, UnitValidaciones, UnitOperacionesFotografia, Main, UnitEncriptacion,
-   ServerModule,uniGUIApplication,UnitDatos;
+   ServerModule,uniGUIApplication,UnitDatos,
+    {$IFDEF WEB}
+    FormularioAlerta;
+    {$ENDIF}
 
 function DMUsuario: TDMUsuario;
 begin
   Result := TDMUsuario(UniMainModule.GetModuleInstance(TDMUsuario));
+end;
+
+procedure TDMUsuario.MSPermisosDisponiblesBeforePost(DataSet: TDataSet);
+begin
+DMBeforePost(DataSet);
 end;
 
 procedure TDMUsuario.MSUsuarioAfterCancel(DataSet: TDataSet);
@@ -259,6 +294,113 @@ begin
   {$IFDEF WEB}
     DMPostError(FrmUsuario, E, Action);
   {$ENDIF}
+end;
+
+procedure TDMUsuario.MSVerificarPermisoBeforeOpen(DataSet: TDataSet);
+begin
+{$IFDEF WEB}
+  TMSQuery(DataSet).ParamByName('Modulo').Value := ObtenerNombreModulo;
+{$ENDIF}
+end;
+
+procedure TDMUsuario.MSVerificarPermisoBeforePost(DataSet: TDataSet);
+begin
+{$IFDEF WEB}
+  MSVerificarPermisoModulo.Value := ObtenerNombreModulo;
+{$ENDIF}
+  DMBeforePost(DataSet);
+end;
+
+procedure TDMUsuario.MSVerificarPermisoNewRecord(DataSet: TDataSet);
+begin
+  // El Id del usuario maestro
+  DMUsuario.MSVerificarPermisoIdUsuario.Value := DMUsuario.MSUsuarioIdUsuario.Value;
+
+  // De acuerdo al modulo asigno el valor inicial
+  DMUsuario.MSVerificarPermisoModulo.Value := ObtenerNombreModulo;
+end;
+
+function TDMUsuario.VerificarPrivilegios(NombreObjeto: String;
+  VerificarTipoAcceso, MostrarAlertaPermiso, Abortar: Boolean): Boolean;
+//  Ej.
+//  Boton : Self.Name + '.' + TUniButton(Sender).Name
+//  Menu  : TUniMenuItem(Sender).Name
+//  DMUsuario.VerificarPrivilegios(Self.Name + '.' + TUniButton(Sender).Name);
+{$IFDEF DESKTOP}
+var
+  FrmAlerta: TFrmAlerta;
+{$ENDIF}
+begin
+
+  MSVerificarPermiso.Close;
+  MSVerificarPermiso.ParamByName('IdUsuario').Value := UsuarioRecord.IdUsuario;
+  // Dependienco del Modulo paso el parametro restante
+  MSVerificarPermiso.ParamByName('Modulo').Value := ObtenerNombreModulo;
+
+  MSVerificarPermiso.ParamByName('ObjetoComponente').Value := NombreObjeto;
+  MSVerificarPermiso.Open;
+
+  //Si hay un permiso (en el query esta TOP 1, funciona bien, no tocar)
+  if DMUsuario.MSVerificarPermiso.RecordCount = 1 then
+  begin
+
+    Result := True;
+
+    // caso de verificar el tipo de Acceso, es True
+    if VerificarTipoAcceso = True then
+    begin
+      // Si el acceso es solo lectura, emitira el aviso de contactar al usuario
+      if MSVerificarPermisoTipoAcceso.Value = 'Sólo lectura' then
+      begin
+        Result := False;
+
+        {$IFDEF WEB}
+        if MostrarAlertaPermiso = True then
+        begin
+          FrmAlerta.ShowModal;
+          if (Abortar) then  Abort;
+        end;
+        {$ENDIF}
+      end;
+
+    end
+
+
+  end
+  else // En caso que exista registro
+    begin
+
+      Result := False;
+
+      if MostrarAlertaPermiso = True then
+      begin
+        {$IFDEF WEB}
+        FrmAlerta.ShowModal;
+        if (Abortar) then  Abort;
+        {$ENDIF}
+
+        {$IFDEF DESKTOP}
+        FrmAlerta := TFrmAlerta.Create(nil);
+
+        try
+          FrmAlerta.ShowModal;
+        finally
+          FrmAlerta.Free;
+        end;
+        {$ENDIF}
+
+      end;
+
+    end;
+
+  {$IFDEF WEB}
+  //Si pudo logear, ingresar al sistema el acceso
+  if Result = True then
+  begin
+    CapturarSesion(NombreObjeto);
+  end;
+  {$ENDIF}
+
 end;
 
 initialization

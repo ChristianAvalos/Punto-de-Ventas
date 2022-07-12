@@ -133,6 +133,9 @@ object DMUsuario: TDMUsuario
     object MSUsuarioTemplate: TBlobField
       FieldName = 'Template'
     end
+    object MSUsuarioOcultarMenuSinAcceso: TBooleanField
+      FieldName = 'OcultarMenuSinAcceso'
+    end
   end
   object DSUsuario: TDataSource
     DataSet = MSUsuario
@@ -142,14 +145,111 @@ object DMUsuario: TDMUsuario
   object MSVerificarPermiso: TMSQuery
     Connection = DMPrincipal.MSConnection
     SQL.Strings = (
+      'DECLARE @IdUsuario INT = :IdUsuario,'
+      '        @Modulo VARCHAR(30) = :Modulo,'
+      '        @ObjetoComponente VARCHAR(250) = :ObjetoComponente;'
+      ''
+      ''
+      ''
+      'SELECT TOP (1) *'
+      '  FROM (   SELECT IdPermiso,'
+      '                  IdUsuario,'
+      '                  Modulo,'
+      '                  ObjetoComponente,'
+      '                  TipoComponente,'
+      '                  TipoAcceso,'
+      '                  UrevFechaHora,'
+      '                  UrevUsuario,'
+      '                  UrevCalc'
+      '             FROM Usuario.Permiso'
+      '            WHERE IdUsuario = @IdUsuario'
+      '                  AND Modulo = @Modulo'
+      '                  AND ObjetoComponente = @ObjetoComponente'
+      '           UNION ALL'
+      '           SELECT IdPermiso = 0,'
+      '                  u.IdUsuario,'
+      '                  m.Descripcion,'
+      '                  o.ObjetoComponente,'
+      '                  o.TipoComponente,'
+      '                  NULL,'
+      '                  m.UrevFechaHora,'
+      '                  m.UrevUsuario,'
+      '                  m.UrevCalc'
+      '             FROM Usuario.Usuario u'
       
-        'SELECT ISNULL(COUNT(*), 0) AS CantidadUsuarios FROM Usuario.Usua' +
-        'rio')
-    Left = 248
-    Top = 40
-    object IntegerField2: TIntegerField
-      FieldName = 'CantidadUsuarios'
+        '             JOIN Usuario.UsuarioRol ur ON ur.IdUsuario = u.IdUs' +
+        'uario'
+      '             JOIN Usuario.Rol r ON r.IdRol = ur.IdRol'
+      '             JOIN Usuario.RolOperacion ro ON ro.IdRol = r.IdRol'
+      
+        '             JOIN Usuario.Operacion o ON o.IdOperacion = ro.IdOp' +
+        'eracion'
+      '             JOIN Usuario.Modulo m ON m.IdModulo = o.IdModulo'
+      '            WHERE m.Descripcion = @Modulo'
+      '                  AND o.ObjetoComponente = @ObjetoComponente'
+      '                  AND u.IdUsuario = @IdUsuario) AS t;')
+    BeforeOpen = MSVerificarPermisoBeforeOpen
+    BeforePost = MSVerificarPermisoBeforePost
+    OnNewRecord = MSVerificarPermisoNewRecord
+    Left = 249
+    Top = 39
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'IdUsuario'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'Modulo'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'ObjetoComponente'
+        Value = nil
+      end>
+    object MSVerificarPermisoIdPermiso: TIntegerField
+      FieldName = 'IdPermiso'
       ReadOnly = True
+    end
+    object MSVerificarPermisoIdUsuario: TIntegerField
+      FieldName = 'IdUsuario'
+      ReadOnly = True
+    end
+    object MSVerificarPermisoModulo: TStringField
+      FieldName = 'Modulo'
+      ReadOnly = True
+      Size = 30
+    end
+    object MSVerificarPermisoObjetoComponente: TStringField
+      FieldName = 'ObjetoComponente'
+      ReadOnly = True
+      Size = 250
+    end
+    object MSVerificarPermisoTipoComponente: TStringField
+      FieldName = 'TipoComponente'
+      ReadOnly = True
+      Size = 30
+    end
+    object MSVerificarPermisoTipoAcceso: TStringField
+      FieldName = 'TipoAcceso'
+      ReadOnly = True
+      Size = 30
+    end
+    object MSVerificarPermisoUrevFechaHora: TDateTimeField
+      FieldName = 'UrevFechaHora'
+      ReadOnly = True
+    end
+    object MSVerificarPermisoUrevUsuario: TStringField
+      FieldName = 'UrevUsuario'
+      ReadOnly = True
+      Size = 50
+    end
+    object MSVerificarPermisoUrevCalc: TWideStringField
+      FieldName = 'UrevCalc'
+      ReadOnly = True
+      Size = 4000
     end
   end
   object DSVerificarPermiso: TDataSource
@@ -286,6 +386,220 @@ object DMUsuario: TDMUsuario
       item
         DataType = ftInteger
         Name = 'IdUsuario'
+        Value = nil
+      end>
+  end
+  object DSPermisosDisponibles: TDataSource
+    DataSet = MSPermisosDisponibles
+    Left = 389
+    Top = 172
+  end
+  object MSPermisosDisponibles: TMSQuery
+    SQLInsert.Strings = (
+      'INSERT INTO Usuario.Permiso'
+      
+        '  (IdUsuario, Modulo, ObjetoComponente, TipoComponente, TipoAcce' +
+        'so, UrevFechaHora, UrevUsuario)'
+      'VALUES'
+      
+        '  (:IdUsuario, :Modulo, :ObjetoComponente, :TipoComponente, :Tip' +
+        'oAcceso, :UrevFechaHora, :UrevUsuario)'
+      'SET :IdPermiso = SCOPE_IDENTITY()')
+    SQLDelete.Strings = (
+      'DELETE FROM Usuario.Permiso'
+      'WHERE'
+      '  IdPermiso = :Old_IdPermiso')
+    SQLUpdate.Strings = (
+      'UPDATE Usuario.Permiso'
+      'SET'
+      
+        '  IdUsuario = :IdUsuario, Modulo = :Modulo, ObjetoComponente = :' +
+        'ObjetoComponente, TipoComponente = :TipoComponente, TipoAcceso =' +
+        ' :TipoAcceso, UrevFechaHora = :UrevFechaHora, UrevUsuario = :Ure' +
+        'vUsuario'
+      'WHERE'
+      '  IdPermiso = :Old_IdPermiso')
+    SQLRefresh.Strings = (
+      
+        'SELECT IdUsuario, Modulo, ObjetoComponente, TipoComponente, Tipo' +
+        'Acceso, UrevFechaHora, UrevUsuario FROM Usuario.Permiso'
+      'WHERE'
+      '  IdPermiso = :IdPermiso')
+    SQLLock.Strings = (
+      'SELECT * FROM Usuario.Permiso'
+      'WITH (UPDLOCK, ROWLOCK, HOLDLOCK)'
+      'WHERE'
+      '  IdPermiso = :Old_IdPermiso')
+    SQLRecCount.Strings = (
+      'SET :PCOUNT = (SELECT COUNT(*) FROM Usuario.Permiso'
+      ')')
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'SELECT * FROM Usuario.Permiso'
+      'WHERE IdUsuario = :IdUsuario AND '
+      'Modulo = :Modulo AND'
+      'TipoComponente IN (:TipoComponente)')
+    BeforePost = MSPermisosDisponiblesBeforePost
+    IndexFieldNames = 'ObjetoComponente'
+    Left = 389
+    Top = 117
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'IdUsuario'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'Modulo'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'TipoComponente'
+        Value = nil
+      end>
+    object MSPermisosDisponiblesIdPermiso: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'IdPermiso'
+      ReadOnly = True
+    end
+    object MSPermisosDisponiblesIdUsuario: TIntegerField
+      FieldName = 'IdUsuario'
+    end
+    object MSPermisosDisponiblesModulo: TStringField
+      FieldName = 'Modulo'
+      Size = 30
+    end
+    object MSPermisosDisponiblesObjetoComponente: TStringField
+      FieldName = 'ObjetoComponente'
+      Size = 250
+    end
+    object MSPermisosDisponiblesTipoComponente: TStringField
+      FieldName = 'TipoComponente'
+      Size = 30
+    end
+    object MSPermisosDisponiblesTipoAcceso: TStringField
+      FieldName = 'TipoAcceso'
+      Size = 30
+    end
+    object MSPermisosDisponiblesUrevFechaHora: TDateTimeField
+      FieldName = 'UrevFechaHora'
+    end
+    object MSPermisosDisponiblesUrevUsuario: TStringField
+      FieldName = 'UrevUsuario'
+      Size = 50
+    end
+    object MSPermisosDisponiblesUrevCalc: TWideStringField
+      FieldName = 'UrevCalc'
+      ReadOnly = True
+      Size = 4000
+    end
+  end
+  object MSInsertarOperacion: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'DECLARE @Modulo VARCHAR(30) = :Modulo ,'
+      '        @ObjetoComponente VARCHAR(250) = :ObjetoComponente ,'
+      '        @TipoComponente VARCHAR(30) = :TipoComponente,'
+      '@Caption VARCHAR(120) = :Caption'
+      ''
+      ''
+      ''
+      ''
+      
+        'IF NOT EXISTS (SELECT * FROM Usuario.Modulo WHERE Descripcion = ' +
+        '@Modulo)'
+      'BEGIN'
+      #9'IF @Modulo IS NOT NULL '
+      #9'begin'
+      #9#9'INSERT INTO Usuario.Modulo (Descripcion,'
+      #9#9#9#9#9#9#9#9#9'UrevUsuario,'
+      #9#9#9#9#9#9#9#9#9'UrevFechaHora)'
+      #9#9'VALUES (@Modulo, -- Descripcion - varchar(50)'
+      #9#9#9#9#39'Sistema'#39', -- UrevUsuario - varchar(50)'
+      #9#9#9#9'GETDATE() -- UrevFechaHora - datetime'
+      #9#9#9');'
+      #9'END'
+      ''
+      'END;'
+      ''
+      
+        'IF NOT EXISTS (SELECT * FROM Usuario.Operacion WHERE Modulo = @M' +
+        'odulo AND ObjetoComponente = @ObjetoComponente AND TipoComponent' +
+        'e = @TipoComponente)'
+      'BEGIN'
+      ''
+      ''
+      ''
+      '    INSERT INTO Usuario.Operacion (IdModulo,'
+      '                                   Modulo,'
+      '                                   ObjetoComponente,'
+      '                                   TipoComponente,'
+      '                                   UrevFechaHora,'
+      #9#9#9#9#9#9#9#9'   Caption)'
+      '    SELECT IdModulo,'
+      '           Descripcion,'
+      '           @ObjetoComponente,'
+      '           @TipoComponente,'
+      '           GETDATE(),'
+      #9#9'   @Caption'
+      '      FROM Usuario.Modulo'
+      '     WHERE Descripcion = @Modulo;'
+      ''
+      ''
+      ''
+      ''
+      'END;'
+      '')
+    Left = 60
+    Top = 230
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'Modulo'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'ObjetoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'TipoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'Caption'
+        Value = nil
+      end>
+  end
+  object MSBorrarPermiso: TMSSQL
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'DELETE  FROM  Usuario.Permiso'
+      'WHERE  IdUsuario = :IdUsuario AND '
+      'Modulo = :Modulo AND'
+      'ObjetoComponente = ISNULL(:ObjetoComponente,ObjetoComponente )'
+      '')
+    Left = 226
+    Top = 251
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'IdUsuario'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'Modulo'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'ObjetoComponente'
         Value = nil
       end>
   end
