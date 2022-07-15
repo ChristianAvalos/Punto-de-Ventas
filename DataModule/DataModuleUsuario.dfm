@@ -1,6 +1,6 @@
 object DMUsuario: TDMUsuario
-  Height = 480
-  Width = 640
+  Height = 573
+  Width = 899
   object MSExisteUsuarios: TMSQuery
     Connection = DMPrincipal.MSConnection
     SQL.Strings = (
@@ -215,35 +215,28 @@ object DMUsuario: TDMUsuario
     end
     object MSVerificarPermisoIdUsuario: TIntegerField
       FieldName = 'IdUsuario'
-      ReadOnly = True
     end
     object MSVerificarPermisoModulo: TStringField
       FieldName = 'Modulo'
-      ReadOnly = True
       Size = 30
     end
     object MSVerificarPermisoObjetoComponente: TStringField
       FieldName = 'ObjetoComponente'
-      ReadOnly = True
       Size = 250
     end
     object MSVerificarPermisoTipoComponente: TStringField
       FieldName = 'TipoComponente'
-      ReadOnly = True
       Size = 30
     end
     object MSVerificarPermisoTipoAcceso: TStringField
       FieldName = 'TipoAcceso'
-      ReadOnly = True
       Size = 30
     end
     object MSVerificarPermisoUrevFechaHora: TDateTimeField
       FieldName = 'UrevFechaHora'
-      ReadOnly = True
     end
     object MSVerificarPermisoUrevUsuario: TStringField
       FieldName = 'UrevUsuario'
-      ReadOnly = True
       Size = 50
     end
     object MSVerificarPermisoUrevCalc: TWideStringField
@@ -552,8 +545,8 @@ object DMUsuario: TDMUsuario
       ''
       'END;'
       '')
-    Left = 60
-    Top = 230
+    Left = 574
+    Top = 171
     ParamData = <
       item
         DataType = ftUnknown
@@ -600,6 +593,340 @@ object DMUsuario: TDMUsuario
       item
         DataType = ftString
         Name = 'ObjetoComponente'
+        Value = nil
+      end>
+  end
+  object MSRol: TMSQuery
+    SQLInsert.Strings = (
+      'INSERT INTO Usuario.Rol'
+      '  (Descripcion, UrevUsuario, UrevFechaHora)'
+      'VALUES'
+      '  (:Descripcion, :UrevUsuario, :UrevFechaHora)'
+      'SET :IdRol = SCOPE_IDENTITY()')
+    SQLDelete.Strings = (
+      'DELETE FROM Usuario.Rol'
+      'WHERE'
+      '  IdRol = :Old_IdRol')
+    SQLUpdate.Strings = (
+      'UPDATE Usuario.Rol'
+      'SET'
+      
+        '  Descripcion = :Descripcion, UrevUsuario = :UrevUsuario, UrevFe' +
+        'chaHora = :UrevFechaHora'
+      'WHERE'
+      '  IdRol = :Old_IdRol')
+    SQLRefresh.Strings = (
+      'SELECT Descripcion, UrevUsuario, UrevFechaHora FROM Usuario.Rol'
+      'WHERE'
+      '  IdRol = :IdRol')
+    SQLLock.Strings = (
+      'SELECT * FROM Usuario.Rol'
+      'WITH (UPDLOCK, ROWLOCK, HOLDLOCK)'
+      'WHERE'
+      '  IdRol = :Old_IdRol')
+    SQLRecCount.Strings = (
+      'SET :PCOUNT = (SELECT COUNT(*) FROM Usuario.Rol'
+      ')')
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'SELECT * FROM Usuario.Rol')
+    Left = 389
+    Top = 242
+    object MSRolIdRol: TIntegerField
+      FieldName = 'IdRol'
+      ReadOnly = True
+    end
+    object MSRolDescripcion: TStringField
+      FieldName = 'Descripcion'
+      Size = 50
+    end
+    object MSRolUrevUsuario: TStringField
+      FieldName = 'UrevUsuario'
+      Size = 50
+    end
+    object MSRolUrevFechaHora: TDateTimeField
+      FieldName = 'UrevFechaHora'
+    end
+    object MSRolUrevCalc: TWideStringField
+      FieldName = 'UrevCalc'
+      ReadOnly = True
+      Size = 4000
+    end
+  end
+  object DSRol: TDataSource
+    DataSet = MSRol
+    Left = 389
+    Top = 294
+  end
+  object MSRolOperacion: TMSQuery
+    SQLInsert.Strings = (
+      'INSERT INTO Usuario.RolOperacion'
+      '  (IdRol, IdOperacion, UrevUsuario, UrevFechaHora)'
+      'VALUES'
+      '  (:IdRol, :IdOperacion, :UrevUsuario, :UrevFechaHora)'
+      'SET :IdRolOperacion = SCOPE_IDENTITY()')
+    SQLDelete.Strings = (
+      'DELETE FROM Usuario.RolOperacion'
+      'WHERE'
+      '  IdRolOperacion = :Old_IdRolOperacion')
+    SQLUpdate.Strings = (
+      'UPDATE Usuario.RolOperacion'
+      'SET'
+      
+        '  IdRol = :IdRol, IdOperacion = :IdOperacion, UrevUsuario = :Ure' +
+        'vUsuario, UrevFechaHora = :UrevFechaHora'
+      'WHERE'
+      '  IdRolOperacion = :Old_IdRolOperacion')
+    SQLRefresh.Strings = (
+      'SELECT ro.*,'
+      '       o.ObjetoComponente,'
+      '       o.TipoComponente,'
+      '       o.Caption,'
+      '       m.IdModulo'
+      '  FROM Usuario.RolOperacion ro'
+      '  JOIN Usuario.Rol r ON r.IdRol = ro.IdRol'
+      '  JOIN Usuario.Operacion o ON o.IdOperacion = ro.IdOperacion'
+      '  JOIN Usuario.Modulo m ON m.IdModulo = o.IdModulo'
+      ''
+      'WHERE'
+      '  ro.IdRolOperacion = :IdRolOperacion')
+    SQLLock.Strings = (
+      'SELECT * FROM Usuario.RolOperacion'
+      'WITH (UPDLOCK, ROWLOCK, HOLDLOCK)'
+      'WHERE'
+      '  IdRolOperacion = :Old_IdRolOperacion')
+    SQLRecCount.Strings = (
+      'SET :PCOUNT = (SELECT COUNT(*) FROM Usuario.RolOperacion'
+      ')')
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'SELECT ro.*,'
+      '       o.ObjetoComponente,'
+      '       o.TipoComponente,'
+      '       o.Caption,'
+      '       m.IdModulo'
+      '  FROM Usuario.RolOperacion ro'
+      '  JOIN Usuario.Rol r ON r.IdRol = ro.IdRol'
+      '  JOIN Usuario.Operacion o ON o.IdOperacion = ro.IdOperacion'
+      '  JOIN Usuario.Modulo m ON m.IdModulo = o.IdModulo'
+      ' WHERE r.IdRol = :IdRol'
+      'and m.Descripcion = :Modulo'
+      '')
+    BeforeOpen = MSRolOperacionBeforeOpen
+    BeforePost = MSPermisosDisponiblesBeforePost
+    OnNewRecord = MSRolOperacionNewRecord
+    Left = 461
+    Top = 243
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'IdRol'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'Modulo'
+        Value = nil
+      end>
+    object MSRolOperacionIdRolOperacion: TIntegerField
+      FieldName = 'IdRolOperacion'
+      ReadOnly = True
+    end
+    object MSRolOperacionIdRol: TIntegerField
+      FieldName = 'IdRol'
+    end
+    object MSRolOperacionIdOperacion: TIntegerField
+      FieldName = 'IdOperacion'
+    end
+    object MSRolOperacionUrevUsuario: TStringField
+      FieldName = 'UrevUsuario'
+      Size = 50
+    end
+    object MSRolOperacionUrevFechaHora: TDateTimeField
+      FieldName = 'UrevFechaHora'
+    end
+    object MSRolOperacionUrevCalc: TWideStringField
+      FieldName = 'UrevCalc'
+      ReadOnly = True
+      Size = 4000
+    end
+    object MSRolOperacionIdModulo: TIntegerField
+      FieldName = 'IdModulo'
+      ReadOnly = True
+    end
+    object MSRolOperacionObjetoComponente: TStringField
+      FieldName = 'ObjetoComponente'
+      ReadOnly = True
+      Size = 250
+    end
+    object MSRolOperacionTipoComponente: TStringField
+      FieldName = 'TipoComponente'
+      ReadOnly = True
+      Size = 30
+    end
+    object MSRolOperacionCaption: TStringField
+      FieldName = 'Caption'
+      ReadOnly = True
+      Size = 120
+    end
+  end
+  object DSRolOperacion: TDataSource
+    DataSet = MSRolOperacion
+    Left = 461
+    Top = 294
+  end
+  object MSInsertarRolOperacion: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'DECLARE @IdRol INT = :IdRol,'
+      '        @IdOperacion INT,'
+      '        @UrevUsuario VARCHAR(50) = :UrevUsuario,'
+      '        @ObjetoComponente VARCHAR(250) = :ObjetoComponente,'
+      '        @TipoComponente VARCHAR(30) = :TipoComponente,'
+      '        @Modulo VARCHAR(30) = :Modulo;'
+      ''
+      ''
+      'SELECT @IdOperacion = o.IdOperacion'
+      '  FROM Usuario.Operacion o'
+      '  JOIN Usuario.Modulo m ON m.IdModulo = o.IdModulo'
+      ' WHERE m.Descripcion = @Modulo'
+      '       AND o.ObjetoComponente = @ObjetoComponente'
+      '       AND o.TipoComponente = @TipoComponente;'
+      ''
+      'INSERT INTO Usuario.RolOperacion (IdRol,'
+      '                                  IdOperacion,'
+      '                                  UrevUsuario,'
+      '                                  UrevFechaHora)'
+      'VALUES (@IdRol, @IdOperacion, @UrevUsuario, GETDATE());'
+      ''
+      '')
+    BeforeOpen = MSInsertarRolOperacionBeforeOpen
+    Left = 585
+    Top = 243
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'IdRol'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'UrevUsuario'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'ObjetoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'TipoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'Modulo'
+        Value = nil
+      end>
+  end
+  object MSVerificarOperacion: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'DECLARE @IdRol INT = :IdRol,'
+      '        @IdOperacion INT,'
+      '        @UrevUsuario VARCHAR(50) = :UrevUsuario,'
+      '        @ObjetoComponente VARCHAR(250) = :ObjetoComponente,'
+      '        @TipoComponente VARCHAR(30) = :TipoComponente,'
+      '        @Modulo VARCHAR(30) = :Modulo;'
+      ''
+      ''
+      ''
+      'SELECT o.*'
+      '  FROM Usuario.Operacion o'
+      '  JOIN Usuario.Modulo m ON m.IdModulo = o.IdModulo'
+      '  JOIN Usuario.RolOperacion ro ON ro.IdOperacion = o.IdOperacion'
+      '  JOIN Usuario.Rol r ON r.IdRol = ro.IdRol'
+      ' WHERE m.Descripcion = @Modulo'
+      '       AND o.ObjetoComponente = @ObjetoComponente'
+      '       AND r.IdRol = @IdRol;')
+    BeforeOpen = MSVerificarOperacionBeforeOpen
+    Left = 589
+    Top = 304
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'IdRol'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'UrevUsuario'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'ObjetoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'TipoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftString
+        Name = 'Modulo'
+        Value = nil
+      end>
+  end
+  object MSBorrarOperacion: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'DECLARE @IdRol INT = :IdRol,'
+      '        @IdOperacion INT,'
+      '        @UrevUsuario VARCHAR(50) = :UrevUsuario,'
+      '        @ObjetoComponente VARCHAR(250) = :ObjetoComponente,'
+      '        @TipoComponente VARCHAR(30) = :TipoComponente,'
+      '        @Modulo VARCHAR(30) = :Modulo;'
+      ''
+      ''
+      'SELECT @IdOperacion = o.IdOperacion'
+      '  FROM Usuario.Operacion o'
+      '  JOIN Usuario.Modulo m ON m.IdModulo = o.IdModulo'
+      ' WHERE m.Descripcion = @Modulo'
+      '       AND o.ObjetoComponente = @ObjetoComponente'
+      ''
+      ''
+      'DELETE FROM Usuario.RolOperacion'
+      ' WHERE IdRol = @IdRol'
+      '       AND IdOperacion = @IdOperacion;')
+    Left = 392
+    Top = 352
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'IdRol'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'UrevUsuario'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'ObjetoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'TipoComponente'
+        Value = nil
+      end
+      item
+        DataType = ftUnknown
+        Name = 'Modulo'
         Value = nil
       end>
   end

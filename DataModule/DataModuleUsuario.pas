@@ -80,6 +80,28 @@ type
     MSInsertarOperacion: TMSQuery;
     MSBorrarPermiso: TMSSQL;
     MSUsuarioOcultarMenuSinAcceso: TBooleanField;
+    MSRol: TMSQuery;
+    MSRolIdRol: TIntegerField;
+    MSRolDescripcion: TStringField;
+    MSRolUrevUsuario: TStringField;
+    MSRolUrevFechaHora: TDateTimeField;
+    MSRolUrevCalc: TWideStringField;
+    DSRol: TDataSource;
+    MSRolOperacion: TMSQuery;
+    MSRolOperacionIdRolOperacion: TIntegerField;
+    MSRolOperacionIdRol: TIntegerField;
+    MSRolOperacionIdOperacion: TIntegerField;
+    MSRolOperacionUrevUsuario: TStringField;
+    MSRolOperacionUrevFechaHora: TDateTimeField;
+    MSRolOperacionUrevCalc: TWideStringField;
+    MSRolOperacionIdModulo: TIntegerField;
+    MSRolOperacionObjetoComponente: TStringField;
+    MSRolOperacionTipoComponente: TStringField;
+    MSRolOperacionCaption: TStringField;
+    DSRolOperacion: TDataSource;
+    MSInsertarRolOperacion: TMSQuery;
+    MSVerificarOperacion: TMSQuery;
+    MSBorrarOperacion: TMSQuery;
     procedure MSUsuarioAfterCancel(DataSet: TDataSet);
     procedure MSUsuarioAfterPost(DataSet: TDataSet);
     procedure MSUsuarioAfterUpdateExecute(Sender: TCustomMSDataSet;
@@ -99,6 +121,10 @@ type
     procedure MSVerificarPermisoBeforeOpen(DataSet: TDataSet);
     procedure MSVerificarPermisoBeforePost(DataSet: TDataSet);
     procedure MSVerificarPermisoNewRecord(DataSet: TDataSet);
+    procedure MSRolOperacionBeforeOpen(DataSet: TDataSet);
+    procedure MSRolOperacionNewRecord(DataSet: TDataSet);
+    procedure MSInsertarRolOperacionBeforeOpen(DataSet: TDataSet);
+    procedure MSVerificarOperacionBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
     FEnviadoDesdeFrm, FUsuarioBorrar: string;
@@ -137,9 +163,26 @@ begin
   Result := TDMUsuario(UniMainModule.GetModuleInstance(TDMUsuario));
 end;
 
+procedure TDMUsuario.MSInsertarRolOperacionBeforeOpen(DataSet: TDataSet);
+begin
+  MSInsertarRolOperacion.ParamByName('Modulo').Value := ObtenerNombreModulo;
+  MSInsertarRolOperacion.ParamByName('IdRol').Value := MSRolIdRol.Value;
+end;
+
 procedure TDMUsuario.MSPermisosDisponiblesBeforePost(DataSet: TDataSet);
 begin
 DMBeforePost(DataSet);
+end;
+
+procedure TDMUsuario.MSRolOperacionBeforeOpen(DataSet: TDataSet);
+begin
+MSRolOperacion.ParamByName('Modulo').Value := ObtenerNombreModulo;
+MSRolOperacion.ParamByName('IdRol').Value := MSRolIdRol.Value;
+end;
+
+procedure TDMUsuario.MSRolOperacionNewRecord(DataSet: TDataSet);
+begin
+MSRolOperacionidRol.Value := MSRolIdRol.Value;
 end;
 
 procedure TDMUsuario.MSUsuarioAfterCancel(DataSet: TDataSet);
@@ -294,6 +337,11 @@ begin
   {$IFDEF WEB}
     DMPostError(FrmUsuario, E, Action);
   {$ENDIF}
+end;
+
+procedure TDMUsuario.MSVerificarOperacionBeforeOpen(DataSet: TDataSet);
+begin
+MSVerificarOperacion.ParamByName('IdRol').Value := MSRolIdRol.Value;
 end;
 
 procedure TDMUsuario.MSVerificarPermisoBeforeOpen(DataSet: TDataSet);

@@ -5022,7 +5022,7 @@ object MainForm: TMainForm
     ScreenMask.Enabled = True
     ScreenMask.Target = Owner
     Left = 114
-    Top = 272
+    Top = 271
     object HolaMundo1: TUniMenuItem
       Caption = 'Hola Mundo'
     end

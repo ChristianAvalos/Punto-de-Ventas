@@ -937,23 +937,6 @@ begin
       end;
 
     end);
-
-    {$IFDEF DOCUMENTALLITE}
-    MainForm.mnuPanelInicio.Visible := True;
-    MainForm.mnuPanelCambiarContrasena.Visible := True;
-
-    for i := 0 to MainForm.MenuPrincipal.Items.Count - 1 do
-    begin
-      if MainForm.MenuPrincipal.Items[i].Name <> 'mnuPanelInicio' then
-      begin
-        if MainForm.MenuPrincipal.Items[i].Visible = False then
-        begin
-          OcultarUnMenu(MainForm.UniTreeMenu, MainForm.MenuPrincipal, i);
-        end;
-      end;
-    end;
-
-    {$ENDIF}
 end;
 
 

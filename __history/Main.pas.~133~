@@ -52,6 +52,8 @@ type
     UniPageControl1: TUniPageControl;
     UniTabSheet1: TUniTabSheet;
     UniContainerPanel1: TUniContainerPanel;
+    UniImage1: TUniImage;
+    UniImageList1: TUniImageList;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
@@ -62,10 +64,11 @@ type
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
     procedure mnuFicherosArticulosFichaClick(Sender: TObject);
+    procedure TabSheetClose(Sender: TObject; var AllowClose: Boolean);
 
   private
     { Private declarations }
-    B :string;
+  procedure CreaMenu(Formulario:TUniForm);
   public
     { Public declarations }
   end;
@@ -78,11 +81,41 @@ implementation
 
 uses
   uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
-  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos;
+  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos, UnitMenuEventos;
 
 function MainForm: TMainForm;
 begin
   Result := TMainForm(UniMainModule.GetFormInstance(TMainForm));
+end;
+
+procedure TMainForm.CreaMenu(Formulario: TUniForm);
+var
+Ts : TUniTabSheet;
+Nd : TUniTreeNode;
+begin
+  Nd := UniTreeMenu.Selected;
+
+  if Nd.Count = 0 then
+   begin
+   Ts := Nd.Data;
+   if not Assigned(Ts) then
+   Begin
+    //Creo el nuevo tab
+    Ts := TUniTabSheet.Create(Self);
+    Ts.PageControl :=UniPageControl1;
+    //le doy los atributos que va a mostrar
+    Ts.Name:=Formulario.name;
+    Ts.Closable := True;
+    Ts.OnClose := TabSheetClose;
+    Ts.Tag := NativeInt(Nd);
+    Ts.Caption:=Formulario.Caption;
+
+    Formulario.Parent :=TS;
+    //Paso esta variable para que no se cree un tab mas si ya esta abierto
+    Nd.Data:=Ts;
+   end;
+   UniPageControl1.ActivePage:=Ts;
+   end;
 end;
 
 procedure TMainForm.lblCerrarSesionClick(Sender: TObject);
@@ -92,31 +125,8 @@ begin
 end;
 
 procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
-var
-Ts : TUniTabSheet;
- begin
-  if mnuFicherosArticulosFicha.Count = 0 then
-   begin
-   if B<>'SI' then
-   Begin
-    //Creo el nuevo tab
-    Ts := TUniTabSheet.Create(Self);
-    Ts.PageControl :=UniPageControl1;
-    //le doy los atributos que va a mostrar
-    Ts.Name:=FrmFicheroArticulos.Name;
-    Ts.Closable := True;
-    Ts.Caption:=FrmFicheroArticulos.Caption;
-//    Ts.AlignmentControl:=uniAlignmentClient;
-//    TS.Align:=alClient;
-//    Ts.PageControl.AlignmentControl:= uniAlignmentClient;
-
-    FrmFicheroArticulos.Parent :=TS;
-    //Paso esta variable para que no se cree un tab mas si ya esta abierto
-    B:='SI';
-   end;
-   UniPageControl1.ActivePage:=Ts;
-   end;
-
+begin
+CreaMenu(FrmFicheroArticulos);
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);
@@ -140,6 +150,21 @@ begin
 FrmOrganizacion.Show;
 end;
 
+procedure TMainForm.TabSheetClose(Sender: TObject; var AllowClose: Boolean);
+var
+  Ts : TUniTabSheet;
+  Nd : TUniTreeNode;
+begin
+  Ts := Sender as TUniTabSheet;
+  Nd := Pointer(Ts.Tag);
+  if Assigned(Nd) then
+  begin
+    Nd.Data := nil;
+    if UniTreeMenu.Selected = Nd then
+      UniTreeMenu.Selected := nil;
+  end;
+end;
+
 procedure TMainForm.UniFormAfterShow(Sender: TObject);
 begin
      // CargarIndicadorDemo(TClasePanel(PanelModoDemo));
@@ -149,6 +174,9 @@ procedure TMainForm.UniFormCreate(Sender: TObject);
 begin
 //Version de la aplicacion
 lblVersion.Caption := 'Versión ' + ObtenerVersionApp;
+  // Creo el Arbol de menus
+  Arbol := TNode<TMenuItemRecord>.Create;
+  CargarMenuEstandar(UniMenuItems1.Items);
 end;
 
 procedure TMainForm.UniFormShow(Sender: TObject);
@@ -172,6 +200,10 @@ begin
     begin
       CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
     end;
+  if DMUsuario.UsuarioRecord.OcultarMenuSinAcceso = True then
+  begin
+    OcultarMenuSinAcceso;
+  end;
 
 end;
 

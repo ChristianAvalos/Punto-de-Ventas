@@ -14,6 +14,7 @@ inherited FrmUsuario: TFrmUsuario
     end
     inherited lblUsuario: TUniDBText
       Width = 53
+      ExplicitWidth = 53
     end
   end
   inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal

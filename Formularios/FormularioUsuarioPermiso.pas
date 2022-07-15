@@ -340,23 +340,6 @@ begin
         DMComunUsuario.VTMenuControlesHijos.Value := TieneHijosControles;
         DMComunUsuario.VTMenuControlesHijosPermitido.Value := TieneHijosControlesPermitidos;
 
-
-        {$IFDEF DOCUMENTALLITE}
-        //Oculto las opciones de liquidación en los clientes que no sean 'SEAM'
-        if not(DMPrincipal.NombreCliente = 'SEAM') then
-        begin
-          if (Pos('PanelFichero', Item.Data.ObjetoComponente) <> 0) then
-          begin
-            DMComunUsuario.VTMenu.Cancel;
-          end
-        end;
-
-        if (Pos('mnuPanelInicio', Item.Data.ObjetoComponente) <> 0) then
-        begin
-          DMComunUsuario.VTMenu.Cancel;
-        end;
-        {$ENDIF}
-
         //=================================================
         if DMComunUsuario.VTMenu.State in dsEditModes then
         begin
@@ -639,7 +622,7 @@ end;
 
 procedure TFrmUsuarioPermiso.UniFormCreate(Sender: TObject);
 begin
-  AgregarBotonSoporte(Self);
+ // AgregarBotonSoporte(Self);
 end;
 
 

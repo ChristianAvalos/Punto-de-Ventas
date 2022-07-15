@@ -13,8 +13,8 @@ object FrmUsuarioPermiso: TFrmUsuarioPermiso
   OnCreate = UniFormCreate
   TextHeight = 15
   object tgridMenu: TUniDBTreeGrid
-    Left = 8
-    Top = 28
+    Left = 9
+    Top = 26
     Width = 549
     Height = 514
     Hint = ''

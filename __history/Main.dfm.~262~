@@ -1035,6 +1035,8 @@ object MainForm: TMainForm
                 ParentAlignmentControl = False
                 Caption = 'Main'
                 Layout = 'vbox'
+                LayoutConfig.Flex = 80
+                LayoutConfig.Width = '100%'
                 object UniContainerPanel1: TUniContainerPanel
                   Left = 0
                   Top = 0
@@ -1043,15 +1045,19 @@ object MainForm: TMainForm
                   Hint = ''
                   ParentColor = False
                   Align = alClient
+                  AlignmentControl = uniAlignmentClient
+                  ParentAlignmentControl = False
                   TabOrder = 0
+                  Layout = 'vbox'
+                  LayoutConfig.Flex = 100
                   LayoutConfig.Width = '100%'
-                  ExplicitTop = -1
                   object UniImage1: TUniImage
                     Left = 0
                     Top = 0
                     Width = 901
                     Height = 743
                     Hint = ''
+                    ParentShowHint = False
                     Stretch = True
                     Picture.Data = {
                       0A544A504547496D616765FCEC0100FFD8FFE000104A46494600010101004800
@@ -5000,9 +5006,8 @@ object MainForm: TMainForm
                       0000000000000000000000000000000000000000000000000000000000000000
                       00000000000000001FFFD9}
                     Align = alClient
-                    ExplicitTop = -1
-                    ExplicitWidth = 960
-                    ExplicitHeight = 476
+                    LayoutConfig.Flex = 100
+                    LayoutConfig.Width = '100%'
                   end
                 end
               end
@@ -5017,7 +5022,7 @@ object MainForm: TMainForm
     ScreenMask.Enabled = True
     ScreenMask.Target = Owner
     Left = 114
-    Top = 274
+    Top = 272
     object HolaMundo1: TUniMenuItem
       Caption = 'Hola Mundo'
     end

@@ -478,10 +478,10 @@ var
   QryBorrarPermiso: TMSQuery;
 begin
 
-//  DatasetUsuario := DMUsuario.MSRol;
-//  DatasetVerificarPermiso := DMUsuario.MSVerificarOperacion;
-//  DatasetInsertarOperacion := DMUsuario.MSInsertarRolOperacion;
-//  QryBorrarPermiso := DMUsuario.MSBorrarOperacion;
+  DatasetUsuario := DMUsuario.MSRol;
+  DatasetVerificarPermiso := DMUsuario.MSVerificarOperacion;
+  DatasetInsertarOperacion := DMUsuario.MSInsertarRolOperacion;
+  QryBorrarPermiso := DMUsuario.MSBorrarOperacion;
 
       if Dataset.FieldByName('Permitido').Value = True then
       begin

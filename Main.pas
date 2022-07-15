@@ -81,7 +81,7 @@ implementation
 
 uses
   uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
-  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos;
+  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos, UnitMenuEventos;
 
 function MainForm: TMainForm;
 begin
@@ -174,6 +174,9 @@ procedure TMainForm.UniFormCreate(Sender: TObject);
 begin
 //Version de la aplicacion
 lblVersion.Caption := 'Versión ' + ObtenerVersionApp;
+  // Creo el Arbol de menus
+  Arbol := TNode<TMenuItemRecord>.Create;
+  CargarMenuEstandar(UniMenuItems1.Items);
 end;
 
 procedure TMainForm.UniFormShow(Sender: TObject);
@@ -197,6 +200,10 @@ begin
     begin
       CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
     end;
+  if DMUsuario.UsuarioRecord.OcultarMenuSinAcceso = True then
+  begin
+    OcultarMenuSinAcceso;
+  end;
 
 end;
 
