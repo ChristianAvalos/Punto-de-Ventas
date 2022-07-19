@@ -1,0 +1,22 @@
+Puntodeventas.exe: 00001B08: 20:33:22 [127.0.0.1]:Failed Sequence Recovery: SeqId: 52, Event: beforeclose
+Puntodeventas.exe: 00001B08: 20:33:25 [127.0.0.1]:Sequence sent from cache:  SeqId: 52
+Puntodeventas.exe: 00001B08: 20:33:25 [127.0.0.1]:Processed: Id: 52, Evt: beforeclose, [PponoEcgLU10ACBA4C6]
+Puntodeventas.exe: 00001D68: 20:33:25 [127.0.0.1]:Failed Sequence Recovery: SeqId: 52, Event: beforeclose
+Puntodeventas.exe: 00001D68: 20:33:25 [127.0.0.1]:Sequence sent from cache:  SeqId: 52
+Puntodeventas.exe: 00001D68: 20:33:25 [127.0.0.1]:Processed: Id: 52, Evt: beforeclose, [PponoEcgLU10ACBA4C6]
+Puntodeventas.exe: 000013BC: 20:33:25 [127.0.0.1]:Failed Sequence Recovery: SeqId: 52, Event: beforeclose
+Puntodeventas.exe: 000013BC: 20:33:25 [127.0.0.1]:Sequence sent from cache:  SeqId: 52
+Puntodeventas.exe: 000013BC: 20:33:25 [127.0.0.1]:Processed: Id: 52, Evt: beforeclose, [PponoEcgLU10ACBA4C6]
+Puntodeventas.exe: 000016AC: 20:34:34 [127.0.0.1]:Failed Sequence Recovery: SeqId: 66, Event: beforeclose
+Puntodeventas.exe: 000016AC: 20:34:34 [127.0.0.1]:Sequence sent from cache:  SeqId: 66
+Puntodeventas.exe: 000016AC: 20:34:34 [127.0.0.1]:Processed: Id: 66, Evt: beforeclose, [PponoEcgLU10ACBA4C6]
+Puntodeventas.exe: 00003C6C: 21:12:30 [127.0.0.1]:Failed Sequence Recovery: SeqId: 18, Event: click
+Puntodeventas.exe: 00001ABC: 21:20:52 [127.0.0.1]:Failed Sequence Recovery: SeqId: 35, Event: select
+Puntodeventas.exe: 00004510: 21:20:52 [127.0.0.1]:Failed Sequence Recovery: SeqId: 36, Event: edit
+Puntodeventas.exe: 00001ABC: 21:21:06 [127.0.0.1]:Sequence sent from cache:  SeqId: 35
+Puntodeventas.exe: 00001ABC: 21:21:06 [127.0.0.1]:Processed: Id: 35, Evt: select, [gybWjmDrRi10ACBB207]
+Puntodeventas.exe: 00004510: 21:21:06 [127.0.0.1]:Sequence sent from cache:  SeqId: 36
+Puntodeventas.exe: 00004510: 21:21:10 [127.0.0.1]:Processed: Id: 36, Evt: edit, [gybWjmDrRi10ACBB207]
+Puntodeventas.exe: 000046C0: 21:21:12 [127.0.0.1]:Failed Sequence Recovery: SeqId: 35, Event: select
+Puntodeventas.exe: 000046C0: 21:21:12 [127.0.0.1]:Sequence sent from cache:  SeqId: 35
+Puntodeventas.exe: 000046C0: 21:21:12 [127.0.0.1]:Processed: Id: 35, Evt: select, [gybWjmDrRi10ACBB207]

@@ -365,10 +365,10 @@ begin
   DMUsuario.MSPermisosDisponibles.Close;
   DMUsuario.MSPermisosDisponibles.ParamByName('IdUsuario').Value := DMUsuario.MSUsuarioIdUsuario.Value;
 
-  if (Self.EnviadoDesdeFrm = 'FrmFicheroUsuario') then
-  begin // en caso de masivo
-    DMUsuario.MSPermisosDisponibles.ParamByName('IdUsuario').Clear;
-  end;
+//  if (Self.EnviadoDesdeFrm = 'FrmFicheroUsuario') then
+//  begin // en caso de masivo
+//    DMUsuario.MSPermisosDisponibles.ParamByName('IdUsuario').Clear;
+//  end;
 
   DMUsuario.MSPermisosDisponibles.ParamByName('Modulo').Value := ObtenerNombreModulo;
   DMUsuario.MSPermisosDisponibles.ParamByName('TipoComponente').Value := TipoComponenteMenu;
@@ -612,7 +612,7 @@ begin
         else
           begin
             // Visualizar todos los menus
-          //  MostrarTodosMenus(MainForm.MenuPrincipal);
+           // MostrarTodosMenus(MainForm.UniMenuItems1);
           end;
     {$ENDIF}
   end;

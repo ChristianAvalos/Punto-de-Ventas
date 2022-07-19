@@ -12,25 +12,31 @@ uses
 type
     TUsuarioRecord = record
     IdUsuario: integer;
+    IdOrganizacion: Integer;
     LoginUsuario: string;
     Contrasena: string;
-
-    Email: string;
     NombresApellidos: string;
-    DocumentoNro: string;
-    IdPersonal: integer;
-    IdMedico: Integer;
-    IdPersona: integer;
+    Email: string;
     Foto: TBlobField;
     OcultarMenuSinAcceso: Boolean;
-    AdministradorPortal: Boolean;
-    AdministradorRHMini: Boolean;
-    AdministradorMiddleware: Boolean;
-    AdministradorAutoservicio: Boolean;
-    Evaluador: Boolean;
     LDAP: Boolean;
-    IdOrganigrama: Integer;
-    IdConcesionario: Integer
+
+
+
+//    DocumentoNro: string;
+//    IdPersonal: integer;
+//    IdMedico: Integer;
+//    IdPersona: integer;
+
+//
+//    AdministradorPortal: Boolean;
+//    AdministradorRHMini: Boolean;
+//    AdministradorMiddleware: Boolean;
+//    AdministradorAutoservicio: Boolean;
+//    Evaluador: Boolean;
+
+//    IdOrganigrama: Integer;
+//    IdConcesionario: Integer
     end;
   TDMUsuario = class(TDataModule)
     MSExisteUsuarios: TMSQuery;
@@ -79,7 +85,6 @@ type
     MSVerificarPermisoUrevCalc: TWideStringField;
     MSInsertarOperacion: TMSQuery;
     MSBorrarPermiso: TMSSQL;
-    MSUsuarioOcultarMenuSinAcceso: TBooleanField;
     MSRol: TMSQuery;
     MSRolIdRol: TIntegerField;
     MSRolDescripcion: TStringField;
@@ -102,6 +107,7 @@ type
     MSInsertarRolOperacion: TMSQuery;
     MSVerificarOperacion: TMSQuery;
     MSBorrarOperacion: TMSQuery;
+    MSUsuarioOcultarMenuSinAcceso: TBooleanField;
     procedure MSUsuarioAfterCancel(DataSet: TDataSet);
     procedure MSUsuarioAfterPost(DataSet: TDataSet);
     procedure MSUsuarioAfterUpdateExecute(Sender: TCustomMSDataSet;
@@ -125,6 +131,7 @@ type
     procedure MSRolOperacionNewRecord(DataSet: TDataSet);
     procedure MSInsertarRolOperacionBeforeOpen(DataSet: TDataSet);
     procedure MSVerificarOperacionBeforeOpen(DataSet: TDataSet);
+    procedure MSUsuarioBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
     FEnviadoDesdeFrm, FUsuarioBorrar: string;
@@ -276,6 +283,11 @@ begin
   {$ENDIF}
 end;
 
+procedure TDMUsuario.MSUsuarioBeforeOpen(DataSet: TDataSet);
+begin
+AsignarIdOrganizacion(DataSet);
+end;
+
 procedure TDMUsuario.MSUsuarioBeforePost(DataSet: TDataSet);
 begin
   // Hago trim con el nombre de usuario, siempre y cuando no sea el administrador
@@ -327,6 +339,7 @@ procedure TDMUsuario.MSUsuarioNewRecord(DataSet: TDataSet);
 begin
   MSUsuarioIdOrganizacion.Value := 1;
   MSUsuarioActivo.Value := True;
+  MSUsuarioOcultarMenuSinAcceso.Value := True;
   // Parametro por defecto del usuario
    MSUsuarioContrasena.Value := TScrypt.HashPassword('123456');
 end;
@@ -368,8 +381,8 @@ begin
   DMUsuario.MSVerificarPermisoModulo.Value := ObtenerNombreModulo;
 end;
 
-function TDMUsuario.VerificarPrivilegios(NombreObjeto: String;
-  VerificarTipoAcceso, MostrarAlertaPermiso, Abortar: Boolean): Boolean;
+function TDMUsuario.VerificarPrivilegios(NombreObjeto: String; VerificarTipoAcceso: Boolean = False;
+MostrarAlertaPermiso: Boolean = True ;  Abortar : Boolean= true): Boolean;
 //  Ej.
 //  Boton : Self.Name + '.' + TUniButton(Sender).Name
 //  Menu  : TUniMenuItem(Sender).Name

@@ -345,6 +345,8 @@ begin
   {$ENDIF}
 end;
 
+
+
 procedure TDMComunUsuario.MSUsuarioBeforeOpen(DataSet: TDataSet);
 begin
   AsignarIdOrganizacion(DataSet);

@@ -40,6 +40,8 @@ type
     MSObtenerIdentificarPKcolumn_name: TWideStringField;
     MSSQL: TMSSQL;
     msqlmntr1: TMSSQLMonitor;
+    MSVerificarUsuarioTemplate: TBlobField;
+    MSVerificarUsuarioOcultarMenuSinAcceso: TBooleanField;
     procedure MSConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }

@@ -11,6 +11,7 @@ uses
   uniImageList, Vcl.Imaging.jpeg, FrameBarraNavegacionPrincipal;
 
 type
+  TProcedimiento = reference to procedure();
   TMainForm = class(TUniForm)
     PanelGeneralIzquierda: TUniPanel;
     PanelLogotipo: TUniPanel;
@@ -55,11 +56,9 @@ type
     UniImage1: TUniImage;
     UniImageList1: TUniImageList;
     procedure UniFormShow(Sender: TObject);
-    procedure mnuHerramientasUsuariosClick(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
     procedure Usuarios1Click(Sender: TObject);
     procedure UniFormAfterShow(Sender: TObject);
-    procedure Organizacin1Click(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
@@ -69,6 +68,7 @@ type
   private
     { Private declarations }
   procedure CreaMenu(Formulario:TUniForm);
+  procedure EjecutarProcedimiento(NombreObjeto: string; Procedimiento: TProcedimiento);
   public
     { Public declarations }
   end;
@@ -126,29 +126,48 @@ end;
 
 procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
 begin
-CreaMenu(FrmFicheroArticulos);
+    EjecutarProcedimiento('mnuFicherosArticulosFicha',
+    procedure()
+    begin
+      CreaMenu(FrmFicheroArticulos);
+    end);
+
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);
+  procedure CargarHerramientaUsuario;
+  begin
+    FrmUsuario.EnviadoDesdeFrm := Self.Name;
+    FrmUsuario.ShowModal;
+  end;
+
 begin
-FrmUsuario.Show();
+
+  // Verifico que en caso que sea el admin, salto de largo
+  if DMUsuario.UsuarioRecord.LoginUsuario <> 'Admin' then
+  begin
+    // Se le tiene que pasar el nombre del objeto que se quiere verificar si tiene permiso
+    // en este caso es un menu
+    if DMUsuario.VerificarPrivilegios('mnuHerramientasFicheroUsuario') = True then
+    begin
+      CargarHerramientaUsuario;
+    end;
+  end
+  else
+    begin
+      CargarHerramientaUsuario;
+    end;
 end;
 
 procedure TMainForm.mnuHerramientasOrganizacionClick(Sender: TObject);
 begin
-FrmOrganizacion.Show;
+  if DMUsuario.VerificarPrivilegios('mnuHerramientasOrganizacion') = True then
+  begin
+    FrmOrganizacion.ShowModal;
+  end;
 end;
 
-procedure TMainForm.mnuHerramientasUsuariosClick(Sender: TObject);
-begin
-FrmUsuario.EnviadoDesdeFrm := 'MainForm';
-FrmUsuario.show();
-end;
 
-procedure TMainForm.Organizacin1Click(Sender: TObject);
-begin
-FrmOrganizacion.Show;
-end;
 
 procedure TMainForm.TabSheetClose(Sender: TObject; var AllowClose: Boolean);
 var
@@ -184,6 +203,7 @@ begin
   // Nombre de usuario
   lblNombreApellidoUsuario.Caption := DMUsuario.UsuarioRecord.NombresApellidos;
 
+
   //Ocultos los datos innecesarios por el momento
   lblOrganigramaUsuario.Visible:= False;
   imgOrganigrama.Visible:=False;
@@ -198,18 +218,31 @@ begin
   end
   else
     begin
-      CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
+     // CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
     end;
-  if DMUsuario.UsuarioRecord.OcultarMenuSinAcceso = True then
-  begin
-    OcultarMenuSinAcceso;
-  end;
+
+     if DMUsuario.UsuarioRecord.OcultarMenuSinAcceso = True then
+     begin
+      OcultarMenuSinAcceso;
+     end;
 
 end;
+
 
 procedure TMainForm.Usuarios1Click(Sender: TObject);
 begin
 FrmUsuario.Show();
+end;
+procedure TMainForm.EjecutarProcedimiento(NombreObjeto: string; Procedimiento: TProcedimiento);
+begin
+
+  if DMUsuario.VerificarPrivilegios(NombreObjeto) = True then
+  begin
+      /// Ejecuto el procedimiento
+      Procedimiento;
+
+  end;
+
 end;
 
 initialization

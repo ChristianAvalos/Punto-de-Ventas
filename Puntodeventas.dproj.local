@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/07/06 23:26:04.000.358,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.pas</Transaction>
-    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.dfm</Transaction>
+    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/11 21:16:01.000.094,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioUsuarioPermiso.pas</Transaction>
     <Transaction>2022/07/11 21:17:36.000.367,=F:\Proyectos Personales\PuntodeVentas\Unit\UnitMenuEventos.pas</Transaction>
     <Transaction>2022/07/11 21:54:09.000.563,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioAlerta.pas</Transaction>

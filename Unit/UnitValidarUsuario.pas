@@ -417,7 +417,7 @@ begin
     DMUsuario.UsuarioRecord.NombresApellidos := IfNull(DatasetVerificarUsuario.FieldByName('NombresApellidos').Value, '');
 
     // Opciones del menu
-    //DMUsuario.UsuarioRecord.OcultarMenuSinAcceso := DatasetVerificarUsuario.FieldByName('OcultarMenuSinAcceso').AsBoolean;
+    DMUsuario.UsuarioRecord.OcultarMenuSinAcceso := DatasetVerificarUsuario.FieldByName('OcultarMenuSinAcceso').AsBoolean;
 
     {$IFDEF RAPY}
     //evaluador

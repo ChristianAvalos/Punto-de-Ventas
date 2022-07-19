@@ -139,7 +139,7 @@ object UniServerModule: TUniServerModule
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
   DefaultImageFormat = cfPNG
-  SuppressErrors = [errObjectNotFound, errAjax]
+  SuppressErrors = []
   Bindings = <>
   MainFormDisplayMode = mfPage
   CustomCSS.Strings = (
@@ -598,6 +598,7 @@ object UniServerModule: TUniServerModule
   ServerMessages.LoadingMessage = 'Cargando...'
   ServerMessages.InvalidSessionMessage = 'Sesi'#243'n no v'#225'lida o tiempo de espera agotado.'
   ServerMessages.TerminateMessage = 'Sesi'#243'n web finalizada'
+  Compression.Level = zcFastest
   ServerLimits.MaxRequests = 1000
   SSL.SSLOptions.RootCertFile = 'root.pem'
   SSL.SSLOptions.CertFile = 'cert.pem'
@@ -607,10 +608,10 @@ object UniServerModule: TUniServerModule
   SSL.SSLOptions.Mode = sslmUnassigned
   SSL.SSLOptions.VerifyMode = []
   SSL.SSLOptions.VerifyDepth = 0
-  Options = [soShowLicenseInfo, soAutoPlatformSwitch, soWipeShadowSessions, soControlNameAsId]
+  Options = [soShowLicenseInfo, soAutoPlatformSwitch, soRestartSessionOnTimeout, soAllowSessionRecording, soWipeShadowSessions]
   ConnectionFailureRecovery.ErrorMessage = 'Error de conexi'#243'n'
   ConnectionFailureRecovery.RetryMessage = 'Reintentando...'
   OnBeforeInit = UniGUIServerModuleBeforeInit
-  Height = 150
-  Width = 215
+  Height = 414
+  Width = 683
 end

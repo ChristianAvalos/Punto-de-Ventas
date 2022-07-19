@@ -84,12 +84,12 @@ object DMPrincipal: TDMPrincipal
         DataType = ftString
         Name = 'NombreUsuario'
         Size = 5
-        Value = nil
+        Value = Null
       end
       item
         DataType = ftUnknown
         Name = 'Email'
-        Value = nil
+        Value = Null
       end>
     object MSVerificarUsuarioIdUsuario: TIntegerField
       FieldName = 'IdUsuario'
@@ -138,6 +138,12 @@ object DMPrincipal: TDMPrincipal
       FieldName = 'UrevCalc'
       ReadOnly = True
       Size = 4000
+    end
+    object MSVerificarUsuarioTemplate: TBlobField
+      FieldName = 'Template'
+    end
+    object MSVerificarUsuarioOcultarMenuSinAcceso: TBooleanField
+      FieldName = 'OcultarMenuSinAcceso'
     end
   end
   object DSVerificarUsuario: TDataSource

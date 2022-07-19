@@ -20,12 +20,12 @@ object DMUsuario: TDMUsuario
       
         '  (IdOrganizacion, NombreUsuario, Contrasena, Email, Activo, Nom' +
         'bresApellidos, Foto, DocumentoNro, Observacion, UrevUsuario, Ure' +
-        'vFechaHora, Template)'
+        'vFechaHora, Template, OcultarMenuSinAcceso)'
       'VALUES'
       
         '  (:IdOrganizacion, :NombreUsuario, :Contrasena, :Email, :Activo' +
         ', :NombresApellidos, :Foto, :DocumentoNro, :Observacion, :UrevUs' +
-        'uario, :UrevFechaHora, :Template)'
+        'uario, :UrevFechaHora, :Template, :OcultarMenuSinAcceso)'
       'SET :IdUsuario = SCOPE_IDENTITY()')
     SQLDelete.Strings = (
       'DELETE FROM Usuario.Usuario'
@@ -39,14 +39,16 @@ object DMUsuario: TDMUsuario
         'io, Contrasena = :Contrasena, Email = :Email, Activo = :Activo, ' +
         'NombresApellidos = :NombresApellidos, Foto = :Foto, DocumentoNro' +
         ' = :DocumentoNro, Observacion = :Observacion, UrevUsuario = :Ure' +
-        'vUsuario, UrevFechaHora = :UrevFechaHora, Template = :Template'
+        'vUsuario, UrevFechaHora = :UrevFechaHora, Template = :Template, ' +
+        'OcultarMenuSinAcceso = :OcultarMenuSinAcceso'
       'WHERE'
       '  IdUsuario = :Old_IdUsuario')
     SQLRefresh.Strings = (
       
         'SELECT IdOrganizacion, NombreUsuario, Contrasena, Email, Activo,' +
         ' NombresApellidos, Foto, DocumentoNro, Observacion, UrevUsuario,' +
-        ' UrevFechaHora, Template FROM Usuario.Usuario'
+        ' UrevFechaHora, Template, OcultarMenuSinAcceso FROM Usuario.Usua' +
+        'rio'
       'WHERE'
       '  IdUsuario = :IdUsuario')
     SQLLock.Strings = (
@@ -63,6 +65,7 @@ object DMUsuario: TDMUsuario
       'ORDER BY  IdUsuario ;')
     BeforeUpdateExecute = MSUsuarioBeforeUpdateExecute
     AfterUpdateExecute = MSUsuarioAfterUpdateExecute
+    BeforeOpen = MSUsuarioBeforeOpen
     BeforeInsert = MSUsuarioBeforeInsert
     BeforeEdit = MSUsuarioBeforeEdit
     BeforePost = MSUsuarioBeforePost
@@ -143,6 +146,44 @@ object DMUsuario: TDMUsuario
     Top = 108
   end
   object MSVerificarPermiso: TMSQuery
+    SQLInsert.Strings = (
+      'INSERT INTO Usuario.Permiso'
+      
+        '  (IdUsuario, Modulo, ObjetoComponente, TipoComponente, TipoAcce' +
+        'so, UrevFechaHora, UrevUsuario)'
+      'VALUES'
+      
+        '  (:IdUsuario, :Modulo, :ObjetoComponente, :TipoComponente, :Tip' +
+        'oAcceso, :UrevFechaHora, :UrevUsuario)'
+      'SET :IdPermiso = SCOPE_IDENTITY()')
+    SQLDelete.Strings = (
+      'DELETE FROM Usuario.Permiso'
+      'WHERE'
+      '  IdPermiso = :Old_IdPermiso')
+    SQLUpdate.Strings = (
+      'UPDATE Usuario.Permiso'
+      'SET'
+      
+        '  IdUsuario = :IdUsuario, Modulo = :Modulo, ObjetoComponente = :' +
+        'ObjetoComponente, TipoComponente = :TipoComponente, TipoAcceso =' +
+        ' :TipoAcceso, UrevFechaHora = :UrevFechaHora, UrevUsuario = :Ure' +
+        'vUsuario'
+      'WHERE'
+      '  IdPermiso = :Old_IdPermiso')
+    SQLRefresh.Strings = (
+      
+        'SELECT IdUsuario, Modulo, ObjetoComponente, TipoComponente, Tipo' +
+        'Acceso, UrevFechaHora, UrevUsuario FROM Usuario.Permiso'
+      'WHERE'
+      '  IdPermiso = :IdPermiso')
+    SQLLock.Strings = (
+      'SELECT * FROM Usuario.Permiso'
+      'WITH (UPDLOCK, ROWLOCK, HOLDLOCK)'
+      'WHERE'
+      '  IdPermiso = :Old_IdPermiso')
+    SQLRecCount.Strings = (
+      'SET :PCOUNT = (SELECT COUNT(*) FROM Usuario.Permiso'
+      ')')
     Connection = DMPrincipal.MSConnection
     SQL.Strings = (
       'DECLARE @IdUsuario INT = :IdUsuario,'
@@ -191,23 +232,25 @@ object DMUsuario: TDMUsuario
     BeforeOpen = MSVerificarPermisoBeforeOpen
     BeforePost = MSVerificarPermisoBeforePost
     OnNewRecord = MSVerificarPermisoNewRecord
-    Left = 249
+    Left = 251
     Top = 39
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'IdUsuario'
-        Value = nil
+        Value = 1015
       end
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'Modulo'
-        Value = nil
+        Size = 11
+        Value = 'PUNTOVENTAS'
       end
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'ObjetoComponente'
-        Value = nil
+        Size = 29
+        Value = 'mnuHerramientasFicheroUsuario'
       end>
     object MSVerificarPermisoIdPermiso: TIntegerField
       FieldName = 'IdPermiso'
@@ -218,7 +261,7 @@ object DMUsuario: TDMUsuario
     end
     object MSVerificarPermisoModulo: TStringField
       FieldName = 'Modulo'
-      Size = 30
+      Size = 50
     end
     object MSVerificarPermisoObjetoComponente: TStringField
       FieldName = 'ObjetoComponente'
@@ -273,7 +316,7 @@ object DMUsuario: TDMUsuario
       'GO')
     Connection = DMPrincipal.MSConnection
     Left = 392
-    Top = 40
+    Top = 39
     MacroData = <
       item
         Name = 'UsuarioVerificacion'
@@ -435,7 +478,7 @@ object DMUsuario: TDMUsuario
     BeforePost = MSPermisosDisponiblesBeforePost
     IndexFieldNames = 'ObjetoComponente'
     Left = 389
-    Top = 117
+    Top = 116
     ParamData = <
       item
         DataType = ftInteger
