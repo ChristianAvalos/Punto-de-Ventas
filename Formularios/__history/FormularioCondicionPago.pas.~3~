@@ -1,0 +1,35 @@
+unit FormularioCondicionPago;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, FormularioCRUDMaestro, uniGUIBaseClasses,
+  uniImageList, uniStatusBar, FrameBarraNavegacionPrincipal, uniGUIFrame,
+  FrameBarraInformacionOrganizacionUsuario, uniEdit, uniDBEdit, uniLabel,
+  FrameBarraUltimaRevision, uniPanel;
+
+type
+  TFrmCondiciondePago = class(TFrmCRUDMaestro)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmCondiciondePago: TFrmCondiciondePago;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication;
+
+function FrmCondiciondePago: TFrmCondiciondePago;
+begin
+  Result := TFrmCondiciondePago(UniMainModule.GetFormInstance(TFrmCondiciondePago));
+end;
+
+end.

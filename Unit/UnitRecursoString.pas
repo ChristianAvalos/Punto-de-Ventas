@@ -53,6 +53,16 @@ resourcestring
   ESeleccionePais = 'Seleccione pais';
   EModoNoEidicion = 'No encuentra en modo de Edición';
   EBorrarRegistro = 'Borrar Registro';
+  ESeleccioneTipoCondicionPago = 'Seleccione el tipo de pago';
+  EEscribaDescripcion = 'Escriba la descripción';
+  ERegistroEdicion = 'Registro editado';
+  ERegistroGuardado = 'Registro guardado';
+  EEscribaParametroBusqueda = 'Escriba parámetro de búsqueda';
+  EExcepcionSoloAceptaNumeros = 'Este parámetro solo acepta números enteros';
+  EExcepcionParametroInvalido = 'Parámetro inválido';
+  ENoExistenRegistrosBusqueda = 'No existe registro en la búsqueda';
+  EDataSetEdicion = 'El DataSet se encuentra en edición';
+  ENoHayRegistroSeleccionadoBusqueda = 'No hay registro seleccionado en la búsqueda';
 
     // MIME
   EMimeTIFF = 'image/tiff';

@@ -1,0 +1,24 @@
+inherited FrmBusquedaCondicionPago: TFrmBusquedaCondicionPago
+  Caption = 'B'#250'squeda - Condici'#243'n de Pago'
+  TextHeight = 15
+  inherited cboParametros: TUniComboBox
+    Text = 'Descripci'#243'n'
+    Items.Strings = (
+      'C'#243'digo'
+      'Descripci'#243'n'
+      'Tipo')
+    ItemIndex = 1
+  end
+  inherited btnBuscar: TUniBitBtn
+    ScreenMask.Target = Owner
+  end
+  inherited btnCerrar: TUniBitBtn
+    ScreenMask.Target = Owner
+  end
+  inherited btnIraRegistro: TUniMenuButton
+    ScreenMask.Target = Owner
+  end
+  inherited mnuBtnMenu: TUniPopupMenu
+    ScreenMask.Target = Owner
+  end
+end

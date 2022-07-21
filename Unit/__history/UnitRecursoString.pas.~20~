@@ -1,0 +1,78 @@
+unit UnitRecursoString;
+{$INCLUDE 'compilador.inc'}
+interface
+resourcestring
+  // =============================================================================//
+  // INICIO DE SESION
+  // Operaciones con usuarios (Login y Validaciones)
+  EEscribaNombreUsuario = 'Escriba un nombre de usuario';
+  EEscribaTextoCaptcha = 'Escriba el texto del captcha';
+  ETextoCaptchaIncorrecto = 'El texto del captcha es incorrecto';
+
+  EEscribaPIN = 'Escriba su PIN';
+  EEscribaPINActual = 'Escriba su PIN actual';
+  EEscribaPINRepetir = 'Escriba su PIN nuevo';
+  EPINNOCoincide = 'PIN no coincide';
+  EPINActualIncorrecto = 'PIN actual incorrecto';
+
+  EEscribaContrasena = 'Escriba una contraseña';
+  EPasswordNoCoincide = 'Las contraseñas no coinciden';
+  EPasswordActualNoCoincide = 'La contraseña actual es incorrecta';
+  EPasswordCambiadoExito = 'Contraseña cambiado con éxito';
+
+  EContrasenaoUsuarioIncorrecta = 'Usuario o Contraseña incorrecta';
+  EContrasenaMedianteLDAP = 'La contraseña debe cambiarse mediante LDAP / AD';
+  EAutoservicioMedianteLDAP = 'El autoservicio se autentica mediante LDAP / AD';
+  ESoloPuedeCambiarContrasenaUsuarioActivo = 'Sólo se puede cambiar contraseña de usuarios activos';
+  ENoExistenUsuariosDefinidos = 'No existen usuarios definidos. Valores predeterminados fueron insertados.';
+  EFuncionalidadNoAdmitePermisos = 'Esta funcionalidad no admite permisos';
+  ESeleccioneUsuario = 'Seleccione un usuario';
+  EUsuarioCreado = 'Se creo correctamente el usuario';
+  EUsuarioBorrado = 'Se elimino correctamente el usuario';
+  EIPNovalido = 'Escriba una IP válida';
+  ENoPuedeAccederAlmacen = 'No posee acceso a este almacén';
+  EUsuarioInvalidoNoExiste = 'No existe Usuario o es inválido';
+  EExistenPermisosDeseaSobreescribirlos = 'Existen permisos existentes, ¿Desea sobre escribirlos?';
+  EUsuarioYaExiste = 'El usuario ya existe';
+  EExistePersonalDocumento = 'Ya existe un personal con ese Número de Documento';
+  EExistePersonalLegajoNro = 'Ya existe un personal con ese Número de Legajo';
+  EUsuarioCaracterInvalido = 'El nombre de usuario no puede tener caracteres especiales';
+  ESeleccioneRol = 'Seleccione el Rol del usuario';
+  ESeleccioneModulo = 'Seleccione el módulo';
+  EEscribaPass = 'Escriba la contraseña';
+  ESeleccioneFecha = 'Seleccione Fecha';
+  EDeseaCancelarOperacion = 'Desea cancelar la operación';
+  EErrorEliminarDatosRelacionados ='Eliminar datos relacionados';
+  ENoExistenDatos = 'No existen datos';
+  ETransaccionAnulado = 'Transaccion anulada';
+  ETransaccionFiniquitada = 'Transaccion finiquitada';
+  EErrorFormatoNumeroDocumento = 'Error formato de documento';
+  EExcepcion = 'Excepción';
+  EErrorAsignarCampoIdOrganizacionDataset = 'Erro al asignar IdOrganizacion';
+  EEscribaRazonSocial = 'Escriba la razon social';
+  ESeleccionePais = 'Seleccione pais';
+  EModoNoEidicion = 'No encuentra en modo de Edición';
+  EBorrarRegistro = 'Borrar Registro';
+  ESeleccioneTipoCondicionPago = 'Seleccione el tipo de pago';
+  EEscribaDescripcion = 'Escriba la descripción';
+  ERegistroEdicion = 'Registro editado';
+  ERegistroGuardado = 'Registro guardado';
+  EEscribaParametroBusqueda = 'Escriba parámetro de búsqueda';
+
+    // MIME
+  EMimeTIFF = 'image/tiff';
+  EMimePDF = 'application/pdf';
+  EMimeDOC = 'application/msword';
+  EMimeDOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+  EMimeXLS = 'application/vnd.ms-excel';
+  EMimeXLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+  EMimeJPG = 'image/jpeg';
+  EMimeDBF = 'application/dbf';
+  EMimePFX = 'application/x-pkcs12';
+  EMimeCRT = 'application/x-x509-user-cert';
+  EMimeKEY = 'application/pkcs8';
+
+
+implementation
+
+end.

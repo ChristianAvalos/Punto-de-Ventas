@@ -20,3 +20,33 @@ Puntodeventas.exe: 00004510: 21:21:10 [127.0.0.1]:Processed: Id: 36, Evt: edit, 
 Puntodeventas.exe: 000046C0: 21:21:12 [127.0.0.1]:Failed Sequence Recovery: SeqId: 35, Event: select
 Puntodeventas.exe: 000046C0: 21:21:12 [127.0.0.1]:Sequence sent from cache:  SeqId: 35
 Puntodeventas.exe: 000046C0: 21:21:12 [127.0.0.1]:Processed: Id: 35, Evt: select, [gybWjmDrRi10ACBB207]
+Puntodeventas.exe: 00000E9C: 22:09:25 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 000028B4: 22:09:25 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 00000E9C: 22:09:25 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 00000E9C: 22:09:25 [127.0.0.1]:Processed: Id: 4, Evt: click, [hZz8ugTOku10ACBBEF4]
+Puntodeventas.exe: 000028B4: 22:09:25 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 00000F60: 22:09:27 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 000028B4: 22:09:27 [127.0.0.1]:Processed: Id: 4, Evt: click, [hZz8ugTOku10ACBBEF4]
+Puntodeventas.exe: 00000FEC: 22:09:27 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 00000F60: 22:09:27 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 00000F60: 22:09:27 [127.0.0.1]:Processed: Id: 4, Evt: click, [hZz8ugTOku10ACBBEF4]
+Puntodeventas.exe: 00000FEC: 22:09:27 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 00000FEC: 22:09:27 [127.0.0.1]:Processed: Id: 4, Evt: click, [hZz8ugTOku10ACBBEF4]
+Puntodeventas.exe: 00004370: 23:41:16 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 00004370: 23:41:16 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 00004370: 23:41:16 [127.0.0.1]:Processed: Id: 4, Evt: click, [MySy8Z1r9P10ACBD766]
+Puntodeventas.exe: 000026C4: 23:41:19 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 000026C4: 23:41:19 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 000026C4: 23:41:19 [127.0.0.1]:Processed: Id: 4, Evt: click, [MySy8Z1r9P10ACBD766]
+Puntodeventas.exe: 0000307C: 23:41:19 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 0000307C: 23:41:19 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 0000307C: 23:41:19 [127.0.0.1]:Processed: Id: 4, Evt: click, [MySy8Z1r9P10ACBD766]
+Puntodeventas.exe: 000046B0: 23:41:19 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 000046B0: 23:41:19 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 000046B0: 23:41:19 [127.0.0.1]:Processed: Id: 4, Evt: click, [MySy8Z1r9P10ACBD766]
+Puntodeventas.exe: 000044AC: 23:41:19 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 000044AC: 23:41:19 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 000044AC: 23:41:19 [127.0.0.1]:Processed: Id: 4, Evt: click, [MySy8Z1r9P10ACBD766]
+Puntodeventas.exe: 00000828: 23:41:19 [127.0.0.1]:Failed Sequence Recovery: SeqId: 4, Event: click
+Puntodeventas.exe: 00000828: 23:41:19 [127.0.0.1]:Sequence sent from cache:  SeqId: 4
+Puntodeventas.exe: 00000828: 23:41:19 [127.0.0.1]:Processed: Id: 4, Evt: click, [MySy8Z1r9P10ACBD766]

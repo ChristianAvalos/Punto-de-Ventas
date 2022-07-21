@@ -1,0 +1,34 @@
+unit FormularioBusquedaCondicionPago;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, FormularioBusquedaMaestro, Vcl.Menus, uniMainMenu,
+  uniMenuButton, uniButton, uniBitBtn, uniEdit, uniMultiItem, uniComboBox,
+  uniLabel, uniGUIBaseClasses, uniBasicGrid, uniDBGrid;
+
+type
+  TFrmBusquedaMaestro1 = class(TFrmBusquedaMaestro)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmBusquedaMaestro1: TFrmBusquedaMaestro1;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication;
+
+function FrmBusquedaMaestro1: TFrmBusquedaMaestro1;
+begin
+  Result := TFrmBusquedaMaestro1(UniMainModule.GetFormInstance(TFrmBusquedaMaestro1));
+end;
+
+end.

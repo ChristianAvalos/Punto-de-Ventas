@@ -51,6 +51,8 @@ type
   end;
 
 function DMPrincipal: TDMPrincipal;
+var
+  varOrganizacionID: Integer = 1;
 
 implementation
 

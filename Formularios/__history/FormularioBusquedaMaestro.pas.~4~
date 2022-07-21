@@ -1,0 +1,494 @@
+unit FormularioBusquedaMaestro;
+
+{$INCLUDE 'compilador.inc'}
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Data.DB, System.Character,  System.StrUtils,System.DateUtils,System.IOUtils,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uniGUITypes, uniGUIAbstractClasses, Vcl.Menus,
+  uniGUIClasses, uniGUIForm, uniEdit, uniMultiItem, uniMainMenu, uniComboBox,
+  uniLabel, DataModulePrincipal, uniBasicGrid, uniDBGrid, uniGUIBaseClasses,
+  uniButton, uniBitBtn, UnitCodigosComunes, UnitRecursoString, MSAccess, uniMenuButton;
+
+type
+  TTipoBusqueda = (BuscarId, BuscarStringExacto, BuscarStringParcial, BuscarStringParcialIzquierda, BuscarPersonalizado, BuscarFecha);
+
+  TFrmBusquedaMaestro = class(TUniForm)
+    GridResultado: TUniDBGrid;
+    lblParametro: TUniLabel;
+    cboParametros: TUniComboBox;
+    txtCadenaBusqueda: TUniEdit;
+    btnBuscar: TUniBitBtn;
+    btnCerrar: TUniBitBtn;
+    btnIraRegistro: TUniMenuButton;
+    mnuBtnMenu: TUniPopupMenu;
+    btnDescargarExcel: TUniMenuItem;
+    procedure UniFormActivate(Sender: TObject);
+    procedure txtCadenaBusquedaKeyPress(Sender: TObject; var Key: Char);
+    procedure GridResultadoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btnBuscarClick(Sender: TObject);
+    procedure GridResultadoDblClick(Sender: TObject);
+    procedure txtCadenaBusquedaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure UniFormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure UniFormCreate(Sender: TObject);
+    procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnDescargarExcelClick(Sender: TObject);
+    procedure UniFormShow(Sender: TObject);
+    procedure btnCerrarClick(Sender: TObject);
+    procedure btnIraRegistroClick(Sender: TObject);
+    procedure UniFormAfterShow(Sender: TObject);
+    procedure cboParametrosSelect(Sender: TObject);
+    procedure UniFormAjaxEvent(Sender: TComponent; EventName: string;
+      Params: TUniStrings);
+  private
+    { Private declarations }
+    FEnviadoDesdeFrm: string;
+
+  public
+    { Public declarations }
+    procedure BuscarRegistro(DataSet: TCustomMSDataSet; Parametros: TArray<string>; DataSource: TDataSource; TipoBusqueda: TTipoBusqueda; ParametrosEspeciales: string = '');
+    {$REGION 'Documentation'}
+    /// <summary>
+    ///   Mueve a un registro de un dataset luego de una busqueda
+    /// </summary>
+    /// <param name="DataSet">
+    ///   Dataset que contiene los registros y que será movido hasta localizar
+    /// </param>
+    /// <param name="DataSource">
+    ///   El datasource del buscador
+    /// </param>
+    /// <param name="Campo">
+    ///   El campo que se utiliza para la busqueda, nomalmente es la clave
+    ///   primaria
+    /// </param>
+    /// <example>
+    ///   //Ej. IrRegistro(DMNomina.MSCategoriaNomina,
+    ///   DMNomina.DSBuscadorCategoria, 'IdCategoria');
+    /// </example>
+    {$ENDREGION}
+    procedure IrRegistro(DataSet: TMSQuery; DataSource: TDataSource; Campo: String);
+    procedure PrecargaBusquedas(DataSet: TCustomMSDataSet);
+    function DevolverModalResultOK(DataSourceBuscador: TDataSource): TModalResult;
+    procedure AutoParametroDocumentoNombres(Letra: Integer; Numero: Integer = 0);
+  published
+    property EnviadoDesdeFrm: string read FEnviadoDesdeFrm write FEnviadoDesdeFrm;
+  end;
+
+function FrmBusquedaMaestro: TFrmBusquedaMaestro;
+
+implementation
+
+{$R *.dfm}
+
+
+uses
+  MainModule, UnitCodigosComunesString, UnitDatos, UnitValidaciones,
+  UnitCodigosComunesDataModule,
+  // DataModuleReporte, DataModuleExportacionDatos,
+   ServerModule,
+  UnitCodigosComunesFormulario , UnitSoporte;
+
+
+function FrmBusquedaMaestro: TFrmBusquedaMaestro;
+begin
+  Result := TFrmBusquedaMaestro(UniMainModule.GetFormInstance(TFrmBusquedaMaestro));
+end;
+
+
+procedure TFrmBusquedaMaestro.btnBuscarClick(Sender: TObject);
+begin
+  ValidarVacios(txtCadenaBusqueda, EEscribaParametroBusqueda);
+  txtCadenaBusqueda.SetFocus;
+end;
+
+
+procedure TFrmBusquedaMaestro.btnCerrarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+
+procedure TFrmBusquedaMaestro.btnDescargarExcelClick(Sender: TObject);
+begin
+  if not(GridResultado.DataSource.DataSet.IsEmpty) then
+  begin
+    // Descargo directamente del dataset
+   // UniSession.SendFile(DMExportacionDatos.ExportarDatasetXLSX([GridResultado.DataSource.DataSet]),
+    //                    'Resultado ' + Self.Text + DateToStr(Now).Replace('/', '-') + '.xlsx');
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.btnIraRegistroClick(Sender: TObject);
+begin
+  if (GridResultado.DataSource.DataSet.RecordCount > 0 ) then
+  begin
+    ModalResult := DevolverModalResultOK(GridResultado.DataSource);
+  end
+  else
+    begin
+      MessageDlg(ENoExistenDatos,mtInformation,[mbOK]);
+      Abort;
+    end;
+end;
+
+
+procedure TFrmBusquedaMaestro.BuscarRegistro(DataSet: TCustomMSDataSet; Parametros: TArray<string>;
+  DataSource: TDataSource; TipoBusqueda: TTipoBusqueda; ParametrosEspeciales: string = '');
+// BuscarRegistro(DMArticulo.MSBuscadorArticulo, ['IdArticulo'], DMArticulo.DSBuscadorArticulo, BuscarId);
+var
+  i: integer;
+begin
+  // Limpio los parametros del dataset
+  VaciarParametros([DataSet]);
+
+  // Parametro de Id De Organizacion
+  AsignarIdOrganizacion(DataSet);
+
+  // Parametro de busqueda dependiendo del tipo de busqueda
+  case TipoBusqueda of
+
+    BuscarId:
+    begin
+
+      if ExisteInt(txtCadenaBusqueda.Text) = true then
+      begin
+         // Este parametro va a dependender del nombre del campo segun el query,
+        // Extraigo el valor del array
+        DataSet.Params.ParamByName(Parametros[0]).Value := StrToInt(txtCadenaBusqueda.Text);
+      end
+      else
+        begin
+          // Validar solo Numeros para ID
+          Self.MessageDlg(EExcepcionSoloAceptaNumeros, mtError, [mbOK]);
+          Abort;
+        end;
+    end;
+
+    BuscarStringExacto:
+    begin
+      // Este parametro va a dependender del nombre del campo segun el query
+      // Extrigo el valor del array
+      DataSet.Params.ParamByName(Parametros[0]).Value := txtCadenaBusqueda.Text;
+    end;
+
+    BuscarStringParcial:
+    begin
+      // Este parametro va a dependender del nombre del campo segun el query
+      // Extrigo el valor del array
+      DataSet.Params.ParamByName(Parametros[0]).Value := '%' + ReplaceStr(txtCadenaBusqueda.Text,' ','%%') + '%';
+    end;
+
+    BuscarStringParcialIzquierda:
+    begin
+      // Este parametro va a dependender del nombre del campo segun el query
+      // Se completa el like de lado izquierdo
+      DataSet.Params.ParamByName(Parametros[0]).Value := '%' + txtCadenaBusqueda.Text;
+    end;
+
+    BuscarPersonalizado:
+    begin
+      for i := 0 to High(Parametros) do
+      begin
+        // Asigno el nombre de campo y valor utilizando la funcion de obtener parametro
+        try
+          DataSet.Params.ParamByName(ObtenerParametro(Parametros[i]).Campo).Value := ObtenerParametro(Parametros[i]).Valor;
+        except
+          on E: Exception do // En caso que el nombre del parametro no coincido emito alerta y aborto
+          begin
+            Self.MessageDlg(EExcepcionParametroInvalido + #13 + E.Message, mtError, [mbOK]);
+            Abort;
+          end;
+        end;
+      end;
+    end;
+
+    BuscarFecha:
+    begin
+      try
+        DataSet.Params.ParamByName(Parametros[0]).Value := StrToDateTime(txtCadenaBusqueda.Text)
+      except
+        on E: Exception do // En caso que el formato de fecha no este bien
+        begin
+          Self.MessageDlg('El formato de fecha debe ser dd/mm/yyyy' + #13 + E.Message, mtError, [mbOK]);
+          Abort;
+        end;
+      end;
+    end;
+  end;
+
+  // Paso los parametros especiales
+  if not (ParametrosEspeciales = '') then
+  begin
+    // Asigno el nombre de campo y valor utilizando la funcion de obtener parametro
+    try
+      DataSet.Params.ParamByName(ObtenerParametro(ParametrosEspeciales).Campo).Value := ObtenerParametro(ParametrosEspeciales).Valor;
+    except
+      on E: Exception do // En caso que el nombre del parametro no coincido emito alerta y aborto
+      begin
+        Self.MessageDlg(EExcepcionParametroInvalido + #13 + E.Message, mtError, [mbOK]);
+       // Log(Self.Name +' : ' + EExcepcionParametroInvalido + #13 + E.Message);
+        Abort;
+      end;
+    end;
+  end;
+
+
+  try
+    {$IFDEF DEBUG}
+   // LogParameter(Self.Name+'.BuscarRegistro', DataSet);
+    {$ENDIF}
+
+    ActivarDataSets(Self.Name, [DataSet]);
+    DataSource.DataSet := DataSet;
+  except
+    on E: Exception do
+    begin
+    //  Log(Self.Name +' : ' + EExcepcionParametroInvalido + #13 + E.Message);
+    end;
+  end;
+
+  // En caso que no se encuentre ningun Registro
+  if DataSet.Eof = true then
+  begin
+    Self.MessageDlg(ENoExistenRegistrosBusqueda, mtError, [mbOK]);
+  end;
+
+end;
+
+
+procedure TFrmBusquedaMaestro.cboParametrosSelect(Sender: TObject);
+begin
+    txtCadenaBusqueda.SetFocus;
+end;
+
+procedure TFrmBusquedaMaestro.AutoParametroDocumentoNombres(Letra: Integer; Numero: Integer = 0);
+// Destino = Nombre ;  Origen = DocumentoNro
+var
+  varCadenaBusqueda: string;
+begin
+  try
+    varCadenaBusqueda := ReplaceStr(txtCadenaBusqueda.Text, '.', '');
+
+    if cboParametros.ItemIndex = Numero then
+    begin
+      // Se valida al menos los tres primeros caracteres, en caso que haya cedulas con Letras
+      if ExisteInt(AnsiLeftStr(varCadenaBusqueda, 3)) = False then
+      begin
+        cboParametros.ItemIndex := Letra;
+      end;
+    end;
+  finally
+    cboParametros.ItemIndex := cboParametros.ItemIndex;
+  end;
+end;
+
+
+function TFrmBusquedaMaestro.DevolverModalResultOK(DataSourceBuscador: TDataSource): TModalResult;
+begin
+  // Verifico que este activo el dataset
+  if DataSourceBuscador.DataSet.Active = True then
+  begin
+          // Verifico que haya dataos
+    if DataSourceBuscador.DataSet.RecordCount >= 1 then
+    begin
+      Result := mrOK;
+    end;
+
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.GridResultadoDblClick(Sender: TObject);
+begin
+  btnIraRegistro.Click;
+end;
+
+
+procedure TFrmBusquedaMaestro.GridResultadoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  // Detecto si se ha presionado Enter y ejecuto la busqueda
+  if (Key = VK_RETURN) then
+  begin
+    btnIraRegistro.Click;
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.IrRegistro(DataSet: TMSQuery;
+  DataSource: TDataSource; Campo: String);
+  //Ej.  IrRegistro(DMNomina.MSCategoriaNomina, DMNomina.DSBuscadorCategoria, 'IdCategoria');
+begin
+
+  if DataSet.Active = False then
+  begin
+    DataSet.Open;
+  end;
+
+  if DataSet.State in dsEditModes then
+  begin
+    MessageDlg(EDataSetEdicion, mtError, [mbOK]);
+    Abort;
+  end;
+
+
+  if DataSource.DataSet.RecordCount >= 1 then
+  begin
+    // Refresco el dataset donde se realiza el localte
+    DataSet.Refresh;
+
+    // Se realiza Locate del dataset dependiendo del datasource que se encuentre activo
+    if DataSet.Locate(Campo, VarArrayOf([DataSource.DataSet.FieldByName(Campo).Value]), []) then
+    begin
+      // WFT??? alguien fue el pelutudo que agrego esto dese cuando pico??
+      //DataSet.Locate(Campo, VarArrayOf([DataSource.DataSet.FieldByName(Campo).Value]), []);
+//      Self.Close;
+      ModalResult := mrOk;
+    end
+    else
+      begin
+        //Log(DataSource.DataSet.Name + ' No se localizo en el dataset de '+ DataSet.Name + ' Campo:' + Campo + ' = '+DataSource.DataSet.FieldByName(Campo).asstring );
+        ModalResult := mrCancel;
+      end;
+  end
+  else
+    begin
+      // Si no hay registro se muestra mensaje
+      Self.MessageDlg(ENoHayRegistroSeleccionadoBusqueda, mtError, [mbOK]);
+      ModalResult := mrCancel;
+    end;
+
+end;
+
+
+procedure TFrmBusquedaMaestro.PrecargaBusquedas(DataSet: TCustomMSDataSet);
+var
+  i: integer;
+begin
+
+  // Solo en caso que se encuentre inactivo, o sea sea la primera vez que buscan
+  if DataSet.Active = False then
+  begin
+
+    // Recorro los parametros del dataset
+    VaciarParametrosYMacros(DataSet);
+
+    DataSet.ParamByName('IdOrganizacion').Value := varOrganizacionID;
+
+    DataSet.Open;
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.txtCadenaBusquedaKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  // Capturo la tecla
+  case Key of
+    VK_DOWN: //
+    begin
+      GridResultado.SetFocus;
+    end;
+
+    VK_UP:
+    begin
+      GridResultado.SetFocus;
+    end;
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.txtCadenaBusquedaKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  // Detecto si se ha presionado Enter y ejecuto la busqueda
+  if Key = #13 then
+  begin
+    btnBuscar.Click;
+    // Muesvo a la grilla
+    GridResultado.SetFocus;
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.UniFormActivate(Sender: TObject);
+begin
+  txtCadenaBusqueda.SetFocus;
+end;
+
+
+procedure TFrmBusquedaMaestro.UniFormAfterShow(Sender: TObject);
+begin
+    txtCadenaBusqueda.setfocus;
+end;
+
+procedure TFrmBusquedaMaestro.UniFormAjaxEvent(Sender: TComponent;
+  EventName: string; Params: TUniStrings);
+begin
+  EventoAjax(Sender, Self, EventName, Params);
+end;
+
+
+procedure TFrmBusquedaMaestro.UniFormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  // en caso de tener mas registro Cierro el dataSet
+  // para no consumir memoria
+  if not(btnIraRegistro.ModalResult = mrOK) then
+  begin
+    if GridResultado.DataSource.DataSet.RecordCount > 200 then
+    begin
+      GridResultado.DataSource.DataSet.Close;
+    end;
+  end;
+
+end;
+
+
+procedure TFrmBusquedaMaestro.UniFormCreate(Sender: TObject);
+begin
+  AgregarBotonSoporte(Self);
+
+  {$IF DEFINED(RAPY) OR
+       DEFINED(AUTOSERVICIOWEB) OR
+       DEFINED(TRAMITEWEB) OR
+       DEFINED(DOCUMENTALLITE)
+       DEFINED(DOCUMENTALTRACK)}
+       FormularioWhite(Self);
+  {$ENDIF}
+
+  DestacarCampos(Self);
+end;
+
+
+procedure TFrmBusquedaMaestro.UniFormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+
+  // Deteccion de presion de teclas
+  case Key of
+
+    27: // Tecla Escape
+    begin
+      btnCerrar.Click;
+    end;
+
+  end;
+end;
+
+
+procedure TFrmBusquedaMaestro.UniFormShow(Sender: TObject);
+begin
+  if (cboParametros.ItemIndex = -1) then
+  begin
+    cboParametros.ItemIndex := 0;
+  end;
+end;
+
+end.

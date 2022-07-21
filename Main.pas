@@ -55,6 +55,10 @@ type
     UniContainerPanel1: TUniContainerPanel;
     UniImage1: TUniImage;
     UniImageList1: TUniImageList;
+    Definiciones1: TUniMenuItem;
+    mnuDefinicionesCondiciondePago: TUniMenuItem;
+    ipoMoneda1: TUniMenuItem;
+    ipoMoneda2: TUniMenuItem;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
     procedure Usuarios1Click(Sender: TObject);
@@ -64,6 +68,8 @@ type
     procedure lblCerrarSesionClick(Sender: TObject);
     procedure mnuFicherosArticulosFichaClick(Sender: TObject);
     procedure TabSheetClose(Sender: TObject; var AllowClose: Boolean);
+    procedure imgLogotipoClick(Sender: TObject);
+    procedure mnuDefinicionesCondiciondePagoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -81,7 +87,8 @@ implementation
 
 uses
   uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
-  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos, UnitMenuEventos;
+  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos, UnitMenuEventos,
+  FormularioCondicionPago;
 
 function MainForm: TMainForm;
 begin
@@ -191,11 +198,14 @@ end;
 
 procedure TMainForm.UniFormCreate(Sender: TObject);
 begin
+
 //Version de la aplicacion
 lblVersion.Caption := 'Versión ' + ObtenerVersionApp;
   // Creo el Arbol de menus
   Arbol := TNode<TMenuItemRecord>.Create;
   CargarMenuEstandar(UniMenuItems1.Items);
+
+
 end;
 
 procedure TMainForm.UniFormShow(Sender: TObject);
@@ -208,23 +218,21 @@ begin
   lblOrganigramaUsuario.Visible:= False;
   imgOrganigrama.Visible:=False;
 
-  // Cargo la foto de la ficha del personal, si no tiene en formato estandar,
+  // Cargo la foto del usuario, si no tiene en formato estandar,
   if Assigned(DMUsuario.UsuarioRecord.Foto) then
   begin
     if DMUsuario.UsuarioRecord.Foto.IsNull = False then
     begin
       CargarFotoPerfil(TImagePerfil(imgFotoUsuario));
     end;
-  end
-  else
-    begin
-     // CargarFotoPerfil(TImagePerfil(imgFotoUsuario), DMUsuario.UsuarioRecord.IdPersonal);
     end;
+  if DMUsuario.UsuarioRecord.OcultarMenuSinAcceso = True then
+  begin
+   OcultarMenuSinAcceso;
+  end;
 
-     if DMUsuario.UsuarioRecord.OcultarMenuSinAcceso = True then
-     begin
-      OcultarMenuSinAcceso;
-     end;
+
+
 
 end;
 
@@ -240,9 +248,31 @@ begin
   begin
       /// Ejecuto el procedimiento
       Procedimiento;
-
   end;
 
+end;
+
+procedure TMainForm.imgLogotipoClick(Sender: TObject);
+begin
+  if PanelGeneralIzquierda.Width = 230 then
+  begin
+    PanelGeneralIzquierda.Width := 80;
+    UniTreeMenu.Micro := True;
+  end
+  else
+    begin
+      PanelGeneralIzquierda.Width := 230;
+      UniTreeMenu.Micro := False;
+    end;
+end;
+
+procedure TMainForm.mnuDefinicionesCondiciondePagoClick(Sender: TObject);
+begin
+  if DMUsuario.VerificarPrivilegios('mnuDefinicionesCondiciondePago') = True then
+  begin
+  FrmCondiciondePago.EnviadoDesdeFrm := Self.Name;
+  CreaMenu(FrmCondiciondePago);
+  end;
 end;
 
 initialization

@@ -49,7 +49,11 @@ uses
   FormularioUsuarioPermiso in 'Formularios\FormularioUsuarioPermiso.pas' {FrmUsuarioPermiso: TUniForm},
   FormularioInfoPopupMaestro in 'Formularios\FormularioInfoPopupMaestro.pas' {FrmInfoPopupMaestro: TUniForm},
   DataModuleComunUsuario in 'DataModule\DataModuleComunUsuario.pas' {DMComunUsuario: TDataModule},
-  FormularioUsuarioPermisoFormulario in 'Formularios\FormularioUsuarioPermisoFormulario.pas' {FrmUsuarioPermisoFormulario: TUniForm};
+  FormularioUsuarioPermisoFormulario in 'Formularios\FormularioUsuarioPermisoFormulario.pas' {FrmUsuarioPermisoFormulario: TUniForm},
+  DataModuleCondiciondePago in 'DataModule\DataModuleCondiciondePago.pas' {DMCondiciondePago: TDataModule},
+  FormularioCondicionPago in 'Formularios\FormularioCondicionPago.pas' {FrmCondiciondePago: TUniForm},
+  FormularioBusquedaMaestro in 'Formularios\FormularioBusquedaMaestro.pas' {FrmBusquedaMaestro: TUniForm},
+  FormularioBusquedaCondicionPago in 'Formularios\FormularioBusquedaCondicionPago.pas' {FrmBusquedaCondicionPago: TUniForm};
 
 {$R *.res}
 

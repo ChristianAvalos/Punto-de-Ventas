@@ -329,6 +329,26 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <FormType>dfm</FormType>
             <DesignClass>TUniForm</DesignClass>
         </DCCReference>
+        <DCCReference Include="DataModule\DataModuleCondiciondePago.pas">
+            <Form>DMCondiciondePago</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioCondicionPago.pas">
+            <Form>FrmCondiciondePago</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioBusquedaMaestro.pas">
+            <Form>FrmBusquedaMaestro</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioBusquedaCondicionPago.pas">
+            <Form>FrmBusquedaCondicionPago</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

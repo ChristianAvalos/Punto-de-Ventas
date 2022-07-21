@@ -1,0 +1,55 @@
+unit FormularioCondiciondePago;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniDBNavigator, uniDBText,
+  uniLabel, uniGUIFrame, FrameBarraInformacionOrganizacionUsuario, uniPanel,
+  FrameBarraUltimaRevision, uniEdit, uniDBEdit;
+
+type
+  TFrmCondiciondePago = class(TUniForm)
+    UniDBNavigator1: TUniDBNavigator;
+    FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario;
+    lblEtiquetaOrganizacion: TUniLabel;
+    lblEtiquetaUsuario: TUniLabel;
+    lblUsuario: TUniDBText;
+    PanelCentral: TUniPanel;
+    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
+    lblUltimaRevision: TUniLabel;
+    lblCodigo: TUniLabel;
+    txtCodigo: TUniDBEdit;
+    lblTipo: TUniLabel;
+    lblDescripcion: TUniLabel;
+    txtDescripcion: TUniDBEdit;
+    txtTipo: TUniDBEdit;
+    procedure UniFormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmCondiciondePago: TFrmCondiciondePago;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication, DataModulePrincipal, DataModuleOrganizacion, UnitCodigosComunesDataModule, DataModuleCondiciondePago, FormularioCRUDMaestro;
+
+function FrmCondiciondePago: TFrmCondiciondePago;
+begin
+  Result := TFrmCondiciondePago(UniMainModule.GetFormInstance(TFrmCondiciondePago));
+end;
+
+procedure TFrmCondiciondePago.UniFormShow(Sender: TObject);
+begin
+  ActivarDataSets(Self.Name, [DMOrganizacion.MSOrganizacion,DMCondiciondePago.MSCondicionPago],  False);
+  IrUltimoRegistro(DMCondiciondePago.MSCondicionPago, Self);
+end;
+
+end.

@@ -11,7 +11,7 @@ object DMPrincipal: TDMPrincipal
     Connected = True
     BeforeConnect = MSConnectionBeforeConnect
     LoginPrompt = False
-    Left = 65
+    Left = 66
     Top = 31
     EncryptedPassword = 'DCFF8FFF9EFF8CFF8CFF88FF90FF8DFF9BFFDCFF'
   end
@@ -237,6 +237,6 @@ object DMPrincipal: TDMPrincipal
     DBMonitorOptions.Host = '127.0.0.1'
     TraceFlags = [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfService, tfMisc, tfParams]
     Left = 140
-    Top = 46
+    Top = 33
   end
 end
