@@ -11,7 +11,7 @@ uses
   FrameBarraInformacionOrganizacionUsuario, uniButton, uniBitBtn, uniDBText,
   uniMemo, uniDBMemo, uniCheckBox, uniDBCheckBox, uniEdit, uniDBEdit, uniLabel,
   Vcl.Menus, uniMainMenu, uniMenuButton, Data.DB,
-  uniImage, uniDBImage, uniFileUpload, FrameBarraUltimaRevision, uniPanel;
+  uniImage, uniDBImage, uniFileUpload, uniPanel;
 
 type
     TFrmUsuario = class(TFrmCRUDMaestro)

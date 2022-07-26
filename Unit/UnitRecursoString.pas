@@ -63,6 +63,7 @@ resourcestring
   ENoExistenRegistrosBusqueda = 'No existe registro en la búsqueda';
   EDataSetEdicion = 'El DataSet se encuentra en edición';
   ENoHayRegistroSeleccionadoBusqueda = 'No hay registro seleccionado en la búsqueda';
+  ESeleccioneMoneda = 'Escriba el tipo de moneda';
 
     // MIME
   EMimeTIFF = 'image/tiff';

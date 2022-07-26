@@ -12,9 +12,6 @@ inherited FrmUsuario: TFrmUsuario
     inherited lblOrganizacion: TUniDBText
       DataSource = DMOrganizacion.DSOrganizacion
     end
-    inherited lblUsuario: TUniDBText
-      Width = 53
-    end
   end
   inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
     Width = 579

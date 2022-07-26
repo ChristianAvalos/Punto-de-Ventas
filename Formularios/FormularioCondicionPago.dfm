@@ -13,8 +13,17 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
     ExplicitWidth = 597
+    inherited lblEtiquetaOrganizacion: TUniLabel
+      TabOrder = 1
+    end
+    inherited lblEtiquetaUsuario: TUniLabel
+      TabOrder = 3
+    end
     inherited lblOrganizacion: TUniDBText
       DataSource = DMOrganizacion.DSOrganizacion
+    end
+    inherited lblUsuario: TUniDBText
+      Width = 53
     end
   end
   inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
@@ -32,19 +41,14 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
   end
   inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision [2]
     Left = 0
-    Top = 57
-    Width = 597
+    Top = 60
+    Width = 594
     Height = 20
-    Align = alTop
-    Anchors = [akLeft, akTop, akRight]
-    TabOrder = 3
+    TabOrder = 9
     ParentRTL = False
     Background.Picture.Data = {00}
-    ExplicitTop = 56
-    ExplicitWidth = 360
-    inherited lblUltimaRevision: TUniLabel
-      TabOrder = 1
-    end
+    ExplicitTop = 60
+    ExplicitWidth = 594
     inherited txtUrev: TUniDBText
       DataField = 'UrevCalc'
       DataSource = DMCondiciondePago.DSCondicionPago
@@ -58,21 +62,11 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Hint = ''
     DataField = 'IdCondicionPago'
     DataSource = DMCondiciondePago.DSCondicionPago
-    TabOrder = 6
+    TabOrder = 2
     Color = clMenu
     ReadOnly = True
   end
-  object txtTipoPago: TUniDBEdit [4]
-    Left = 138
-    Top = 86
-    Width = 132
-    Height = 22
-    Hint = ''
-    DataField = 'TipoPago'
-    DataSource = DMCondiciondePago.DSCondicionPago
-    TabOrder = 9
-  end
-  object txtDescripcion: TUniDBEdit [5]
+  object txtDescripcion: TUniDBEdit [4]
     Left = 346
     Top = 86
     Width = 204
@@ -82,25 +76,17 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     DataSource = DMCondiciondePago.DSCondicionPago
     TabOrder = 4
   end
-  object lblDescripcion: TUniLabel [6]
-    Left = 278
-    Top = 90
-    Width = 60
-    Height = 13
+  object txtTipoPago: TUniDBEdit [5]
+    Left = 138
+    Top = 86
+    Width = 132
+    Height = 22
     Hint = ''
-    Caption = 'Descripci'#243'n'
-    TabOrder = 8
+    DataField = 'TipoPago'
+    DataSource = DMCondiciondePago.DSCondicionPago
+    TabOrder = 3
   end
-  object lblTipo: TUniLabel [7]
-    Left = 107
-    Top = 90
-    Width = 23
-    Height = 13
-    Hint = ''
-    Caption = 'Tipo'
-    TabOrder = 7
-  end
-  object lblCodigo: TUniLabel [8]
+  object lblCodigo: TUniLabel [6]
     Left = 8
     Top = 90
     Width = 38
@@ -109,10 +95,28 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Caption = 'C'#243'digo'
     TabOrder = 5
   end
+  object lblTipo: TUniLabel [7]
+    Left = 107
+    Top = 90
+    Width = 23
+    Height = 13
+    Hint = ''
+    Caption = 'Tipo'
+    TabOrder = 6
+  end
+  object lblDescripcion: TUniLabel [8]
+    Left = 278
+    Top = 90
+    Width = 60
+    Height = 13
+    Hint = ''
+    Caption = 'Descripci'#243'n'
+    TabOrder = 7
+  end
   inherited UniStatusBar: TUniStatusBar [9]
     Top = 121
     Width = 597
-    ExplicitTop = 184
+    ExplicitTop = 121
     ExplicitWidth = 597
   end
   inherited uNativeImg: TUniNativeImageList

@@ -33,7 +33,6 @@ uses
   UnitAuditoria in 'Unit\UnitAuditoria.pas',
   FormularioUsuarioCambiarContrasena in 'Formularios\FormularioUsuarioCambiarContrasena.pas' {FrmUsuarioCambiarContrasena: TUniForm},
   UnitDatos in 'Unit\UnitDatos.pas',
-  FrameBarraUltimaRevision in 'Formularios\FrameBarraUltimaRevision.pas',
   FrameBarraMain in 'Formularios\FrameBarraMain.pas' {FmeBarraMain: TUniFrame},
   FrameTitulo in 'Formularios\FrameTitulo.pas' {FmeTitulo: TUniFrame},
   FormularioOrganizacion in 'Formularios\FormularioOrganizacion.pas' {FrmOrganizacion: TUniForm},
@@ -53,7 +52,10 @@ uses
   DataModuleCondiciondePago in 'DataModule\DataModuleCondiciondePago.pas' {DMCondiciondePago: TDataModule},
   FormularioCondicionPago in 'Formularios\FormularioCondicionPago.pas' {FrmCondiciondePago: TUniForm},
   FormularioBusquedaMaestro in 'Formularios\FormularioBusquedaMaestro.pas' {FrmBusquedaMaestro: TUniForm},
-  FormularioBusquedaCondicionPago in 'Formularios\FormularioBusquedaCondicionPago.pas' {FrmBusquedaCondicionPago: TUniForm};
+  FormularioBusquedaCondicionPago in 'Formularios\FormularioBusquedaCondicionPago.pas' {FrmBusquedaCondicionPago: TUniForm},
+  FrameBarraUltimaRevision in 'Formularios\FrameBarraUltimaRevision.pas' {FmeBarraUltimaRevision: TUniFrame},
+  FrmDefinicionListaPrecios in 'Formularios\FrmDefinicionListaPrecios.pas' {FrmDefinicionPrecio: TUniForm},
+  DataModulePrecios in 'DataModule\DataModulePrecios.pas' {DMPrecios: TDataModule};
 
 {$R *.res}
 

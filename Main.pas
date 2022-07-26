@@ -57,8 +57,7 @@ type
     UniImageList1: TUniImageList;
     Definiciones1: TUniMenuItem;
     mnuDefinicionesCondiciondePago: TUniMenuItem;
-    ipoMoneda1: TUniMenuItem;
-    ipoMoneda2: TUniMenuItem;
+    mnuDefinicionesPrecio: TUniMenuItem;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
     procedure Usuarios1Click(Sender: TObject);
@@ -70,6 +69,7 @@ type
     procedure TabSheetClose(Sender: TObject; var AllowClose: Boolean);
     procedure imgLogotipoClick(Sender: TObject);
     procedure mnuDefinicionesCondiciondePagoClick(Sender: TObject);
+    procedure mnuDefinicionesPrecioClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -88,7 +88,7 @@ implementation
 uses
   uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
   UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos, UnitMenuEventos,
-  FormularioCondicionPago;
+  FormularioCondicionPago, FrmDefinicionListaPrecios;
 
 function MainForm: TMainForm;
 begin
@@ -116,6 +116,7 @@ begin
     Ts.OnClose := TabSheetClose;
     Ts.Tag := NativeInt(Nd);
     Ts.Caption:=Formulario.Caption;
+    Ts.ImageIndex := Nd.ImageIndex;
 
     Formulario.Parent :=TS;
     //Paso esta variable para que no se cree un tab mas si ya esta abierto
@@ -231,7 +232,8 @@ begin
    OcultarMenuSinAcceso;
   end;
 
-
+ //Asigno el tipo de iconito del tab home
+ UniTabSheet1.ImageIndex := 31;
 
 
 end;
@@ -272,6 +274,15 @@ begin
   begin
   FrmCondiciondePago.EnviadoDesdeFrm := Self.Name;
   CreaMenu(FrmCondiciondePago);
+  end;
+end;
+
+procedure TMainForm.mnuDefinicionesPrecioClick(Sender: TObject);
+begin
+  if DMUsuario.VerificarPrivilegios('mnuDefinicionesPrecio') = True then
+  begin
+  FrmDefinicionPrecio.EnviadoDesdeFrm := Self.Name;
+  CreaMenu(FrmDefinicionPrecio);
   end;
 end;
 

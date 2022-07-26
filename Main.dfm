@@ -5023,7 +5023,7 @@ object MainForm: TMainForm
     ScreenMask.Enabled = True
     ScreenMask.Target = Owner
     Left = 372
-    Top = 272
+    Top = 273
     object HolaMundo1: TUniMenuItem
       Caption = 'Hola Mundo'
     end
@@ -5041,13 +5041,13 @@ object MainForm: TMainForm
       Caption = 'Definiciones'
       object mnuDefinicionesCondiciondePago: TUniMenuItem
         Caption = 'Condici'#243'n de pago '
+        ImageIndex = 2
         OnClick = mnuDefinicionesCondiciondePagoClick
       end
-      object ipoMoneda1: TUniMenuItem
-        Caption = 'Tipo Moneda'
-      end
-      object ipoMoneda2: TUniMenuItem
-        Caption = 'Tipo Moneda'
+      object mnuDefinicionesPrecio: TUniMenuItem
+        Caption = 'Precios'
+        ImageIndex = 32
+        OnClick = mnuDefinicionesPrecioClick
       end
     end
     object mnuOperaciones: TUniMenuItem
@@ -5076,10 +5076,10 @@ object MainForm: TMainForm
     end
   end
   object UniNativeImageList: TUniNativeImageList
-    Left = 119
-    Top = 205
+    Left = 120
+    Top = 206
     Images = {
-      1F000000FFFFFF1F060B00000069642D636172643B66613BFFFFFF1F06090000
+      21000000FFFFFF1F060B00000069642D636172643B66613BFFFFFF1F06090000
       007461736B733B66613BFFFFFF1F060D00000066696C652D746578743B66613B
       FFFFFF1F060D000000757365722D706C75733B66613BFFFFFF1F06080000006C
       696E6B3B66613BFFFFFF1F060B000000736974656D61703B66613BFFFFFF1F06
@@ -5099,7 +5099,8 @@ object MainForm: TMainForm
       70617065722D6F3B66613BFFFFFF1F060D000000636C6970626F6172643B6661
       3BFFFFFF1F060900000075736572733B66613BFFFFFF1F060E0000006B657962
       6F6172642D6F3B66613BFFFFFF1F061700000066612D636172742D6172726F77
-      2D646F776E3B66615F3B}
+      2D646F776E3B66615F3BFFFFFF1F0608000000686F6D653B66613BFFFFFF1F06
+      090000006D6F6E65793B66613B}
   end
   object UniImageList1: TUniImageList
     Left = 123

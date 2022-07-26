@@ -485,9 +485,6 @@ begin
       end;
       {$ENDIF}
 
-     // {$IFDEF DESKTOP}
-     // RecorrerPintarRestaurarControlesVisuales(Formulario);
-     // {$ENDIF}
     except
       on E: Exception do
       begin

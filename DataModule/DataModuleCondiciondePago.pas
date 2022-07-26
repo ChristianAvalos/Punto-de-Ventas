@@ -31,6 +31,8 @@ type
     procedure MSCondicionPagoNewRecord(DataSet: TDataSet);
     procedure MSCondicionPagoPostError(DataSet: TDataSet; E: EDatabaseError;
       var Action: TDataAction);
+    procedure MSCondicionPagoBeforeUpdateExecute(Sender: TCustomMSDataSet;
+      StatementTypes: TStatementTypes; Params: TMSParams);
   private
     { Private declarations }
   public
@@ -46,7 +48,7 @@ implementation
 uses
   UniGUIVars, uniGUIMainModule, MainModule, DataModulePrincipal, UnitCodigosComunesFormulario,
   FormularioCRUDMaestro, UnitValidaciones, UnitRecursoString, UnitCodigosComunesDataModule,
-  FormularioCondicionPago;
+  FormularioCondicionPago, DataModuleComunUsuario;
 
 function DMCondiciondePago: TDMCondiciondePago;
 begin
@@ -62,6 +64,7 @@ procedure TDMCondiciondePago.MSCondicionPagoAfterPost(DataSet: TDataSet);
 begin
  DeshabilitarControles(FrmCondiciondePago);
  FrmCondiciondePago.uniStatusBar.Panels.Add.Text := ERegistroGuardado;
+ DMAfterPost(FrmCondiciondePago);
 end;
 
 procedure TDMCondiciondePago.MSCondicionPagoBeforeDelete(DataSet: TDataSet);
@@ -90,12 +93,24 @@ begin
   ValidarCampo(FrmCondiciondePago, MSCondicionPagoTipoPago, ESeleccioneTipoCondicionPago);
   ValidarCampo(FrmCondiciondePago, MSCondicionPagoDescripcion, EEscribaDescripcion);
 
-  dmBeforePost(DataSet);
+  DMBeforePost(DataSet);
+
+
+end;
+
+procedure TDMCondiciondePago.MSCondicionPagoBeforeUpdateExecute(
+  Sender: TCustomMSDataSet; StatementTypes: TStatementTypes; Params: TMSParams);
+begin
+  // Activo este parametro solo cuando producto insert
+  if MSCondicionPago.State = dsInsert then
+  begin
+    Params.ParamByName('IdCondicionPago').ParamType := ptInputOutput;
+  end;
 end;
 
 procedure TDMCondiciondePago.MSCondicionPagoNewRecord(DataSet: TDataSet);
 begin
-MSCondicionPagoIdOrganizacion.Value := 1;
+MSCondicionPagoIdOrganizacion.Value := varOrganizacionID;
 end;
 
 procedure TDMCondiciondePago.MSCondicionPagoPostError(DataSet: TDataSet;

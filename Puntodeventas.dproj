@@ -264,7 +264,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DesignClass>TUniForm</DesignClass>
         </DCCReference>
         <DCCReference Include="Unit\UnitDatos.pas"/>
-        <DCCReference Include="Formularios\FrameBarraUltimaRevision.pas"/>
         <DCCReference Include="Formularios\FrameBarraMain.pas">
             <Form>FmeBarraMain</Form>
             <FormType>dfm</FormType>
@@ -348,6 +347,21 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <Form>FrmBusquedaCondicionPago</Form>
             <FormType>dfm</FormType>
             <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FrameBarraUltimaRevision.pas">
+            <Form>FmeBarraUltimaRevision</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FrmDefinicionListaPrecios.pas">
+            <Form>FrmDefinicionPrecio</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DataModule\DataModulePrecios.pas">
+            <Form>DMPrecios</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

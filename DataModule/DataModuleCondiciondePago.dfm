@@ -41,7 +41,13 @@ object DMCondiciondePago: TDMCondiciondePago
       ')')
     Connection = DMPrincipal.MSConnection
     SQL.Strings = (
-      'SELECT * FROM Definicion.CondicionPago')
+      
+        'SELECT IdCondicionPago,IdOrganizacion,Descripcion,UrevUsuario,Ur' +
+        'evFechaHora,UrevCalc,TipoPago '
+      'FROM Definicion.CondicionPago '
+      'ORDER BY'
+      'IdCondicionPago')
+    BeforeUpdateExecute = MSCondicionPagoBeforeUpdateExecute
     BeforeOpen = MSCondicionPagoBeforeOpen
     BeforeInsert = MSCondicionPagoBeforeInsert
     BeforeEdit = MSCondicionPagoBeforeEdit
@@ -51,8 +57,8 @@ object DMCondiciondePago: TDMCondiciondePago
     BeforeDelete = MSCondicionPagoBeforeDelete
     OnNewRecord = MSCondicionPagoNewRecord
     OnPostError = MSCondicionPagoPostError
-    Left = 39
-    Top = 36
+    Left = 40
+    Top = 34
     object MSCondicionPagoIdCondicionPago: TIntegerField
       FieldName = 'IdCondicionPago'
       ReadOnly = True

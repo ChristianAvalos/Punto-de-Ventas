@@ -12,15 +12,13 @@ uses
 
 type
   TFrmCondiciondePago = class(TFrmCRUDMaestro)
-    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
-    lblUltimaRevision: TUniLabel;
-    txtUrev: TUniDBText;
     txtDescripcion: TUniDBEdit;
     lblCodigo: TUniLabel;
     txtCodigo: TUniDBEdit;
     lblTipo: TUniLabel;
     lblDescripcion: TUniLabel;
     txtTipoPago: TUniDBEdit;
+    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
     procedure UniFormShow(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure FmeBarraNavegacionPrincipaltbtnBuscarClick(Sender: TObject);
@@ -55,7 +53,7 @@ end;
 procedure TFrmCondiciondePago.UniFormCreate(Sender: TObject);
 begin
   inherited;
- ActivarDataSets(Self.Name, [DMOrganizacion.MSOrganizacion,DMCondiciondePago.MSCondicionPago],  False);
+ ActivarDataSets(Self.Name, [DMOrganizacion.MSOrganizacion],  False);
 end;
 
 procedure TFrmCondiciondePago.UniFormShow(Sender: TObject);
