@@ -1,0 +1,13 @@
+object DMPrecios: TDMPrecios
+  Height = 480
+  Width = 640
+  object MSPrecio: TMSQuery
+    Connection = DMPrincipal.MSConnection
+    Left = 226
+    Top = 121
+  end
+  object DSPrecio: TDataSource
+    Left = 225
+    Top = 201
+  end
+end

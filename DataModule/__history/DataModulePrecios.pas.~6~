@@ -1,0 +1,55 @@
+unit DataModulePrecios;
+
+interface
+
+uses
+  SysUtils, Classes, Data.DB, MemDS, DBAccess, MSAccess;
+
+type
+  TDMPrecios = class(TDataModule)
+    MSPrecio: TMSQuery;
+    DSPrecio: TDataSource;
+    MSPrecioIdPrecio: TIntegerField;
+    MSPrecioIdOrganizacion: TIntegerField;
+    MSPrecioMoneda: TStringField;
+    MSPrecioDescripcion: TStringField;
+    MSPrecioUrevUsuario: TStringField;
+    MSPrecioUrevFechaHora: TDateTimeField;
+    MSPrecioUrevCalc: TWideStringField;
+    procedure MSPrecioAfterCancel(DataSet: TDataSet);
+    procedure MSPrecioAfterPost(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function DMPrecios: TDMPrecios;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, uniGUIMainModule, MainModule, DataModulePrincipal, FrmDefinicionListaPrecios, UnitCodigosComunesFormulario;
+
+function DMPrecios: TDMPrecios;
+begin
+  Result := TDMPrecios(UniMainModule.GetModuleInstance(TDMPrecios));
+end;
+
+procedure TDMPrecios.MSPrecioAfterCancel(DataSet: TDataSet);
+begin
+DeshabilitarControles(FrmDefinicionPrecio);
+end;
+
+procedure TDMPrecios.MSPrecioAfterPost(DataSet: TDataSet);
+begin
+  DeshabilitarControles(FrmDefinicionPrecio);
+  FrmDefinicionPrecio.uniStatusBar.Panels.Add.Text := ERegistroGuardado;
+end;
+
+initialization
+  RegisterModuleClass(TDMPrecios);
+
+end.
