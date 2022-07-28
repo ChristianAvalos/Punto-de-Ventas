@@ -43,6 +43,7 @@ object DMPrecios: TDMPrecios
     SQL.Strings = (
       'SELECT * FROM Definicion.Precio')
     BeforeUpdateExecute = MSPrecioBeforeUpdateExecute
+    RefreshOptions = [roAfterInsert, roAfterUpdate, roBeforeEdit]
     BeforeOpen = MSPrecioBeforeOpen
     BeforeInsert = MSPrecioBeforeInsert
     BeforeEdit = MSPrecioBeforeEdit
@@ -52,6 +53,8 @@ object DMPrecios: TDMPrecios
     BeforeDelete = MSPrecioBeforeDelete
     OnNewRecord = MSPrecioNewRecord
     OnPostError = MSPrecioPostError
+    Options.FullRefresh = True
+    Options.ReturnParams = True
     Left = 226
     Top = 120
     object MSPrecioIdPrecio: TIntegerField

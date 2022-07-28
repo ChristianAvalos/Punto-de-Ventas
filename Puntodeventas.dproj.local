@@ -25,15 +25,16 @@
     <Transaction>2022/07/20 21:32:51.000.429,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/20 21:39:13.000.286,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaCondicionPago.dfm</Transaction>
     <Transaction>2022/07/20 21:39:13.000.286,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaCondicionPago.pas</Transaction>
-    <Transaction>2022/07/25 21:22:37.536,F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas=</Transaction>
-    <Transaction>2022/07/25 21:26:36.112,=F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas</Transaction>
-    <Transaction>2022/07/25 21:31:36.198,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:32:25.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
-    <Transaction>2022/07/25 21:32:25.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:33:38.672,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:34:05.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:34:05.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
-  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <Transaction>2022/07/25 21:22:37.000.536,F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas=</Transaction>
+    <Transaction>2022/07/25 21:26:36.000.112,=F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas</Transaction>
+    <Transaction>2022/07/25 21:31:36.000.198,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/25 21:33:38.000.672,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="DataModule"/>
     <File Path="DataModule\DataModuleComunUsuario.pas"/>
     <File Path="DataModule\DataModuleComunUsuario.dfm"/>
