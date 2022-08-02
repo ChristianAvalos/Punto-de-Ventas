@@ -44,12 +44,13 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Top = 60
     Width = 594
     Height = 20
-    TabOrder = 9
+    TabOrder = 2
     ParentRTL = False
     Background.Picture.Data = {00}
     ExplicitTop = 60
     ExplicitWidth = 594
     inherited txtUrev: TUniDBText
+      Width = 36
       DataField = 'UrevCalc'
       DataSource = DMCondiciondePago.DSCondicionPago
     end
@@ -62,21 +63,11 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Hint = ''
     DataField = 'IdCondicionPago'
     DataSource = DMCondiciondePago.DSCondicionPago
-    TabOrder = 2
+    TabOrder = 3
     Color = clMenu
     ReadOnly = True
   end
-  object txtDescripcion: TUniDBEdit [4]
-    Left = 346
-    Top = 86
-    Width = 204
-    Height = 22
-    Hint = ''
-    DataField = 'Descripcion'
-    DataSource = DMCondiciondePago.DSCondicionPago
-    TabOrder = 4
-  end
-  object txtTipoPago: TUniDBEdit [5]
+  object txtTipoPago: TUniDBEdit [4]
     Left = 138
     Top = 86
     Width = 132
@@ -84,16 +75,26 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Hint = ''
     DataField = 'TipoPago'
     DataSource = DMCondiciondePago.DSCondicionPago
-    TabOrder = 3
+    TabOrder = 4
   end
-  object lblCodigo: TUniLabel [6]
-    Left = 8
+  object txtDescripcion: TUniDBEdit [5]
+    Left = 346
+    Top = 86
+    Width = 204
+    Height = 22
+    Hint = ''
+    DataField = 'Descripcion'
+    DataSource = DMCondiciondePago.DSCondicionPago
+    TabOrder = 5
+  end
+  object lblDescripcion: TUniLabel [6]
+    Left = 278
     Top = 90
-    Width = 38
+    Width = 60
     Height = 13
     Hint = ''
-    Caption = 'C'#243'digo'
-    TabOrder = 5
+    Caption = 'Descripci'#243'n'
+    TabOrder = 8
   end
   object lblTipo: TUniLabel [7]
     Left = 107
@@ -102,16 +103,16 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Height = 13
     Hint = ''
     Caption = 'Tipo'
-    TabOrder = 6
+    TabOrder = 7
   end
-  object lblDescripcion: TUniLabel [8]
-    Left = 278
+  object lblCodigo: TUniLabel [8]
+    Left = 8
     Top = 90
-    Width = 60
+    Width = 38
     Height = 13
     Hint = ''
-    Caption = 'Descripci'#243'n'
-    TabOrder = 7
+    Caption = 'C'#243'digo'
+    TabOrder = 6
   end
   inherited UniStatusBar: TUniStatusBar [9]
     Top = 121

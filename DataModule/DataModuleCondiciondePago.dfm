@@ -57,6 +57,8 @@ object DMCondiciondePago: TDMCondiciondePago
     BeforeDelete = MSCondicionPagoBeforeDelete
     OnNewRecord = MSCondicionPagoNewRecord
     OnPostError = MSCondicionPagoPostError
+    Options.FullRefresh = True
+    Options.ReturnParams = True
     Left = 40
     Top = 34
     object MSCondicionPagoIdCondicionPago: TIntegerField
