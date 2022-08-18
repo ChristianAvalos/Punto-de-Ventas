@@ -292,11 +292,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </DCCReference>
         <DCCReference Include="Unit\LuxandFaceSDK.pas"/>
         <DCCReference Include="Unit\UnitArchivos.pas"/>
-        <DCCReference Include="Formularios\FormularioFicheroArticulo.pas">
-            <Form>FrmFicheroArticulos</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TUniForm</DesignClass>
-        </DCCReference>
         <DCCReference Include="Frames\FrameFicheroArticulos.pas">
             <Form>FrameArticulos</Form>
             <FormType>dfm</FormType>
@@ -365,6 +360,11 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </DCCReference>
         <DCCReference Include="Formularios\FormularioBusquedaPrecio.pas">
             <Form>FrmBusquedaPrecio</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Formularios\FormularioProductos.pas">
+            <Form>FrmProductos</Form>
             <FormType>dfm</FormType>
             <DesignClass>TUniForm</DesignClass>
         </DCCReference>

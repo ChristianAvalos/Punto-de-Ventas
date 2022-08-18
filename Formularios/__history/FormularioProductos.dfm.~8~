@@ -1,0 +1,27 @@
+inherited FrmProductos: TFrmProductos
+  Caption = 'Productos'
+  Layout = ''
+  TextHeight = 15
+  inherited UniStatusBar: TUniStatusBar [0]
+    ExplicitTop = 582
+    ExplicitWidth = 822
+  end
+  inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    ExplicitTop = 22
+    ExplicitWidth = 822
+    inherited UniDBNavigator: TUniDBNavigator
+      ScreenMask.Target = Owner
+    end
+    inherited tbtnBuscar: TUniButton
+      ScreenMask.Target = Owner
+    end
+  end
+  inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario [2]
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    ExplicitTop = -1
+    ExplicitWidth = 822
+  end
+end

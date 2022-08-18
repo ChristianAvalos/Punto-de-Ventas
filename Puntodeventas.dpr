@@ -41,7 +41,6 @@ uses
   FormularioMiUsuarioCambiarContrasena in 'Formularios\FormularioMiUsuarioCambiarContrasena.pas' {FrmMiUsuarioCambiarContrasena: TUniForm},
   LuxandFaceSDK in 'Unit\LuxandFaceSDK.pas',
   UnitArchivos in 'Unit\UnitArchivos.pas',
-  FormularioFicheroArticulo in 'Formularios\FormularioFicheroArticulo.pas' {FrmFicheroArticulos: TUniForm},
   FrameFicheroArticulos in 'Frames\FrameFicheroArticulos.pas' {FrameArticulos: TUniFrame},
   UnitMenuEventos in 'Unit\UnitMenuEventos.pas',
   FormularioAlerta in 'Formularios\FormularioAlerta.pas' {FrmAlerta: TUniForm},
@@ -56,7 +55,8 @@ uses
   FrameBarraUltimaRevision in 'Formularios\FrameBarraUltimaRevision.pas' {FmeBarraUltimaRevision: TUniFrame},
   FrmDefinicionListaPrecios in 'Formularios\FrmDefinicionListaPrecios.pas' {FrmDefinicionPrecio: TUniForm},
   DataModulePrecios in 'DataModule\DataModulePrecios.pas' {DMPrecios: TDataModule},
-  FormularioBusquedaPrecio in 'Formularios\FormularioBusquedaPrecio.pas' {FrmBusquedaPrecio: TUniForm};
+  FormularioBusquedaPrecio in 'Formularios\FormularioBusquedaPrecio.pas' {FrmBusquedaPrecio: TUniForm},
+  FormularioProductos in 'Formularios\FormularioProductos.pas' {FrmProductos: TUniForm};
 
 {$R *.res}
 

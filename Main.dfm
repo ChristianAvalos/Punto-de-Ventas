@@ -10,7 +10,6 @@ object MainForm: TMainForm
   MonitoredKeys.Keys = <>
   AlignmentControl = uniAlignmentClient
   Layout = 'hbox'
-  OnAfterShow = UniFormAfterShow
   OnCreate = UniFormCreate
   TextHeight = 15
   object PanelGeneralIzquierda: TUniPanel
@@ -5009,7 +5008,6 @@ object MainForm: TMainForm
                     Align = alClient
                     LayoutConfig.Flex = 100
                     LayoutConfig.Width = '100%'
-                    ExplicitTop = -2
                   end
                 end
               end
@@ -5030,16 +5028,14 @@ object MainForm: TMainForm
     end
     object mnuFicheros: TUniMenuItem
       Caption = 'Ficheros'
-      object mnuFicherosArticulos: TUniMenuItem
-        Caption = 'Art'#237'culos '
-        object mnuFicherosArticulosFicha: TUniMenuItem
-          Caption = 'Ficha'
-          OnClick = mnuFicherosArticulosFichaClick
-        end
+      object mnuFicherosProductos: TUniMenuItem
+        Caption = 'Productos'
+        OnClick = mnuFicherosProductosClick
       end
     end
     object Definiciones1: TUniMenuItem
       Caption = 'Definiciones'
+      ImageIndex = 22
       object mnuDefinicionesCondiciondePago: TUniMenuItem
         Caption = 'Condici'#243'n de pago '
         ImageIndex = 2

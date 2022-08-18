@@ -41,11 +41,9 @@ type
     UniNativeImageList: TUniNativeImageList;
     mnuHerramientasOrganizacion: TUniMenuItem;
     mnuFicheros: TUniMenuItem;
-    mnuFicherosArticulos: TUniMenuItem;
     mnuOperaciones: TUniMenuItem;
     Operacionesdeentrada1: TUniMenuItem;
     Operacionesdesalida1: TUniMenuItem;
-    mnuFicherosArticulosFicha: TUniMenuItem;
     PanelDerecha: TUniPanel;
     PanelHbox: TUniPanel;
     PanelVbox: TUniPanel;
@@ -58,18 +56,18 @@ type
     Definiciones1: TUniMenuItem;
     mnuDefinicionesCondiciondePago: TUniMenuItem;
     mnuDefinicionesPrecio: TUniMenuItem;
+    mnuFicherosProductos: TUniMenuItem;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
     procedure Usuarios1Click(Sender: TObject);
-    procedure UniFormAfterShow(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure mnuHerramientasFicheroUsuarioClick(Sender: TObject);
     procedure lblCerrarSesionClick(Sender: TObject);
-    procedure mnuFicherosArticulosFichaClick(Sender: TObject);
     procedure TabSheetClose(Sender: TObject; var AllowClose: Boolean);
     procedure imgLogotipoClick(Sender: TObject);
     procedure mnuDefinicionesCondiciondePagoClick(Sender: TObject);
     procedure mnuDefinicionesPrecioClick(Sender: TObject);
+    procedure mnuFicherosProductosClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -87,8 +85,8 @@ implementation
 
 uses
   uniGUIVars, MainModule, uniGUIApplication, FormularioUsuario, FormularioCRUDMaestro, UnitCodigosComunesFormulario, FormularioOrganizacion, UnitArchivos, UnitVersion, DataModuleUsuario,
-  UnitOperacionesFotografia, FormularioFicheroArticulo, FrameFicheroArticulos, UnitMenuEventos,
-  FormularioCondicionPago, FrmDefinicionListaPrecios;
+  UnitOperacionesFotografia, UnitMenuEventos,
+  FormularioCondicionPago, FrmDefinicionListaPrecios, FrameFicheroArticulos, FormularioProductos;
 
 function MainForm: TMainForm;
 begin
@@ -118,7 +116,13 @@ begin
     Ts.Caption:=Formulario.Caption;
     Ts.ImageIndex := Nd.ImageIndex;
 
+
+    TS.Layout:= 'vbox';
+    ts.AlignmentControl:= uniAlignmentClient;
+    Ts.Align:= alClient;
+    Ts.LayoutAttribs.Align:= 'center';
     Formulario.Parent :=TS;
+    FormularioFlat(formulario);
     //Paso esta variable para que no se cree un tab mas si ya esta abierto
     Nd.Data:=Ts;
    end;
@@ -132,14 +136,15 @@ begin
   UniApplication.Restart;
 end;
 
-procedure TMainForm.mnuFicherosArticulosFichaClick(Sender: TObject);
+procedure TMainForm.mnuFicherosProductosClick(Sender: TObject);
+var
+Fr : TUniFrame;
 begin
     EjecutarProcedimiento('mnuFicherosArticulosFicha',
     procedure()
     begin
-      CreaMenu(FrmFicheroArticulos);
+      CreaMenu(FrmProductos);
     end);
-
 end;
 
 procedure TMainForm.mnuHerramientasFicheroUsuarioClick(Sender: TObject);
@@ -190,11 +195,6 @@ begin
     if UniTreeMenu.Selected = Nd then
       UniTreeMenu.Selected := nil;
   end;
-end;
-
-procedure TMainForm.UniFormAfterShow(Sender: TObject);
-begin
-     // CargarIndicadorDemo(TClasePanel(PanelModoDemo));
 end;
 
 procedure TMainForm.UniFormCreate(Sender: TObject);

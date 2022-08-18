@@ -14,8 +14,8 @@
     <Transaction>2022/07/19 20:28:43.000.762,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/19 20:28:43.000.762,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
     <Transaction>2022/07/19 20:56:59.000.809,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
     <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
     <Transaction>2022/07/19 23:35:16.000.550,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/19 23:36:59.000.596,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/19 23:36:59.000.596,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
@@ -31,9 +31,13 @@
     <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
     <Transaction>2022/07/25 21:33:38.000.672,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/08/17 20:55:04.360,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaPrecio.pas</Transaction>
+    <Transaction>2022/08/17 21:38:53.401,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioFicheroArticulo.pas=</Transaction>
+    <Transaction>2022/08/17 21:41:15.203,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/08/17 21:41:38.138,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioProductos.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/08/17 21:41:38.138,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioProductos.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="DataModule"/>
@@ -60,8 +64,6 @@
     <File Path="Formularios\FormularioCondicionPago.dfm"/>
     <File Path="Formularios\FormularioCRUDMaestro.pas"/>
     <File Path="Formularios\FormularioCRUDMaestro.dfm"/>
-    <File Path="Formularios\FormularioFicheroArticulo.pas"/>
-    <File Path="Formularios\FormularioFicheroArticulo.dfm"/>
     <File Path="Formularios\FormularioInfoPopupMaestro.pas"/>
     <File Path="Formularios\FormularioInfoPopupMaestro.dfm"/>
     <File Path="Formularios\FormularioInicioSesion.pas"/>
@@ -96,6 +98,8 @@
     <File Path="Formularios\FrmDefinicionListaPrecios.dfm"/>
     <File Path="Formularios\FormularioBusquedaPrecio.pas"/>
     <File Path="Formularios\FormularioBusquedaPrecio.dfm"/>
+    <File Path="Formularios\FormularioProductos.pas"/>
+    <File Path="Formularios\FormularioProductos.dfm"/>
     <File Path="Frames"/>
     <File Path="Frames\FrameFicheroArticulos.pas"/>
     <File Path="Frames\FrameFicheroArticulos.dfm"/>
