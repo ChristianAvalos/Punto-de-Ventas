@@ -16,6 +16,10 @@ type
     MSPrecioUrevUsuario: TStringField;
     MSPrecioUrevFechaHora: TDateTimeField;
     MSPrecioUrevCalc: TWideStringField;
+    MSBuscadorPrecio: TMSQuery;
+    DSBuscadorPrecio: TDataSource;
+    MSBuscadorPrecioIdPrecio: TIntegerField;
+    MSBuscadorPrecioDescripcion: TStringField;
     procedure MSPrecioAfterCancel(DataSet: TDataSet);
     procedure MSPrecioAfterPost(DataSet: TDataSet);
     procedure MSPrecioBeforeDelete(DataSet: TDataSet);

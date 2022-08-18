@@ -55,7 +55,8 @@ uses
   FormularioBusquedaCondicionPago in 'Formularios\FormularioBusquedaCondicionPago.pas' {FrmBusquedaCondicionPago: TUniForm},
   FrameBarraUltimaRevision in 'Formularios\FrameBarraUltimaRevision.pas' {FmeBarraUltimaRevision: TUniFrame},
   FrmDefinicionListaPrecios in 'Formularios\FrmDefinicionListaPrecios.pas' {FrmDefinicionPrecio: TUniForm},
-  DataModulePrecios in 'DataModule\DataModulePrecios.pas' {DMPrecios: TDataModule};
+  DataModulePrecios in 'DataModule\DataModulePrecios.pas' {DMPrecios: TDataModule},
+  FormularioBusquedaPrecio in 'Formularios\FormularioBusquedaPrecio.pas' {FrmBusquedaPrecio: TUniForm};
 
 {$R *.res}
 

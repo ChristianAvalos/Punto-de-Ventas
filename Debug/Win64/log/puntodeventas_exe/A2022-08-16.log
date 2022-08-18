@@ -1,0 +1,44 @@
+Puntodeventas.exe: 00003494: 19:08:12 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003494: 19:08:12 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003494: 19:08:12 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003494: 19:08:12 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003494: 19:08:12 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000031E8: 19:08:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003E04: 19:08:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000033BC: 19:08:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 000015A0: 19:08:41 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000015A0: 19:08:41 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000015A0: 19:08:41 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000015A0: 19:08:41 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000015A0: 19:08:41 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000015A0: 19:08:41 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 0000389C: 19:08:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00003024: 19:08:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000003DC: 19:08:42 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00002084: 19:08:46 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: ZzCM94byav10AF7CE99 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00002084: 19:08:51 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 000040B4: 19:08:51 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00002B98: 19:08:51 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00003D10: 19:12:13 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 00003D10: 19:12:13 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 00003D10: 19:12:13 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 00003D10: 19:12:13 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 00003D10: 19:12:13 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 00003D10: 19:12:13 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000042C8: 19:12:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00000CEC: 19:12:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 00001300: 19:12:13 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00003420: 19:12:15 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: hUUDXsPblK10AF7CEC6 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00003420: 19:12:15 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: hUUDXsPblK10AF7CEC6 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 000031FC: 19:12:36 []:>--------------------------------------------------------------<
+Puntodeventas.exe: 000031FC: 19:12:36 [TUniServerModule]:Server First Init.
+Puntodeventas.exe: 000031FC: 19:12:36 [TUniServerModule]:Start Path = F:\Proyectos Personales\PuntodeVentas\Debug\Win64\
+Puntodeventas.exe: 000031FC: 19:12:36 [TUniGUISessionManager]:Cache erase job created, Folder count: [1]
+Puntodeventas.exe: 000031FC: 19:12:36 [TUniServerModule]:Starting HTTP Server on Port: 8078...
+Puntodeventas.exe: 000031FC: 19:12:36 [TUniServerModule]:HTTP Server Started on Port: 8078
+Puntodeventas.exe: 000034E4: 19:12:36 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
+Puntodeventas.exe: 00001958: 19:12:37 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
+Puntodeventas.exe: 000022EC: 19:12:37 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 00000BC0: 19:12:38 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: 64hmzoTTQu10AF7CFB0 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00000BC0: 19:12:38 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: 64hmzoTTQu10AF7CFB0 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 000031FC: 21:27:33 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0

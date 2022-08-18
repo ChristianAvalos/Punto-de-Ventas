@@ -5009,6 +5009,7 @@ object MainForm: TMainForm
                     Align = alClient
                     LayoutConfig.Flex = 100
                     LayoutConfig.Width = '100%'
+                    ExplicitTop = -2
                   end
                 end
               end

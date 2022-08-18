@@ -90,4 +90,54 @@ object DMPrecios: TDMPrecios
     Left = 225
     Top = 200
   end
+  object MSBuscadorPrecio: TMSQuery
+    SQLRefresh.Strings = (
+      'SELECT Descripcion FROM Almacen.GrupoArticulo'
+      'WHERE'
+      '  IdGrupoArticulo = :IdGrupoArticulo')
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'SELECT '
+      'IdPrecio,'
+      'Descripcion'
+      'FROM Definicion.Precio'
+      'WHERE '
+      'IdOrganizacion = :IdOrganizacion AND'
+      'IdPrecio = ISNULL(:IdPrecio, IdPrecio) AND'
+      
+        'Descripcion LIKE ISNULL(:Descripcion, Descripcion) COLLATE Moder' +
+        'n_Spanish_CI_AI'
+      'ORDER BY Descripcion')
+    Left = 351
+    Top = 141
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'IdOrganizacion'
+        Value = Null
+      end
+      item
+        DataType = ftInteger
+        Name = 'IdPrecio'
+        Value = Null
+      end
+      item
+        DataType = ftString
+        Name = 'Descripcion'
+        Value = Null
+      end>
+    object MSBuscadorPrecioIdPrecio: TIntegerField
+      FieldName = 'IdPrecio'
+      ReadOnly = True
+    end
+    object MSBuscadorPrecioDescripcion: TStringField
+      FieldName = 'Descripcion'
+      Size = 25
+    end
+  end
+  object DSBuscadorPrecio: TDataSource
+    DataSet = MSBuscadorPrecio
+    Left = 350
+    Top = 199
+  end
 end

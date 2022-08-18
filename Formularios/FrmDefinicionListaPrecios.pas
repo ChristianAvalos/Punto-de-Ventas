@@ -21,6 +21,7 @@ type
     FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
     procedure UniFormShow(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
+    procedure FmeBarraNavegacionPrincipaltbtnBuscarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,11 +35,19 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication, DataModulePrecios, DataModuleOrganizacion, UnitCodigosComunesDataModule;
+  MainModule, uniGUIApplication, DataModulePrecios, DataModuleOrganizacion, UnitCodigosComunesDataModule, FormularioBusquedaPrecio;
 
 function FrmDefinicionPrecio: TFrmDefinicionPrecio;
 begin
   Result := TFrmDefinicionPrecio(UniMainModule.GetFormInstance(TFrmDefinicionPrecio));
+end;
+
+procedure TFrmDefinicionPrecio.FmeBarraNavegacionPrincipaltbtnBuscarClick(
+  Sender: TObject);
+begin
+  inherited;
+  FrmBusquedaPrecio.EnviadoDesdeFrm:=Self.Name;
+  FrmBusquedaPrecio.ShowModal;
 end;
 
 procedure TFrmDefinicionPrecio.UniFormCreate(Sender: TObject);

@@ -1,0 +1,46 @@
+inherited FrmBusquedaPrecio: TFrmBusquedaPrecio
+  Caption = 'B'#250'squeda - Lista de Precio'
+  OnShow = UniFormShow
+  MonitoredKeys.Keys = <
+    item
+      KeyStart = 27
+      KeyEnd = 27
+    end>
+  OnCreate = UniFormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited GridResultado: TUniDBGrid
+    DataSource = DMPrecio.DSBuscadorPrecio
+    Columns = <
+      item
+        FieldName = 'IdPrecio'
+        Title.Alignment = taCenter
+        Title.Caption = 'C'#243'digo'
+        Width = 56
+        ReadOnly = True
+        CheckBoxField.FieldValues = 'true;false'
+      end
+      item
+        FieldName = 'Descripcion'
+        Title.Alignment = taCenter
+        Title.Caption = 'Descripci'#243'n'
+        Width = 314
+        CheckBoxField.FieldValues = 'true;false'
+      end>
+  end
+  inherited cboParametros: TUniComboBox
+    Items.Strings = (
+      'C'#243'digo'
+      'Descripci'#243'n')
+  end
+  inherited btnBuscar: TUniBitBtn
+    ScreenMask.Target = Owner
+  end
+  inherited btnCerrar: TUniBitBtn
+    ScreenMask.Target = Owner
+  end
+  inherited btnIraRegistro: TUniBitBtn
+    ScreenMask.Target = Owner
+    OnClick = btnIraRegistroClick
+  end
+end

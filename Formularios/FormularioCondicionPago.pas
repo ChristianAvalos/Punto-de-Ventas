@@ -7,18 +7,20 @@ uses
   Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
   uniGUIClasses, uniGUIForm, FormularioCRUDMaestro, uniGUIBaseClasses,
   uniImageList, uniStatusBar, FrameBarraNavegacionPrincipal, uniGUIFrame,
-  FrameBarraInformacionOrganizacionUsuario, uniEdit, uniDBEdit, uniLabel,
-  uniPanel, uniDBText, FrameBarraUltimaRevision;
+  uniEdit, uniDBEdit, uniLabel,
+  uniPanel, uniDBText, FrameBarraUltimaRevision,
+  FrameBarraInformacionOrganizacionUsuario;
 
 type
   TFrmCondiciondePago = class(TFrmCRUDMaestro)
-    txtDescripcion: TUniDBEdit;
+    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
+    Panel: TUniPanel;
     lblCodigo: TUniLabel;
     txtCodigo: TUniDBEdit;
     lblTipo: TUniLabel;
-    lblDescripcion: TUniLabel;
     txtTipoPago: TUniDBEdit;
-    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
+    lblDescripcion: TUniLabel;
+    txtDescripcion: TUniDBEdit;
     procedure UniFormShow(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure FmeBarraNavegacionPrincipaltbtnBuscarClick(Sender: TObject);
@@ -35,7 +37,8 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication, DataModuleCondiciondePago, DataModuleOrganizacion, UnitCodigosComunesDataModule, FormularioBusquedaCondicionPago, UnitMenuEventos;
+  MainModule, uniGUIApplication, DataModuleCondiciondePago, DataModuleOrganizacion,
+  UnitCodigosComunesDataModule, FormularioBusquedaCondicionPago, UnitMenuEventos;
 
 function FrmCondiciondePago: TFrmCondiciondePago;
 begin
