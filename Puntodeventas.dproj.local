@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/07/06 23:26:04.000.358,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.dfm</Transaction>
-    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.pas</Transaction>
+    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/06 23:26:43.000.324,F:\Proyectos Personales\PuntodeVentas\Frames\FrameFicheroArticulos.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/11 21:16:01.000.094,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioUsuarioPermiso.pas</Transaction>
     <Transaction>2022/07/11 21:17:36.000.367,=F:\Proyectos Personales\PuntodeVentas\Unit\UnitMenuEventos.pas</Transaction>
     <Transaction>2022/07/11 21:54:09.000.563,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioAlerta.pas</Transaction>
@@ -11,33 +11,33 @@
     <Transaction>2022/07/11 21:56:10.000.378,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioInfoPopupMaestro.pas</Transaction>
     <Transaction>2022/07/11 22:03:49.000.152,=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleComunUsuario.pas</Transaction>
     <Transaction>2022/07/19 20:28:10.000.929,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 20:28:43.000.762,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 20:28:43.000.762,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/19 20:28:43.000.762,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.pas</Transaction>
+    <Transaction>2022/07/19 20:28:43.000.762,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.dfm</Transaction>
     <Transaction>2022/07/19 20:56:59.000.809,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.pas</Transaction>
+    <Transaction>2022/07/19 20:57:31.000.752,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModuleCondiciondePago.dfm</Transaction>
     <Transaction>2022/07/19 23:35:16.000.550,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 23:36:59.000.596,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/19 23:36:59.000.596,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/19 23:36:59.000.596,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.dfm</Transaction>
+    <Transaction>2022/07/19 23:36:59.000.596,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.pas</Transaction>
     <Transaction>2022/07/20 00:04:03.000.775,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondiciondePago.pas=</Transaction>
     <Transaction>2022/07/20 00:07:27.000.091,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioCondicionPago.pas</Transaction>
     <Transaction>2022/07/20 21:24:51.000.912,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaMaestro.pas</Transaction>
     <Transaction>2022/07/20 21:32:51.000.429,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/20 21:39:13.000.286,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaCondicionPago.dfm</Transaction>
-    <Transaction>2022/07/20 21:39:13.000.286,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaCondicionPago.pas</Transaction>
+    <Transaction>2022/07/20 21:39:13.000.286,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaCondicionPago.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/20 21:39:13.000.286,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaCondicionPago.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
     <Transaction>2022/07/25 21:22:37.000.536,F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas=</Transaction>
     <Transaction>2022/07/25 21:26:36.000.112,=F:\Proyectos Personales\PuntodeVentas\Formularios\FrameBarraUltimaRevision.pas</Transaction>
     <Transaction>2022/07/25 21:31:36.000.198,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
+    <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.pas</Transaction>
+    <Transaction>2022/07/25 21:32:25.000.223,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FrmDefinicionListaPrecios.dfm</Transaction>
     <Transaction>2022/07/25 21:33:38.000.672,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
-    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/08/17 20:55:04.360,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaPrecio.pas</Transaction>
-    <Transaction>2022/08/17 21:38:53.401,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioFicheroArticulo.pas=</Transaction>
-    <Transaction>2022/08/17 21:41:15.203,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
-    <Transaction>2022/08/17 21:41:38.138,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioProductos.dfm=F:\Proyectos Personales\PuntodeVentas\Unit1.dfm</Transaction>
-    <Transaction>2022/08/17 21:41:38.138,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioProductos.pas=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.dfm</Transaction>
+    <Transaction>2022/07/25 21:34:05.000.672,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\DataModule\DataModulePrecios.pas</Transaction>
+    <Transaction>2022/08/17 20:55:04.000.360,=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioBusquedaPrecio.pas</Transaction>
+    <Transaction>2022/08/17 21:38:53.000.401,F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioFicheroArticulo.pas=</Transaction>
+    <Transaction>2022/08/17 21:41:15.000.203,=F:\Proyectos Personales\PuntodeVentas\Unit1.pas</Transaction>
+    <Transaction>2022/08/17 21:41:38.000.138,F:\Proyectos Personales\PuntodeVentas\Unit1.dfm=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioProductos.dfm</Transaction>
+    <Transaction>2022/08/17 21:41:38.000.138,F:\Proyectos Personales\PuntodeVentas\Unit1.pas=F:\Proyectos Personales\PuntodeVentas\Formularios\FormularioProductos.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="DataModule"/>

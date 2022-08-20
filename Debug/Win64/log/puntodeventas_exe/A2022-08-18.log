@@ -46,3 +46,14 @@ Puntodeventas.exe: 00002B30: 11:13:17 [127.0.0.1]:EUniSessionException : Sesión
 Puntodeventas.exe: 000041A4: 11:13:45 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff2
 Puntodeventas.exe: 0000206C: 11:13:45 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.woff
 Puntodeventas.exe: 00002B30: 11:13:45 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniServerModule]:Shutting Down Server.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniServerModule]:Stopping HTTP Server.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniServerModule]:HTTP Server Stopped.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniGUISessionManager]:Terminating Session manager.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniGUISessionManager]:Stopping Cache Eraser...
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniGUISessionManager]:Cache Eraser Stopped.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniGUISessionManager]:Destroying Worker Threads.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniGUISessionManager]:Session manager terminated.
+Puntodeventas.exe: 0000087C: 11:50:46 [TUniServerModule]:Server Shutdown Completed.
+Puntodeventas.exe: 0000087C: 11:50:46 []:<-------------------------------------------------------------->
+Puntodeventas.exe: 0000087C: 11:50:46 [Terminated]:Exit Code: 0

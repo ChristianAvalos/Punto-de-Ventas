@@ -3,12 +3,14 @@ inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
   ClientWidth = 430
   Caption = 'Definici'#243'n lista de precios'
   BorderStyle = bsNone
-  Layout = 'vbox'
+  Position = poDefault
+  AlignmentControl = uniAlignmentClient
   ExplicitWidth = 430
   ExplicitHeight = 219
   TextHeight = 15
   inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario
     Width = 430
+    AlignmentControl = uniAlignmentClient
     ExplicitWidth = 430
     inherited lblEtiquetaUsuario: TUniLabel
       Left = 265
@@ -32,6 +34,7 @@ inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
   end
   inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
     Width = 430
+    AlignmentControl = uniAlignmentClient
     ExplicitWidth = 430
     inherited UniDBNavigator: TUniDBNavigator
       DataSource = DMPrecios.DSPrecio
@@ -43,9 +46,12 @@ inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
   end
   inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision [2]
     Left = 0
-    Top = 56
-    Width = 419
+    Top = 57
+    Width = 430
     Height = 20
+    AlignmentControl = uniAlignmentClient
+    Align = alTop
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 2
     ParentRTL = False
     Background.Picture.Data = {00}

@@ -1,21 +1,24 @@
 inherited FrmCondiciondePago: TFrmCondiciondePago
-  Width = 581
-  Height = 161
+  ClientHeight = 139
+  ClientWidth = 552
   Caption = 'Condici'#243'n de pago'
   Color = clWhite
   BorderStyle = bsNone
-  AutoScroll = True
+  Position = poDefault
   AlignmentControl = uniAlignmentClient
-  Layout = 'vbox'
-  ExplicitWidth = 581
-  ExplicitHeight = 161
+  ExplicitWidth = 552
+  ExplicitHeight = 139
   TextHeight = 15
   inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario
-    Width = 581
+    Width = 552
     ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
     inherited lblEtiquetaOrganizacion: TUniLabel
+      Left = 2
+      Top = 11
       TabOrder = 1
+      ExplicitLeft = 2
+      ExplicitTop = 11
     end
     inherited lblEtiquetaUsuario: TUniLabel
       TabOrder = 3
@@ -29,7 +32,7 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     end
   end
   inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
-    Width = 581
+    Width = 552
     ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
     inherited UniDBNavigator: TUniDBNavigator
@@ -47,8 +50,8 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
   object Panel: TUniPanel [2]
     Left = 0
     Top = 57
-    Width = 581
-    Height = 72
+    Width = 552
+    Height = 55
     Hint = ''
     Align = alTop
     TabOrder = 3
@@ -61,7 +64,6 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     LayoutAttribs.Align = 'middle'
     LayoutConfig.Flex = 100
     LayoutConfig.Width = '100%'
-    ExplicitWidth = 806
     object lblCodigo: TUniLabel
       Left = -1
       Top = 25
@@ -124,7 +126,7 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision
       Left = 0
       Top = 0
-      Width = 581
+      Width = 552
       Height = 20
       ParentAlignmentControl = False
       AlignmentControl = uniAlignmentClient
@@ -143,8 +145,8 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     end
   end
   inherited UniStatusBar: TUniStatusBar
-    Top = 136
-    Width = 581
+    Top = 114
+    Width = 552
   end
   inherited uNativeImg: TUniNativeImageList
     Left = 386

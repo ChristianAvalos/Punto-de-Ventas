@@ -115,14 +115,17 @@ begin
     Ts.Tag := NativeInt(Nd);
     Ts.Caption:=Formulario.Caption;
     Ts.ImageIndex := Nd.ImageIndex;
-
-
     TS.Layout:= 'vbox';
     ts.AlignmentControl:= uniAlignmentClient;
     Ts.Align:= alClient;
-    Ts.LayoutAttribs.Align:= 'center';
+    //Ts.LayoutAttribs.Align:= 'center';
+    Formulario.Top := 0;
+    Formulario.Left := 0;
+    Formulario.Height := UniApplication.ScreenHeight - 115 ;
+    Formulario.Width := UniApplication.ScreenWidth - 95 ;
     Formulario.Parent :=TS;
     FormularioFlat(formulario);
+
     //Paso esta variable para que no se cree un tab mas si ya esta abierto
     Nd.Data:=Ts;
    end;

@@ -62,7 +62,6 @@ end;
 procedure TFrmCondiciondePago.UniFormShow(Sender: TObject);
 begin
   inherited;
-
   IrUltimoRegistro(DMCondiciondePago.MSCondicionPago, Self);
 end;
 

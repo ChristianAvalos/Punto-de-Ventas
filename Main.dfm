@@ -1029,6 +1029,7 @@ object MainForm: TMainForm
               Images = UniNativeImageList
               Align = alClient
               TabOrder = 1
+              ExplicitTop = -1
               object UniTabSheet1: TUniTabSheet
                 Hint = ''
                 AlignmentControl = uniAlignmentClient
@@ -5022,7 +5023,7 @@ object MainForm: TMainForm
     ScreenMask.Enabled = True
     ScreenMask.Target = Owner
     Left = 372
-    Top = 273
+    Top = 272
     object HolaMundo1: TUniMenuItem
       Caption = 'Hola Mundo'
     end
