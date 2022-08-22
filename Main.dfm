@@ -1029,7 +1029,6 @@ object MainForm: TMainForm
               Images = UniNativeImageList
               Align = alClient
               TabOrder = 1
-              ExplicitTop = -1
               object UniTabSheet1: TUniTabSheet
                 Hint = ''
                 AlignmentControl = uniAlignmentClient
@@ -5022,16 +5021,23 @@ object MainForm: TMainForm
     Images = UniNativeImageList
     ScreenMask.Enabled = True
     ScreenMask.Target = Owner
-    Left = 372
+    Left = 373
     Top = 272
     object HolaMundo1: TUniMenuItem
       Caption = 'Hola Mundo'
     end
     object mnuFicheros: TUniMenuItem
       Caption = 'Ficheros'
+      ImageIndex = 13
       object mnuFicherosProductos: TUniMenuItem
         Caption = 'Productos'
         OnClick = mnuFicherosProductosClick
+      end
+      object Grupodeporductos1: TUniMenuItem
+        Caption = 'Grupo de porductos'
+      end
+      object Familiadeproductods1: TUniMenuItem
+        Caption = 'Familia de productos'
       end
     end
     object Definiciones1: TUniMenuItem

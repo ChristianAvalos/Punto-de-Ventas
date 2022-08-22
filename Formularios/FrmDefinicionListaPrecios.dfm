@@ -1,15 +1,16 @@
 inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
-  ClientHeight = 219
-  ClientWidth = 430
+  ClientHeight = 141
+  ClientWidth = 809
   Caption = 'Definici'#243'n lista de precios'
   BorderStyle = bsNone
   Position = poDefault
   AlignmentControl = uniAlignmentClient
-  ExplicitWidth = 430
-  ExplicitHeight = 219
+  ExplicitWidth = 809
+  ExplicitHeight = 141
   TextHeight = 15
   inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario
-    Width = 430
+    Width = 809
+    ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
     ExplicitWidth = 430
     inherited lblEtiquetaUsuario: TUniLabel
@@ -33,7 +34,8 @@ inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
     end
   end
   inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
-    Width = 430
+    Width = 809
+    ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
     ExplicitWidth = 430
     inherited UniDBNavigator: TUniDBNavigator
@@ -47,16 +49,17 @@ inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
   inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision [2]
     Left = 0
     Top = 57
-    Width = 430
+    Width = 809
     Height = 20
+    ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 2
     ParentRTL = False
     Background.Picture.Data = {00}
-    ExplicitTop = 56
-    ExplicitWidth = 419
+    ExplicitTop = 57
+    ExplicitWidth = 430
     inherited txtUrev: TUniDBText
       Width = 36
       DataField = 'UrevCalc'
@@ -64,71 +67,82 @@ inherited FrmDefinicionPrecio: TFrmDefinicionPrecio
       ExplicitWidth = 36
     end
   end
-  object txtCodigo: TUniDBEdit [3]
-    Tag = 1
-    Left = 60
-    Top = 87
-    Width = 52
-    Height = 22
-    Hint = ''
-    DataField = 'IdPrecio'
-    DataSource = DMPrecios.DSPrecio
-    TabOrder = 3
-    Color = clMenu
-    ReadOnly = True
-  end
-  object txtMoneda: TUniDBEdit [4]
-    Left = 202
-    Top = 87
-    Width = 201
-    Height = 22
-    Hint = ''
-    DataField = 'Moneda'
-    DataSource = DMPrecios.DSPrecio
-    TabOrder = 4
-  end
-  object UniLabel1: TUniLabel [5]
-    Left = 12
-    Top = 92
-    Width = 38
-    Height = 13
-    Hint = ''
-    Caption = 'C'#243'digo'
-    TabOrder = 5
-  end
-  object UniLabel3: TUniLabel [6]
-    Left = 155
-    Top = 92
-    Width = 43
-    Height = 13
-    Hint = ''
-    Caption = 'Moneda'
-    TabOrder = 6
-  end
-  object txtDescripcion: TUniDBEdit [7]
-    Left = 79
-    Top = 115
-    Width = 323
-    Height = 22
-    Hint = ''
-    DataField = 'Descripcion'
-    DataSource = DMPrecios.DSPrecio
-    TabOrder = 7
-  end
-  object UniLabel2: TUniLabel [8]
-    Left = 13
-    Top = 121
-    Width = 60
-    Height = 13
-    Hint = ''
-    Caption = 'Descripci'#243'n'
-    TabOrder = 8
-  end
-  inherited UniStatusBar: TUniStatusBar [9]
-    Top = 194
-    Width = 430
+  inherited UniStatusBar: TUniStatusBar [3]
+    Top = 116
+    Width = 809
     ExplicitTop = 194
     ExplicitWidth = 430
+  end
+  object UniPanel: TUniContainerPanel
+    Left = 0
+    Top = 77
+    Width = 809
+    Height = 40
+    Hint = ''
+    ParentColor = False
+    Color = clWhite
+    Align = alTop
+    TabOrder = 4
+    object txtCodigo: TUniDBEdit
+      Tag = 1
+      Left = 56
+      Top = 5
+      Width = 52
+      Height = 22
+      Hint = ''
+      DataField = 'IdPrecio'
+      DataSource = DMPrecios.DSPrecio
+      TabOrder = 1
+      Color = clMenu
+      ReadOnly = True
+    end
+    object txtMoneda: TUniDBEdit
+      Left = 167
+      Top = 5
+      Width = 201
+      Height = 22
+      Hint = ''
+      DataField = 'Moneda'
+      DataSource = DMPrecios.DSPrecio
+      TabOrder = 2
+    end
+    object UniLabel1: TUniLabel
+      Left = 10
+      Top = 9
+      Width = 38
+      Height = 13
+      Hint = ''
+      Caption = 'C'#243'digo'
+      TabOrder = 3
+    end
+    object UniLabel3: TUniLabel
+      Left = 116
+      Top = 9
+      Width = 43
+      Height = 13
+      Hint = ''
+      Caption = 'Moneda'
+      TabOrder = 4
+    end
+    object txtDescripcion: TUniDBEdit
+      Left = 444
+      Top = 5
+      Width = 323
+      Height = 22
+      Hint = ''
+      DataField = 'Descripcion'
+      DataSource = DMPrecios.DSPrecio
+      TabOrder = 5
+    end
+    object UniLabel2: TUniLabel
+      Left = 376
+      Top = 9
+      Width = 60
+      Height = 13
+      Hint = ''
+      Caption = 'Descripci'#243'n'
+      TabOrder = 6
+    end
   end
   inherited uNativeImg: TUniNativeImageList
     Left = 713

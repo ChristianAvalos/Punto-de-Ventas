@@ -57,6 +57,8 @@ type
     mnuDefinicionesCondiciondePago: TUniMenuItem;
     mnuDefinicionesPrecio: TUniMenuItem;
     mnuFicherosProductos: TUniMenuItem;
+    Grupodeporductos1: TUniMenuItem;
+    Familiadeproductods1: TUniMenuItem;
     procedure UniFormShow(Sender: TObject);
     procedure mnuHerramientasOrganizacionClick(Sender: TObject);
     procedure Usuarios1Click(Sender: TObject);

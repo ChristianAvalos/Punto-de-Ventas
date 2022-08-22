@@ -597,3 +597,4 @@ Puntodeventas.exe: 00003BE8: 12:49:43 [HandleFileRequest[127.0.0.1]]:File not fo
 Puntodeventas.exe: 00003014: 12:49:43 [HandleFileRequest[127.0.0.1]]:File not found: F:\Proyectos Personales\PuntodeVentas\Debug\Win64\files\css\Tahoma.ttf
 Puntodeventas.exe: 0000334C: 12:49:44 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: t9K66Wltil10AFD8247 ) : Addr: $0000000000A286BD
 Puntodeventas.exe: 0000334C: 12:49:44 [127.0.0.1]:EUniSessionException : Sesión no válida o tiempo de espera agotado. (Session not found: t9K66Wltil10AFD8247 ) : Addr: $0000000000A286BD
+Puntodeventas.exe: 00000C94: 21:47:03 [Exit]:Unexpected attempt to terminate server application with Exit Code: 0

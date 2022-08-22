@@ -56,7 +56,8 @@ uses
   FrmDefinicionListaPrecios in 'Formularios\FrmDefinicionListaPrecios.pas' {FrmDefinicionPrecio: TUniForm},
   DataModulePrecios in 'DataModule\DataModulePrecios.pas' {DMPrecios: TDataModule},
   FormularioBusquedaPrecio in 'Formularios\FormularioBusquedaPrecio.pas' {FrmBusquedaPrecio: TUniForm},
-  FormularioProductos in 'Formularios\FormularioProductos.pas' {FrmProductos: TUniForm};
+  FormularioProductos in 'Formularios\FormularioProductos.pas' {FrmProductos: TUniForm},
+  DataModuleProductos in 'DataModule\DataModuleProductos.pas' {DMProductos: TDataModule};
 
 {$R *.res}
 

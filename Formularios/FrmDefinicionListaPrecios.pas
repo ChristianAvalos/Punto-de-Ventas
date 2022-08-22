@@ -8,17 +8,18 @@ uses
   uniGUIClasses, uniGUIForm, FormularioCRUDMaestro, uniGUIBaseClasses,
   uniImageList, uniStatusBar, FrameBarraNavegacionPrincipal, uniGUIFrame,
   FrameBarraInformacionOrganizacionUsuario, uniEdit, uniDBEdit, uniLabel,
-  FrameBarraUltimaRevision;
+  FrameBarraUltimaRevision, uniPanel;
 
 type
   TFrmDefinicionPrecio = class(TFrmCRUDMaestro)
-    UniLabel1: TUniLabel;
+    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
     txtCodigo: TUniDBEdit;
+    txtMoneda: TUniDBEdit;
+    UniLabel1: TUniLabel;
     UniLabel3: TUniLabel;
     txtDescripcion: TUniDBEdit;
     UniLabel2: TUniLabel;
-    txtMoneda: TUniDBEdit;
-    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
+    UniPanel: TUniContainerPanel;
     procedure UniFormShow(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure FmeBarraNavegacionPrincipaltbtnBuscarClick(Sender: TObject);
