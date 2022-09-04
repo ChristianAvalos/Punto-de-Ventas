@@ -1,0 +1,33 @@
+unit DataModuleComunComercial;
+
+interface
+
+uses
+  SysUtils, Classes;
+
+type
+  TDMComunComercial = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function DMComunComercial: TDMComunComercial;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, uniGUIMainModule, MainModule;
+
+function DMComunComercial: TDMComunComercial;
+begin
+  Result := TDMComunComercial(UniMainModule.GetModuleInstance(TDMComunComercial));
+end;
+
+initialization
+  RegisterModuleClass(TDMComunComercial);
+
+end.

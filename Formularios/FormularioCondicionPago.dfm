@@ -13,6 +13,8 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Width = 552
     ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
+    ExplicitTop = -3
+    ExplicitWidth = 552
     inherited lblEtiquetaOrganizacion: TUniLabel
       Left = 2
       Top = 11
@@ -35,6 +37,7 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
     Width = 552
     ParentAlignmentControl = False
     AlignmentControl = uniAlignmentClient
+    ExplicitWidth = 552
     inherited UniDBNavigator: TUniDBNavigator
       DataSource = DMCondiciondePago.DSCondicionPago
       ScreenMask.Target = Owner
@@ -135,7 +138,7 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
       TabOrder = 7
       ParentRTL = False
       Background.Picture.Data = {00}
-      ExplicitWidth = 806
+      ExplicitWidth = 552
       inherited txtUrev: TUniDBText
         Width = 36
         DataField = 'UrevCalc'
@@ -147,6 +150,8 @@ inherited FrmCondiciondePago: TFrmCondiciondePago
   inherited UniStatusBar: TUniStatusBar
     Top = 114
     Width = 552
+    ExplicitTop = 114
+    ExplicitWidth = 552
   end
   inherited uNativeImg: TUniNativeImageList
     Left = 386

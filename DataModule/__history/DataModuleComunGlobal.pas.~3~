@@ -1,0 +1,33 @@
+unit DataModuleComunGlobal;
+
+interface
+
+uses
+  SysUtils, Classes;
+
+type
+  TDMComunGlobal = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function DMComunGlobal: TDMComunGlobal;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, uniGUIMainModule, MainModule, DataModulePrincipal;
+
+function DMComunGlobal: TDMComunGlobal;
+begin
+  Result := TDMComunGlobal(UniMainModule.GetModuleInstance(TDMComunGlobal));
+end;
+
+initialization
+  RegisterModuleClass(TDMComunGlobal);
+
+end.

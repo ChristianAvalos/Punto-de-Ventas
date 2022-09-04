@@ -1,0 +1,330 @@
+inherited FrmProductos: TFrmProductos
+  ClientHeight = 607
+  ClientWidth = 822
+  Caption = 'Productos'
+  Color = clWhite
+  BorderStyle = bsNone
+  Position = poDefault
+  AlignmentControl = uniAlignmentClient
+  TextHeight = 15
+  inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario
+    Width = 822
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    ExplicitWidth = 822
+    inherited lblUsuario: TUniDBText
+      Width = 53
+      ExplicitWidth = 53
+    end
+  end
+  inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
+    Width = 822
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    ExplicitWidth = 822
+    inherited UniDBNavigator: TUniDBNavigator
+      DataSource = DMProductos.DSProducto
+      ScreenMask.Target = Owner
+    end
+    inherited tbtnBuscar: TUniButton
+      ScreenMask.Target = Owner
+    end
+    inherited UniImageList: TUniImageList
+      Left = 610
+      Top = 3
+    end
+  end
+  inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision [2]
+    Left = 0
+    Top = 57
+    Width = 822
+    Height = 20
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    Align = alTop
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 3
+    ParentRTL = False
+    Background.Picture.Data = {00}
+    ExplicitTop = 57
+    ExplicitWidth = 822
+    inherited txtUrev: TUniDBText
+      Width = 36
+      DataField = 'UrevCalc'
+      DataSource = DMProductos.DSProducto
+      ExplicitWidth = 36
+    end
+  end
+  object txtIVAPorcentaje: TUniDBEdit [3]
+    Left = 508
+    Top = 88
+    Width = 46
+    Height = 22
+    Hint = ''
+    DataField = 'IVA_Porcentaje'
+    DataSource = DMProductos.DSProducto
+    TabOrder = 15
+  end
+  object cboIdTipoArticulo: TUniDBLookupComboBox [4]
+    Left = 144
+    Top = 88
+    Width = 121
+    Height = 23
+    Hint = ''
+    ListField = 'Descripcion'
+    KeyField = 'IdTipoArticulo'
+    ListFieldIndex = 0
+    DataField = 'IdTipoArticulo'
+    DataSource = DMProductos.DSProducto
+    TabOrder = 6
+    Color = clWindow
+    ClientEvents.ExtEvents.Strings = (
+      
+        'render=function render(sender, eOpts)'#13#10'{'#13#10'    sender.editable=tr' +
+        'ue;'#13#10'}')
+  end
+  object cboIdUnidadMedida: TUniDBLookupComboBox [5]
+    Left = 322
+    Top = 89
+    Width = 136
+    Height = 23
+    Hint = ''
+    ListField = 'Descripcion'
+    KeyField = 'IdUnidadMedida'
+    ListFieldIndex = 0
+    DataField = 'IdUnidadMedida'
+    TabOrder = 21
+    Color = clWindow
+    ClientEvents.ExtEvents.Strings = (
+      
+        'render=function render(sender, eOpts)'#13#10'{'#13#10'    sender.editable=tr' +
+        'ue;'#13#10'}')
+  end
+  object txtIdArticulo: TUniDBEdit [6]
+    Tag = 1
+    Left = 52
+    Top = 90
+    Width = 45
+    Height = 22
+    Hint = ''
+    DataField = 'IdArticulo'
+    DataSource = DMProductos.DSProducto
+    TabOrder = 4
+    Color = clMenu
+    ReadOnly = True
+  end
+  object lblCodigo: TUniLabel [7]
+    Left = 8
+    Top = 92
+    Width = 38
+    Height = 13
+    Hint = ''
+    Caption = 'C'#243'digo'
+    TabOrder = 5
+  end
+  object lblUM: TUniLabel [8]
+    Left = 298
+    Top = 93
+    Width = 18
+    Height = 13
+    Hint = ''
+    Caption = 'UM'
+    TabOrder = 22
+  end
+  object lblIVA: TUniLabel [9]
+    Left = 471
+    Top = 93
+    Width = 28
+    Height = 13
+    Hint = ''
+    Caption = 'IVA %'
+    TabOrder = 16
+  end
+  object lblTipo: TUniLabel [10]
+    Left = 115
+    Top = 93
+    Width = 23
+    Height = 13
+    Hint = ''
+    Caption = 'Tipo'
+    TabOrder = 7
+  end
+  object txtCodigoBarra: TUniDBEdit [11]
+    Left = 442
+    Top = 118
+    Width = 109
+    Height = 22
+    Hint = ''
+    DataField = 'CodigoBarra'
+    DataSource = DMProductos.DSProducto
+    TabOrder = 11
+  end
+  object txtDescripcion: TUniDBEdit [12]
+    Left = 68
+    Top = 118
+    Width = 274
+    Height = 22
+    Hint = ''
+    DataField = 'Descripcion'
+    DataSource = DMProductos.DSProducto
+    TabOrder = 8
+  end
+  object lblDescripcion: TUniLabel [13]
+    Left = 8
+    Top = 122
+    Width = 60
+    Height = 13
+    Hint = ''
+    Caption = 'Descripci'#243'n'
+    TabOrder = 9
+  end
+  object lblCodigoBarras: TUniLabel [14]
+    Left = 352
+    Top = 125
+    Width = 84
+    Height = 13
+    Hint = ''
+    Caption = 'C'#243'digo de barra'
+    TabOrder = 10
+  end
+  object cboGrupoArticulo: TUniDBLookupComboBox [15]
+    Left = 47
+    Top = 149
+    Width = 239
+    Height = 23
+    Hint = ''
+    ListField = 'Descripcion'
+    KeyField = 'IdGrupoArticulo'
+    ListFieldIndex = 0
+    DataField = 'IdGrupoArticulo'
+    TabOrder = 12
+    Color = clWindow
+    ClientEvents.ExtEvents.Strings = (
+      
+        'render=function render(sender, eOpts)'#13#10'{'#13#10'    sender.editable=tr' +
+        'ue;'#13#10'}')
+  end
+  object txtFamilia: TUniDBText [16]
+    Left = 334
+    Top = 153
+    Width = 220
+    Height = 13
+    Hint = ''
+    DataField = 'FamiliaArticulo'
+    DataSource = DMProductos.DSProducto
+    AutoSize = False
+    ParentFont = False
+    Font.Style = [fsBold]
+  end
+  object lblGrupo: TUniLabel [17]
+    Left = 8
+    Top = 153
+    Width = 33
+    Height = 13
+    Hint = ''
+    Caption = 'Grupo'
+    TabOrder = 13
+  end
+  object lblFamilia: TUniLabel [18]
+    Left = 296
+    Top = 153
+    Width = 36
+    Height = 13
+    Hint = ''
+    Caption = 'Familia'
+    TabOrder = 14
+  end
+  object lblMemo: TUniLabel [19]
+    Left = 8
+    Top = 178
+    Width = 32
+    Height = 13
+    Hint = ''
+    Caption = 'Memo'
+    TabOrder = 17
+  end
+  object txtMemo: TUniDBMemo [20]
+    Left = 47
+    Top = 178
+    Width = 507
+    Height = 38
+    Hint = ''
+    DataField = 'Memo'
+    DataSource = DMProductos.DSProducto
+    TabOrder = 18
+  end
+  object txtCantidadRotulados: TUniDBEdit [21]
+    Left = 410
+    Top = 229
+    Width = 46
+    Height = 22
+    Hint = ''
+    DataField = 'CantidadRotulados'
+    TabOrder = 25
+    ClientEvents.ExtEvents.Strings = (
+      
+        'OnBeforerender=function OnBeforerender(sender)'#13#10'{'#13#10'  sender.mask' +
+        'Re=/[0-9]/ '#13#10'}')
+  end
+  object chkRequiereRotulado: TUniDBCheckBox [22]
+    Left = 174
+    Top = 232
+    Width = 115
+    Height = 17
+    Hint = ''
+    DataField = 'RequiereRotulado'
+    ValueChecked = 'True'
+    ValueUnchecked = 'False'
+    Caption = 'Requiere Rotulado'
+    TabOrder = 24
+    ParentColor = False
+    Color = clBtnFace
+  end
+  object chLote: TUniDBCheckBox [23]
+    Left = 11
+    Top = 232
+    Width = 57
+    Height = 17
+    Hint = ''
+    DataField = 'Lote'
+    ValueChecked = 'True'
+    ValueUnchecked = 'False'
+    Caption = 'Lote'
+    TabOrder = 19
+    ParentColor = False
+    Color = clBtnFace
+  end
+  object chSerie: TUniDBCheckBox [24]
+    Left = 82
+    Top = 232
+    Width = 57
+    Height = 17
+    Hint = ''
+    DataField = 'Serie'
+    ValueChecked = 'True'
+    ValueUnchecked = 'False'
+    Caption = 'Serie'
+    TabOrder = 20
+    ParentColor = False
+    Color = clBtnFace
+  end
+  object UniLabel1: TUniLabel [25]
+    Left = 298
+    Top = 234
+    Width = 116
+    Height = 13
+    Hint = ''
+    Caption = 'Cantidad de rotulados'
+    TabOrder = 26
+  end
+  inherited UniStatusBar: TUniStatusBar [26]
+    Top = 582
+    Width = 822
+    ExplicitTop = 582
+    ExplicitWidth = 822
+  end
+  inherited uNativeImg: TUniNativeImageList
+    Left = 549
+    Top = 21
+  end
+end

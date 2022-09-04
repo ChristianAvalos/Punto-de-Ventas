@@ -1,0 +1,59 @@
+unit FormularioProductoPrecio;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, FormularioPopupCRUDMaestro, uniButton, uniBitBtn,
+  uniGUIBaseClasses, uniPanel, uniEdit, uniDBEdit, uniLabel, uniMultiItem,
+  uniComboBox, uniDBComboBox, uniDBLookupComboBox, uniImageList;
+
+type
+  TFrmArticuloPrecio = class(TFrmPopupCRUDMaestro)
+    cboPrecio: TUniDBLookupComboBox;
+    lblPrecio: TUniLabel;
+    UniLabel2: TUniLabel;
+    cboMoneda: TUniDBLookupComboBox;
+    lblMoneda: TUniLabel;
+    txtMonto: TUniDBFormattedNumberEdit;
+    procedure btnAceptarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmArticuloPrecio: TFrmArticuloPrecio;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication, DataModuleProductos;
+
+function FrmArticuloPrecio: TFrmArticuloPrecio;
+begin
+  Result := TFrmArticuloPrecio(UniMainModule.GetFormInstance(TFrmArticuloPrecio));
+end;
+
+procedure TFrmArticuloPrecio.btnAceptarClick(Sender: TObject);
+begin
+  inherited;
+
+  DMProductos.MSProductoPrecios.Post;
+  Close;
+
+end;
+
+procedure TFrmArticuloPrecio.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  DMProductos.MSProductoPrecios.Cancel;
+  //Cierro el form
+  Close;
+end;
+
+end.

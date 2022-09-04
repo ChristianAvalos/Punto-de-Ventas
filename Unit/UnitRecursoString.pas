@@ -64,6 +64,9 @@ resourcestring
   EDataSetEdicion = 'El DataSet se encuentra en edición';
   ENoHayRegistroSeleccionadoBusqueda = 'No hay registro seleccionado en la búsqueda';
   ESeleccioneMoneda = 'Escriba el tipo de moneda';
+  ESeleccioneGrupoProducto = 'Seleccione el grupo del producto';
+  ESeleccioneTipoProducto='Seleccione el tipo de producto';
+  EEscribaIVA='Escriba el iva';
 
     // MIME
   EMimeTIFF = 'image/tiff';

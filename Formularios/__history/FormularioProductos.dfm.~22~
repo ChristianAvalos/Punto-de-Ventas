@@ -1,0 +1,355 @@
+inherited FrmProductos: TFrmProductos
+  ClientHeight = 599
+  ClientWidth = 1118
+  Caption = 'Productos'
+  Color = clWhite
+  BorderStyle = bsNone
+  Position = poDefault
+  AlignmentControl = uniAlignmentClient
+  ExplicitWidth = 1118
+  ExplicitHeight = 599
+  TextHeight = 15
+  inherited FmeBarraInformacionOrganizacionUsuario: TFmeBarraInformacionOrganizacionUsuario
+    Width = 1118
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    ExplicitWidth = 822
+    inherited lblUsuario: TUniDBText
+      Width = 53
+      ExplicitWidth = 53
+    end
+  end
+  inherited FmeBarraNavegacionPrincipal: TFmeBarraNavegacionPrincipal
+    Width = 1118
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    ExplicitWidth = 822
+    inherited UniDBNavigator: TUniDBNavigator
+      DataSource = DMProductos.DSProducto
+      ScreenMask.Target = Owner
+    end
+    inherited tbtnBuscar: TUniButton
+      ScreenMask.Target = Owner
+    end
+    inherited UniImageList: TUniImageList
+      Left = 610
+      Top = 3
+    end
+  end
+  inline FmeBarraUltimaRevision: TFmeBarraUltimaRevision [2]
+    Left = 0
+    Top = 57
+    Width = 1118
+    Height = 20
+    ParentAlignmentControl = False
+    AlignmentControl = uniAlignmentClient
+    Align = alTop
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 3
+    ParentRTL = False
+    Background.Picture.Data = {00}
+    ExplicitTop = 57
+    ExplicitWidth = 822
+    inherited txtUrev: TUniDBText
+      Width = 36
+      DataField = 'UrevCalc'
+      DataSource = DMProductos.DSProducto
+      ExplicitWidth = 36
+    end
+  end
+  inherited UniStatusBar: TUniStatusBar [3]
+    Top = 574
+    Width = 1118
+    ExplicitTop = 582
+    ExplicitWidth = 822
+  end
+  object contenedor: TUniContainerPanel
+    Left = 0
+    Top = 77
+    Width = 1118
+    Height = 491
+    Hint = ''
+    ParentColor = False
+    Color = clWhite
+    Align = alTop
+    TabOrder = 4
+    object cboGrupoArticulo: TUniDBLookupComboBox
+      Left = 396
+      Top = 35
+      Width = 239
+      Height = 23
+      Hint = ''
+      ListField = 'Descripcion'
+      KeyField = 'IdGrupoArticulo'
+      ListFieldIndex = 0
+      DataField = 'IdGrupoProducto'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 1
+      Color = clWindow
+      ClientEvents.ExtEvents.Strings = (
+        
+          'render=function render(sender, eOpts)'#13#10'{'#13#10'    sender.editable=tr' +
+          'ue;'#13#10'}')
+    end
+    object cboIdTipoArticulo: TUniDBLookupComboBox
+      Left = 144
+      Top = 6
+      Width = 121
+      Height = 23
+      Hint = ''
+      ListField = 'Descripcion'
+      KeyField = 'IdTipoArticulo'
+      ListFieldIndex = 0
+      DataField = 'IdTipoProducto'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 2
+      Color = clWindow
+      ClientEvents.ExtEvents.Strings = (
+        
+          'render=function render(sender, eOpts)'#13#10'{'#13#10'    sender.editable=tr' +
+          'ue;'#13#10'}')
+    end
+    object cboIdUnidadMedida: TUniDBLookupComboBox
+      Left = 322
+      Top = 6
+      Width = 136
+      Height = 23
+      Hint = ''
+      ListField = 'Descripcion'
+      KeyField = 'IdUnidadMedida'
+      ListFieldIndex = 0
+      DataField = 'IdUnidadMedida'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 3
+      Color = clWindow
+      ClientEvents.ExtEvents.Strings = (
+        
+          'render=function render(sender, eOpts)'#13#10'{'#13#10'    sender.editable=tr' +
+          'ue;'#13#10'}')
+    end
+    object chLote: TUniDBCheckBox
+      Left = 11
+      Top = 108
+      Width = 57
+      Height = 17
+      Hint = ''
+      DataField = 'Lote'
+      DataSource = DMProductos.DSProducto
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+      Caption = 'Lote'
+      TabOrder = 4
+      ParentColor = False
+      Color = clBtnFace
+    end
+    object chSerie: TUniDBCheckBox
+      Left = 82
+      Top = 108
+      Width = 57
+      Height = 17
+      Hint = ''
+      DataField = 'Serie'
+      DataSource = DMProductos.DSProducto
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+      Caption = 'Serie'
+      TabOrder = 5
+      ParentColor = False
+      Color = clBtnFace
+    end
+    object lblCodigo: TUniLabel
+      Left = 8
+      Top = 6
+      Width = 38
+      Height = 13
+      Hint = ''
+      Caption = 'C'#243'digo'
+      TabOrder = 6
+    end
+    object lblCodigoBarras: TUniLabel
+      Left = 568
+      Top = 13
+      Width = 84
+      Height = 13
+      Hint = ''
+      Caption = 'C'#243'digo de barra'
+      TabOrder = 7
+    end
+    object lblDescripcion: TUniLabel
+      Left = 8
+      Top = 39
+      Width = 60
+      Height = 13
+      Hint = ''
+      Caption = 'Descripci'#243'n'
+      TabOrder = 8
+    end
+    object lblFamilia: TUniLabel
+      Left = 645
+      Top = 39
+      Width = 36
+      Height = 13
+      Hint = ''
+      Caption = 'Familia'
+      TabOrder = 9
+    end
+    object lblGrupo: TUniLabel
+      Left = 357
+      Top = 39
+      Width = 33
+      Height = 13
+      Hint = ''
+      Caption = 'Grupo'
+      TabOrder = 10
+    end
+    object lblIVA: TUniLabel
+      Left = 471
+      Top = 10
+      Width = 28
+      Height = 13
+      Hint = ''
+      Caption = 'IVA %'
+      TabOrder = 11
+    end
+    object lblMemo: TUniLabel
+      Left = 8
+      Top = 64
+      Width = 32
+      Height = 13
+      Hint = ''
+      Caption = 'Memo'
+      TabOrder = 12
+    end
+    object lblTipo: TUniLabel
+      Left = 115
+      Top = 10
+      Width = 23
+      Height = 13
+      Hint = ''
+      Caption = 'Tipo'
+      TabOrder = 13
+    end
+    object lblUM: TUniLabel
+      Left = 298
+      Top = 10
+      Width = 18
+      Height = 13
+      Hint = ''
+      Caption = 'UM'
+      TabOrder = 14
+    end
+    object txtCodigoBarra: TUniDBEdit
+      Left = 658
+      Top = 6
+      Width = 109
+      Height = 22
+      Hint = ''
+      DataField = 'CodigoBarra'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 15
+    end
+    object txtDescripcion: TUniDBEdit
+      Left = 68
+      Top = 35
+      Width = 274
+      Height = 22
+      Hint = ''
+      DataField = 'Descripcion'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 16
+    end
+    object txtFamilia: TUniDBText
+      Left = 683
+      Top = 39
+      Width = 220
+      Height = 13
+      Hint = ''
+      DataField = 'FamiliaDescripcion'
+      DataSource = DMProductos.DSProducto
+      AutoSize = False
+      ParentFont = False
+      Font.Style = [fsBold]
+    end
+    object txtIdArticulo: TUniDBEdit
+      Tag = 1
+      Left = 52
+      Top = 7
+      Width = 45
+      Height = 22
+      Hint = ''
+      DataField = 'IdProducto'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 18
+      Color = clMenu
+      ReadOnly = True
+    end
+    object txtIVAPorcentaje: TUniDBEdit
+      Left = 505
+      Top = 7
+      Width = 46
+      Height = 22
+      Hint = ''
+      DataField = 'IVA_Porcentaje'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 19
+    end
+    object txtMemo: TUniDBMemo
+      Left = 52
+      Top = 64
+      Width = 507
+      Height = 38
+      Hint = ''
+      DataField = 'Memo'
+      DataSource = DMProductos.DSProducto
+      TabOrder = 20
+    end
+    object UniPageControl1: TUniPageControl
+      Left = 3
+      Top = 131
+      Width = 790
+      Height = 310
+      Hint = ''
+      ActivePage = tabPreciosSalida
+      TabOrder = 21
+      object tabPreciosSalida: TUniTabSheet
+        Hint = ''
+        Caption = 'Precios de salida'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 790
+        ExplicitHeight = 310
+        object btnAgregarPrecio: TUniButton
+          Left = 10
+          Top = 11
+          Width = 64
+          Height = 24
+          Hint = ''
+          Caption = 'Agregar'
+          TabOrder = 0
+        end
+        object btnEliminarPrecio: TUniButton
+          Left = 76
+          Top = 11
+          Width = 64
+          Height = 24
+          Hint = ''
+          Caption = 'Eliminar'
+          TabOrder = 1
+        end
+        object UniDBGrid1: TUniDBGrid
+          Left = 3
+          Top = 41
+          Width = 776
+          Height = 238
+          Hint = ''
+          LoadMask.Message = 'Loading data...'
+          TabOrder = 2
+        end
+      end
+    end
+  end
+  inherited uNativeImg: TUniNativeImageList
+    Left = 549
+    Top = 21
+  end
+end

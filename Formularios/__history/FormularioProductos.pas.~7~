@@ -1,0 +1,64 @@
+unit FormularioProductos;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, FormularioCRUDMaestro, uniGUIBaseClasses,
+  uniImageList, uniStatusBar, FrameBarraNavegacionPrincipal, uniGUIFrame,
+  FrameBarraInformacionOrganizacionUsuario, FrameBarraUltimaRevision, uniDBText,
+  uniCheckBox, uniDBCheckBox, uniMemo, uniDBMemo, uniMultiItem, uniComboBox,
+  uniDBComboBox, uniDBLookupComboBox, uniLabel, uniEdit, uniDBEdit, uniPanel,
+  uniPageControl, uniBasicGrid, uniDBGrid, uniButton;
+
+type
+  TFrmProductos = class(TFrmCRUDMaestro)
+    FmeBarraUltimaRevision: TFmeBarraUltimaRevision;
+    txtIdArticulo: TUniDBEdit;
+    lblCodigo: TUniLabel;
+    cboIdTipoArticulo: TUniDBLookupComboBox;
+    lblTipo: TUniLabel;
+    txtDescripcion: TUniDBEdit;
+    lblDescripcion: TUniLabel;
+    lblCodigoBarras: TUniLabel;
+    txtCodigoBarra: TUniDBEdit;
+    cboGrupoArticulo: TUniDBLookupComboBox;
+    lblGrupo: TUniLabel;
+    lblFamilia: TUniLabel;
+    txtIVAPorcentaje: TUniDBEdit;
+    lblIVA: TUniLabel;
+    lblMemo: TUniLabel;
+    txtMemo: TUniDBMemo;
+    chLote: TUniDBCheckBox;
+    chSerie: TUniDBCheckBox;
+    cboIdUnidadMedida: TUniDBLookupComboBox;
+    lblUM: TUniLabel;
+    txtFamilia: TUniDBText;
+    contenedor: TUniContainerPanel;
+    UniPageControl1: TUniPageControl;
+    tabPreciosSalida: TUniTabSheet;
+    btnAgregarPrecio: TUniButton;
+    btnEliminarPrecio: TUniButton;
+    UniDBGrid1: TUniDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+function FrmProductos: TFrmProductos;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, uniGUIApplication, DataModuleProductos;
+
+function FrmProductos: TFrmProductos;
+begin
+  Result := TFrmProductos(UniMainModule.GetFormInstance(TFrmProductos));
+end;
+
+end.

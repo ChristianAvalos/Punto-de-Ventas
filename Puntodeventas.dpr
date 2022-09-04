@@ -57,7 +57,10 @@ uses
   DataModulePrecios in 'DataModule\DataModulePrecios.pas' {DMPrecios: TDataModule},
   FormularioBusquedaPrecio in 'Formularios\FormularioBusquedaPrecio.pas' {FrmBusquedaPrecio: TUniForm},
   FormularioProductos in 'Formularios\FormularioProductos.pas' {FrmProductos: TUniForm},
-  DataModuleProductos in 'DataModule\DataModuleProductos.pas' {DMProductos: TDataModule};
+  DataModuleProductos in 'DataModule\DataModuleProductos.pas' {DMProductos: TDataModule},
+  FormularioProductoPrecio in 'Formularios\FormularioProductoPrecio.pas' {FrmProductoPrecio: TUniForm},
+  DataModuleComunComercial in 'DataModule\DataModuleComunComercial.pas' {DMComunComercial: TDataModule},
+  DataModuleComunGlobal in 'DataModule\DataModuleComunGlobal.pas' {DMComunGlobal: TDataModule};
 
 {$R *.res}
 

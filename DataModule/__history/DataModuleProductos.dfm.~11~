@@ -1,0 +1,128 @@
+object DMProductos: TDMProductos
+  Height = 480
+  Width = 640
+  object MSProducto: TMSQuery
+    SQLInsert.Strings = (
+      'INSERT INTO Almacen.Producto'
+      
+        '  (IdOrganizacion, IdTipoProducto, IdGrupoProducto, Descripcion,' +
+        ' CodigoBarra, Serie, Lote, Memo, IVA_Porcentaje, IdUnidadMedida,' +
+        ' SeriePrefijo, UrevUsuario, UrevFechaHora, CodigoAGenerar)'
+      'VALUES'
+      
+        '  (:IdOrganizacion, :IdTipoProducto, :IdGrupoProducto, :Descripc' +
+        'ion, :CodigoBarra, :Serie, :Lote, :Memo, :IVA_Porcentaje, :IdUni' +
+        'dadMedida, :SeriePrefijo, :UrevUsuario, :UrevFechaHora, :CodigoA' +
+        'Generar)'
+      'SET :IdProducto = SCOPE_IDENTITY()')
+    SQLDelete.Strings = (
+      'DELETE FROM Almacen.Producto'
+      'WHERE'
+      '  IdProducto = :Old_IdProducto')
+    SQLUpdate.Strings = (
+      'UPDATE Almacen.Producto'
+      'SET'
+      
+        '  IdOrganizacion = :IdOrganizacion, IdTipoProducto = :IdTipoProd' +
+        'ucto, IdGrupoProducto = :IdGrupoProducto, Descripcion = :Descrip' +
+        'cion, CodigoBarra = :CodigoBarra, Serie = :Serie, Lote = :Lote, ' +
+        'Memo = :Memo, IVA_Porcentaje = :IVA_Porcentaje, IdUnidadMedida =' +
+        ' :IdUnidadMedida, SeriePrefijo = :SeriePrefijo, UrevUsuario = :U' +
+        'revUsuario, UrevFechaHora = :UrevFechaHora, CodigoAGenerar = :Co' +
+        'digoAGenerar'
+      'WHERE'
+      '  IdProducto = :Old_IdProducto')
+    SQLRefresh.Strings = (
+      
+        'SELECT IdOrganizacion, IdTipoProducto, IdGrupoProducto, Descripc' +
+        'ion, CodigoBarra, Serie, Lote, Memo, IVA_Porcentaje, IdUnidadMed' +
+        'ida, SeriePrefijo, UrevUsuario, UrevFechaHora, CodigoAGenerar FR' +
+        'OM Almacen.Producto'
+      'WHERE'
+      '  IdProducto = :IdProducto')
+    SQLLock.Strings = (
+      'SELECT * FROM Almacen.Producto'
+      'WITH (UPDLOCK, ROWLOCK, HOLDLOCK)'
+      'WHERE'
+      '  IdProducto = :Old_IdProducto')
+    SQLRecCount.Strings = (
+      'SET :PCOUNT = (SELECT COUNT(*) FROM Almacen.Producto'
+      ')')
+    Connection = DMPrincipal.MSConnection
+    SQL.Strings = (
+      'SELECT * FROM Almacen.Producto')
+    BeforeUpdateExecute = MSProductoBeforeUpdateExecute
+    BeforeOpen = MSProductoBeforeOpen
+    BeforeInsert = MSProductoBeforeInsert
+    BeforeEdit = MSProductoBeforeEdit
+    BeforePost = MSProductoBeforePost
+    AfterPost = MSProductoAfterPost
+    AfterCancel = MSProductoAfterCancel
+    BeforeDelete = MSProductoBeforeDelete
+    AfterScroll = MSProductoAfterScroll
+    OnNewRecord = MSProductoNewRecord
+    OnPostError = MSProductoPostError
+    Left = 48
+    Top = 40
+    object MSProductoIdProducto: TIntegerField
+      FieldName = 'IdProducto'
+      ReadOnly = True
+    end
+    object MSProductoIdOrganizacion: TIntegerField
+      FieldName = 'IdOrganizacion'
+    end
+    object MSProductoIdTipoProducto: TIntegerField
+      FieldName = 'IdTipoProducto'
+    end
+    object MSProductoIdGrupoProducto: TIntegerField
+      FieldName = 'IdGrupoProducto'
+    end
+    object MSProductoDescripcion: TStringField
+      FieldName = 'Descripcion'
+      Size = 100
+    end
+    object MSProductoCodigoBarra: TStringField
+      FieldName = 'CodigoBarra'
+      Size = 30
+    end
+    object MSProductoSerie: TBooleanField
+      FieldName = 'Serie'
+    end
+    object MSProductoLote: TBooleanField
+      FieldName = 'Lote'
+    end
+    object MSProductoMemo: TStringField
+      FieldName = 'Memo'
+      Size = 250
+    end
+    object MSProductoIVA_Porcentaje: TFloatField
+      FieldName = 'IVA_Porcentaje'
+    end
+    object MSProductoIdUnidadMedida: TIntegerField
+      FieldName = 'IdUnidadMedida'
+    end
+    object MSProductoSeriePrefijo: TStringField
+      FieldName = 'SeriePrefijo'
+      Size = 10
+    end
+    object MSProductoUrevUsuario: TStringField
+      FieldName = 'UrevUsuario'
+      Size = 50
+    end
+    object MSProductoUrevFechaHora: TDateTimeField
+      FieldName = 'UrevFechaHora'
+    end
+    object MSProductoCodigoAGenerar: TIntegerField
+      FieldName = 'CodigoAGenerar'
+    end
+    object MSProductoUrevCalc: TWideStringField
+      FieldName = 'UrevCalc'
+      ReadOnly = True
+      Size = 4000
+    end
+  end
+  object DSProducto: TDataSource
+    Left = 48
+    Top = 112
+  end
+end
